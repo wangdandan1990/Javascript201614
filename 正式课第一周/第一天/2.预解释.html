@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var a=12;
+    //1.私有作用域 2.形参赋值 3.预解释 4.代码从上到下的执行
+    function fn(a){//
+        alert(a)
+        a=456;
+        alert(a);
+    }
+    fn(a);*/
+    /*var a=[23,48,98,666];
+     //1.私有作用域 2.形参赋值 3.预解释 4.代码从上到下的执行
+     function fn(a){
+         a[0]=123;//【123,48,98,666】
+         console.log(a)
+         a=[];
+         a[a.length]=456;
+         console.log(a);//[456]
+     }
+     fn(a);
+    console.log(a);*/
+    /*var a=[23,48,96];
+    function fn(a){
+        a[0]=456;
+        console.log(a);
+        var a=[];
+        a.push(456);
+        console.log(a);
+    }
+    fn(a);
+    console.log(a);*/
+    /*alert(fn)//var fn=xxff00;
+    function fn(n){
+        alert(n+'我是上面的')
+    }*/
+     //var fn;
+    alert(fn)//undefined
+    //fn=xxff00;
+    var fn=function(n){
+        alert(n+'我是下面的')
+    }
+    fn(456)//xxff00();
+</script>
+</body>
+</html>

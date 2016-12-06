@@ -1,0 +1,87 @@
+1.常用命令：
+1)win+R:打开命令行
+2)git --version:查看git的版本，知道git安装是否成功；
+3）清除命令行：cls(window系统) clear(linux,mac);
+4)ls -a:查看当前文件夹下所有的文件（隐藏+显示的文件夹）
+5）添加远程通道：git remote add XXXX;
+删除远程通道 git remote rm 通道名
+
+
+2.git配置：
+git config --global user.name "你的github用户名"
+git config --global user.email "你的github邮箱"
+3.创建一个git本地仓库：
+    1、新建一个文件夹
+    2、进入这个文件夹，右键git bash or 左手shift+右键“在此处打开命令窗口”
+    3、git init :把本地仓库初始化为一个git可以管理的仓库；
+4.建立远程仓库：
+    1.右上角“+”
+    2.输入仓库名称- create
+5.把“本地仓库”所有内容，推送到“远程仓库”：
+    1）git add .
+    git add -A
+    git add --all
+    2) git commit -m"注释内容"
+    3) git push origin master
+6.学员更新老师讲义（开发人员更新项目）
+    1）登录自己的github，然后把老师讲义地址，复制到地址栏
+    https://github.com/zhufengpeixun/Javascript201614.git
+    2）把自己的远程仓库，下载到本地；
+    git clone https://github.com/leilei1238/Javascript201614.git
+    3)连接老师远程通道：
+    git remote add teacher https://github.com/zhufengpeixun/Javascript201614.git
+    查看链接了哪些通道：git remote -v
+    删除远程通道：git remote rm 通道名称
+
+    4)更新老师远程通道
+    git remote update teacher
+    git pull teacher master
+    .......................................
+预解释
+1.为何学习预解释？--理解即可
+    1）避免很多不规范的写法；
+    2）带var和不带var是有区别的；
+    3）代码写在里面和外面是有区别的；
+2.什么是预解释？
+   在当前作用域下，在JS代码执行之前，浏览器会对带var和带function的，进行提前声明或定义；
+3.关于预解释：带var和带function不同：
+ 1）带var：只声明不定义；var a;告诉浏览器有个变量叫a，关于a的内容并不知道；
+ 2）带function:声明+定义； var fn=xxff00;
+4.函数执行四阶段：
+1）形成一个私有作用域
+2）形参赋值
+3）预解释：
+4）代码从上到下的执行；
+5.作用于链：
+当函数被调用的时候，会形成一个私有作用域，我们看该私有作用域下，是否有私有变量A：
+1）如果有私有变量A：那么该作用域中的A，都是私有变量，跟外界没有任何关系
+2）如果没有私有变量A：到上级作用域进行查找，如果没有，继续往上找，找到window全局作用域还没有的话，报错；
+6.带var和不带var的区别：
+1）带var:1)在全局环境下，属于window的全局属性 2）带var会进行预解释
+2）不带var：1)属于window的全局属性 2)不带var不会进行预解释；
+7.私有变量有2种：
+1）当前作用域下，带var的;
+2）形参；
+8.栈内存和堆内存：
+栈内存：提供了一个供JS代码执行的环境；（里面可以放轻量级的数据：基本数据类型）
+    全局作用域 和  私有作用域；
+堆内存：堆内存用来存放引用数据类型；
+    对象数据类型：键值对
+    函数数据类型：代码字符串
+9.预解释无节操：
+1）只对等号左边带var的，声明但不定义；
+2) 已经声明过的，不会进行重复声明，但会重新赋值
+3）在预解释阶段，函数的优先级大于变量；
+
+
+
+
+
+
+
+
+
+
+
+
+
