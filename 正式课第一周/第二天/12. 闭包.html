@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<script>
+    var oDiv=document.getElementsByTagName('div')[1];
+    var name='zhufeng';
+    var age=123;
+    /*(function(){
+        var name='zhanglei';
+        var age=456;
+        window.name='zhufengpeixun';
+        alert(name);
+    })();
+    alert(name)*/
+    //1.功能：找到当前元素的上一个哥哥元素；
+    /*
+    * 参数：当前元素
+    * 返回值：当前元素的上一个哥哥元素 --一个对象
+    * 封装过程：1）浏览器是否兼容
+    * */
+    (function(){
+        function prev(curEle){
+            //当浏览器支持的时候，直接使用浏览器提供的方法；
+            if(curEle.previousElementSibling){
+                return curEle.previousElementSibling;
+            }
+            //浏览器不支持，自己做兼容处理；
+            var pre=curEle.previousSibling;//上一个哥哥节点；
+            while(pre && pre.nodeType!==1){
+                pre=pre.previousSibling;
+            }
+            return pre;//哥哥元素  null
+        }
+        window.prev=prev;
+    })();
+    console.prev(prev(oDiv).innerHTML);
+</script>
+</body>
+</html>

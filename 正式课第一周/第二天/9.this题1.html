@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*考察点：
+    * 1.预解释
+    * 2.自执行函数中的this
+    * 3.函数返回值；
+    * */
+    var name='珠峰';
+    var age=500;//window.age=500
+    name=(function(name,age){
+        arguments[0]='珠峰培训';
+        age=age||this.age;
+        console.log(name,age);
+    })(name);
+    console.log(name,age)
+</script>
+</body>
+</html>

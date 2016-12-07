@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            -webkit-user-select: none;
+            font-size: 40px;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            margin:50px auto;
+            background: -webkit-linear-gradient(top,lightblue,lightcoral);
+        }
+    </style>
+</head>
+<body>
+<div id="div">0</div>
+<script>
+    var oDiv=document.getElementById('div');
+    //1.全局变量-不建议
+    /*var n=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++n;
+    }*/
+    //2.闭包两种思路：缺点：会形成不销毁的私有作用域；
+    /*(function(){
+        var n=0;
+        oDiv.onclick=function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    /*oDiv.onclick=(function(){
+        var n=0;
+        return function (){
+            this.innerHTML=++n;
+        }
+    })();*/
+    //3.DOM操作
+    /*oDiv.onclick=function(){
+      this.innerHTML++; //++：自动进行数据类型转换
+      //this.innerHTML=this.innerHTML+1; //字符串拼接，从页面中拿到的内容，都是字符串数据类型；
+    }*/
+    //4.自定义属性---最最最建议
+    oDiv.n=0;//obj={n:0}
+    oDiv.onclick=function(){
+        this.innerHTML=++this.n;
+    }
+</script>
+</body>
+</html>

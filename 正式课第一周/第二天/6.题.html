@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*//上级作用域：只跟函数堆内存在哪个空间下开辟有关，跟函数哪里执行无关。
+    function fn() {
+        var i = 10;
+        return function (n) {
+            console.log(n + (++i));
+        }
+    }
+    var f = fn();
+    f(15);
+    f(20);
+    fn()(15);
+    fn()(20);
+    fn()(30);
+    f(30);*/
+    //考察点：1）内存释放 2）i++和++i;
+    function fn() {
+        var i = 12;
+        return function (n) {
+            console.log(n + (i++));
+        }
+    }
+    var f = fn();
+    f(15);//27
+    f(20);//33
+    fn()(15);//27
+    fn()(20);//20+12=32;
+    fn()(30);//30+12=42;
+    f(30);//30+14=44
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //return后面的语句不会进行预解释，return下面的语句，虽然不执行，但会进行预解释
+    function fn(){
+        //var f2="function f2(){alert(2)}"
+        f2();
+        f1();
+        return function f1(){alert(1)}
+        function f2(){
+            alert(2)
+        }
+    }
+    fn();
+</script>
+</body>
+</html>

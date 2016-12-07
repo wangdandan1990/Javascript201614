@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fn(){
+        return function(){
+            alert(123)
+        }
+    }
+   // fn()(); //--不立即销毁
+    var a=fn();//--不销毁
+</script>
+</body>
+</html>

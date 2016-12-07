@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    f=function(){return true};
+    g=function(){return false};
+    (function(){
+        if(g()&&[]==![]){
+            f=function(){return false;}
+            function g(){return true;}
+        }
+    })();
+    alert(f());
+    alert(g());
+</script>
+</body>
+</html>
