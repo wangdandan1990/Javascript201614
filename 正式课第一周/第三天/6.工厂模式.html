@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var name='zhufeng';
+    var age=8;
+    function person(name,age){
+        //1.创建空对象
+        var obj={} //new Object();
+        //2.添加属性和方法
+        obj.name=name;
+        obj.age=age;
+        obj.getName=function(){
+            alert('我的名字是'+this.name)
+        }
+        //3.输出对象
+        return obj;
+    }
+    var person1=person('蕾蕾',18);
+    var person2=person('zhufeng',8);
+    console.dir(person1)
+    person1.getName();
+
+    /*var preson1={
+        name:'leilei',
+        age:18,
+        getName:function(){
+            alert('我的名字是'+this.name)
+        }
+    }
+    var preson2={
+        name:'珠峰',
+        age:8,
+        getName:function(){
+            alert('我的名字是'+this.name)
+        }
+    }
+    var person3={
+        name:'xxx',
+        age:xxx,
+        getName:function(){
+            alert('我的名字是'+this.name)
+        }
+    }*/
+
+</script>
+</body>
+</html>

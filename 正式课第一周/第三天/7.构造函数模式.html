@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var name='zhufeng';
+    var age=8;
+    function Person(name,age){
+        //1.系统会自动创建一个对象；this
+        //2.添加属性和方法
+        this.name=name;
+        this.age=age;
+        this.getName=function(){
+            alert('我的名字是'+this.name)
+        }
+        //3.系统默认帮我们返回一个对象this；
+    }
+    var person1=new Person('蕾蕾',18);
+    var person2=new Person('zhufeng',9);
+    console.dir(person1.getName===person2.getName)
+
+</script>
+</body>
+</html>

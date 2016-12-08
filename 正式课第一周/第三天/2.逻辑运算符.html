@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //var a=2;
+    /*if(a==2){//条件判断语句中，永远不要用单引号；
+        alert(2);
+    }*/
+    /*//a==2 && alert(2); // &&:前面为真，才会走后面；
+    a==2?alert(2):null; //三目：三元表达式
+    if(a==2) alert(2);*/
+    /*function a(){
+        alert(1)
+    }
+    function fn(a){ //callback  cb本质就是a这个函数的定义阶段
+        a && a(); //a();
+        /!*if(typeof cb === 'function'){
+            cb();
+        }*!/
+    }
+    fn(a);*/
+    //关于||   前面为假才会走后面
+    /*var a=undefined||20;
+    alert(a);*/
+    function fn(params){//params:所有参数的集合
+        var l=params.l||400;
+        var t=params.t||500;
+        alert(t);
+    }
+    fn({
+        l:100
+    })
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

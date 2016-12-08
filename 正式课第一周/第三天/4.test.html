@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj={
+        fn:function(){
+            //console.log(this.num);
+            this.fn1();
+        },
+        fn1:function(){
+            console.log(this)
+        },
+        num:20,
+        aa:this.num//window
+    }
+    alert(obj.aa)
+    obj.fn();
+    /*var ary=[function(){
+        console.log(this);
+    }]
+    obj.fn();
+    ary[0]();*/
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+1.把“本地仓库”所有内容，推送到“远程仓库”;
+创建本地仓库 git init
+git remote add origin
+git add ./-A --all
+git commit -m""
+git push origin master
+
+2.学员更新老师讲义
+    1)添加远程 git remote add
+    2）更新远程 git remote update teacher
+    git pull teacher master
+
+3.什么是预解释？
+
+4.函数执行四阶段
+    1形成私有作用域
+    2形参赋值
+    3预解释
+    4代码从上到下执行
+5.私有变量有2种
+    私有作用域中带var
+    形参
+6.预解释无节操 6个
+    1.=左边带var，只声明不定义
+    2.已经声明过的不会重复声明，但会重新赋值
+    3.自执行函数不会进行预解释，执行到他的时候，声明+定义+调用同步完成
+    4.条件判断语句中无论条件是否成立，都会进行预解释
+    5.return后面语句不会预解释，return下面的语句，虽然不执行，但会预解释
+    6.预解释阶段函数优先级大于变量
+7.内存及内存释放
+    内存：堆内存+栈内存
+
+8.运算符的优先级：算术》比较》逻辑》赋值
+9.++i和i++区别；
+10.this总结
+
+11.面向对象的特点：封装 继承 多态
+12.面向对象的设计模式：单例，工厂，构造函数，原型
+13.原型基础3句话及画图
+14  var num = 10;
+    var obj = {
+        num: 20,
+        fn: (function (num) {
+            this.num *= 2;
+            num += 10;
+            return function () {
+                this.num *= 3;
+                num += 1;
+                console.log(num);
+            }
+        })(num)
+    };
+    var fn = obj.fn;
+    fn(); obj.fn(); console.log(window.num, obj.num);

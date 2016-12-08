@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //构造函数：实例 和 类 打交道
+    //原型模式：实例，类，原型 三者打交道；
+    function Fn(){//构造函数存放的，都是私有的属性和方法；
+        this.x=100;
+        this.y=200;
+    }
+    //prototype原型上，存放的都是共有的属性和方法
+    Fn.prototype.getName=function(){
+        alert(this.x)
+    };
+    var f1=new Fn; //实例
+    //alert(f1.getName===Fn.prototype.getName)
+    alert(f1.__proto__.getName===Fn.prototype.getName)
+    //f1.getName();//实例可以调用私有的属性和方法，也可以调用共有的属性和方法；
+    /*f1
+    * x:100,
+    * y:200
+    * __proto__:Object
+    * constructor:Fn,
+    * getName:function(){...}
+    * __proto__:Object
+    * constructor:Object;
+    * */
+
+</script>
+</body>
+</html>
