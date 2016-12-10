@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+    }
+    Person.prototype.getName=function(){};
+    var p1=new Person('zhufeng',8);
+    console.dir(p1);
+    function zhaoliying(name,age,like){
+        Person.call(this,name,age);
+        this.like=like;
+    }
+    var zhaoliying=new zhaoliying('赵丽颖','29','演戏');
+    console.dir(zhaoliying)
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var obj={} //new Object();
+    function fn(n,m){
+        console.log(this,(n+m));
+    }
+    fn.call(obj,2,3);*/
+    //call的第一个参数：用来改变call点前面的函数中的this指向；
+    //call的第二个参数开始，相当于给fn的形参从左往右的赋值；
+    var obj={};
+    function fn(n){
+        n&&n.call(obj);//aa&&aa();
+    }
+    function aa(){
+        console.log(this);
+    }
+    fn(aa);
+</script>
+</body>
+</html>

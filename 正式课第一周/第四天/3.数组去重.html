@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary1=[1,4,4,4,4,4,2,1,2,3,3,1,2,3];
+    Array.prototype.rmsame=function(){
+        //思路1：双重循环
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            for(var j=i+1; j<this.length; j++){
+                if(cur===this[j]){
+                    this.splice(j,1);
+                    j--;
+                }
+            }
+        }
+        return this;
+    };
+    ary1.rmsame();
+    console.log(ary1);
+    var res=ary1.rmsame().sort(function(a,b){return a-b}).pop().push(5);
+    console.log(ary1);
+    console.log(res);
+    /*Array.prototype.rmsame=function(){
+        var ary=[];
+        for(var i=0; i<this.length; i++){
+            if(ary.indexOf(this[i])===-1){
+                ary.push(this[i]);
+            }
+        }
+        return ary;
+    }*/
+    //思路3：利用对象不重名的特性；obj{1:1,2:1,3:1} obj[1]++;
+    /*var obj={};
+    for(var i=0; i<ary1.length; i++){
+        var cur=ary1[i];
+        /!*if(obj[cur]){
+            obj[cur]++;
+            continue;
+        }
+        obj[cur]=1;*!/
+        if(obj[cur]){
+            obj[cur]++;
+        }else{
+            obj[cur]=1;
+        }
+    }*/
+    /*var res=ary1.rmsame();
+    console.log(res);*/
+</script>
+</body>
+</html>

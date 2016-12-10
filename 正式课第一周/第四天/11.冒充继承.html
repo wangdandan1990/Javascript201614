@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //冒充继承原理：把父类私有+公有的属性和方法，都继承给了子类私有的；
+    function F(){
+        this.x=100;
+        this.y=200;
+    }
+    F.prototype.getName=function(){};
+    var f1=new F;
+    console.dir(f1);
+    /*
+    * x:100,
+    * y:200
+    * __proto__:
+    * constructor:F
+    * getName:fun.....
+    * */
+    function S(){
+        this.x=100;
+        for(var attr in f1){
+            this[attr]=f1[attr];
+    }
+    }
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * x:100,
+    * y:200,
+    * getName:function(){...}
+    * __proto__:
+    * constructor:S
+    *
+    * */
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //原型链继承：把父类私有+公有，继承给了子类公有；
+
+    function F(){
+        this.x=100;
+        this.y=200;
+    }
+    F.prototype.getName=function(){};
+    var f1=new F;
+    console.dir(f1);
+    /*
+    * x:100,
+    * y:200,
+    * __proto__:
+    * constructor:F,
+    * getName:....
+    * */
+    function S(){
+        this.aa=123;
+        this.bb=456;
+    };
+    S.prototype=new F;
+    S.prototype.getX=function(){};
+    S.prototype.constructor=S;
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * aa:123,
+    * bb:456,
+    * __proto__:
+    * x：100，
+    * y:200,
+    * getX:......
+    * __proto__:
+    * constructor:F,
+    * getName:xxxxx
+    * */
+</script>
+</body>
+</html>

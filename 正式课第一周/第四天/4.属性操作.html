@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   /* var obj={1:'你',2:'的',3:'名字'};
+    //alert("1" in obj);
+    var ary=[];
+    for(var attr in obj){
+        ary.push(Number(attr));
+    }
+    console.log(ary);
+    //in：判断某个属性是否为对象身上的属性；*/
+    function Fn(){//x,y都是私有属性；
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype={//公有的
+        constructor:Fn,
+        getName:function(){}
+
+    }
+   var f1=new Fn;
+   //in：判断某个属性是否为对象上的私有+公有属性；
+    //alert("getName" in f1);
+    //hasOwnProperty();
+    //alert(f1.hasOwnProperty('x'));
+    //功能：判断某个“属性”是否为“对象”上的公有属性
+   //参数：属性名 对象
+   //返回值：布尔值；
+    function hasPubProperty(attr,obj){
+        //思路：该属性是对象上的属性，并且不是私有属性；
+        return attr in obj && !obj.hasOwnProperty(attr);
+    }
+    alert(hasPubProperty('x',f1))
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

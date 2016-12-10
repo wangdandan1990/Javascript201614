@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=10;
+        this.y=20;
+    }
+    Fn.prototype={
+        x:20,
+        add:function(){
+            alert(this.x+this.y);
+        }
+    }
+    var f1=new Fn;
+    f1.add();//30
+    f1.__proto__.add();//NaN;
+    console.log(Fn.prototype.constructor);//Object
+    console.log(Fn.prototype.add==f1.__proto__.add);//true
+</script>
+</body>
+</html>

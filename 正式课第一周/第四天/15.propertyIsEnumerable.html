@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj={x:100,y:200,getX:function(){console.log(this.x)}};
+    Object.prototype.aa=function aa(){
+        console.log(this.y);
+    };
+    alert(obj.propertyIsEnumerable('aa'));
+    //for...in...循环只能遍历自定义的属性和方法；(自定义：私有+公有)
+    for(var attr in obj){
+        //propertyIsEnumerable:可以枚举对上身上自定义的私有属性和方法；
+        /*if(obj.propertyIsEnumerable(attr)){
+            console.log(attr+' : '+obj[attr])
+        }*/
+        if(obj.hasOwnProperty(attr)){
+            console.log(attr+' : '+obj[attr])
+        }
+    }
+
+</script>
+</body>
+</html>

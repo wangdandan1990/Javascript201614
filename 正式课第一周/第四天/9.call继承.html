@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //call继承的原理：把父类所有私有的，都继承给了子类私有的；
+    //继承：子类可以继承父类的属性和方法；
+    function F(x,y){//构造函数：存的是私有的属性和方法
+        this.x=x;
+        this.y=y;
+    }
+    F.prototype.getName=function(){};//原型上存的是公有的属性和方法；
+    var f1=new F(100,200);//实例
+    console.dir(f1);
+    /*
+    * x:100,
+    * y:200
+    * __proto__:
+    * constructor:F
+    * getName:function(){...}
+    * */
+    function S(x,y,name){
+       F.call(this,x,y);
+       this.name=name;
+    }
+    var s1=new S(200,300,'leilei');
+    console.dir(s1)
+    /*
+    * x:100,
+    * y:200,
+    * name:undefined;
+    * */
+</script>
+</body>
+</html>

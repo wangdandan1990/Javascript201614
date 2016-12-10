@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div" class="456"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    console.dir(oDiv);
+    alert(Object.prototype.isPrototypeOf(oDiv));
+    //...............................
+    function Fn(){
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype.getName=function(){};
+    var f1=new Fn;
+    //对象：f1   Fn.prototype  f1.__proto__
+    //obj1.isPropertyOf(obj2):判断obj1是否在obj2的原型链（__proto__）上；
+    //alert(Fn.prototype.isPrototypeOf(f1));
+</script>
+</body>
+</html>
