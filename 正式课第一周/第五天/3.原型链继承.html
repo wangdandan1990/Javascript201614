@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //核心：把父类私有+公有的，继承给子类公有的；
+    function F(){
+        this.x=100;
+    }
+    F.prototype.getName=function(){
+        console.log('getName方法')
+    };
+    function S(){};
+    S.prototype=new F;
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * __proto__:
+    * x:100,
+    * __proto__:
+    * constructor:F,
+    * getName:function(){...}
+    * __proto__:
+    * 基类的原型
+    * */
+    /*console.log(s1.__proto__.x)
+    s1.__proto__.__proto__.getName();*/
+</script>
+</body>
+</html>

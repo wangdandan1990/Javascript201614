@@ -1,0 +1,18 @@
+1.数据类型检测：
+1）typeof 问题：所有的对象，通过typeof打印出来，都是object
+2)instanceof 作用：当前这个对象，是否属于某个类；
+             问题：当前这个类，只要在这个对象的原型链上，永远都是true；
+3)constructor 作用：打印出当前这个对象，所属的类；
+             问题：当我们给类.prototype自己赋值的时候，constructor会出问题；
+4)Object.prototype.toString.call();
+  {}.toString.call();
+             基类上的toString():作用-》可以打印出当前实例this，所属类的详细信息；
+             所以，我们想要检测谁，就让this通过call变成谁；
+             只有基类上的toString(),才能进行数据类型检测；
+
+2.获取可视区的宽高：
+document.documentElement.clientWidth||document.body.clientWidth;
+document.documentElement.clientHeight||document.body.clientHeight;
+3.window.onload:等页面所有内容都加载完成，开始执行JS代码；
+
+

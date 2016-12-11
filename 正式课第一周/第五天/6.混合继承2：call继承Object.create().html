@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function F(){
+        this.x=100;
+        this.y=200;
+    }
+    F.prototype.getName=function(){};
+    console.dir(new F);
+    function S(){
+        F.call(this);//把父类继承给了子类私有；
+    }
+    /*S.prototype= F.prototype;//两个对象，操作一个地址
+    S.prototype.constructor=S;
+    console.dir(new S);*/
+    function Tmp(){};
+    Tmp.prototype= F.prototype;
+    S.prototype=new Tmp;
+    S.prototype.constructor=S;
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * x:100,
+    * y:200,
+    * __proto__:
+    *constructor:S
+    * __proto__:
+    * constructor:F,
+    * getName:function(){}
+    * */
+</script>
+</body>
+</html>

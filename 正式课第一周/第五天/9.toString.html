@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[1,2,3,4];
+    var str='123';//字面量方式创建
+    var str1=new String('123');//实例创建；
+    var num=12;
+    console.log(str instanceof String);
+    console.log(str1 instanceof String);
+    //console.log(ary.toString());//toString:转成字符串；
+    //基类原型上的toString方法：可以打印出当前实例this所属类的详细信息；
+    console.log(Object.prototype.toString.call(ary));//如果修改了this，就可以打印出ary所属类的详细信息；
+    console.log(Object.prototype.toString.call(num))
+</script>
+</body>
+</html>

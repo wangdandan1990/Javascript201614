@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function F(){//父类
+        this.x=100;
+    }
+    function S(){}//子类
+    S.prototype=new F; //s1.constructor=> F
+   // S.prototype={};//s1.constructor=>Object
+    var s1=new S;
+    console.log(s1.constructor)
+    /*
+    * __proto__:
+    * x:100,
+    * __proto__:
+    * constructor:F,
+    *
+    *
+    *
+    *
+    * */
+</script>
+</body>
+</html>

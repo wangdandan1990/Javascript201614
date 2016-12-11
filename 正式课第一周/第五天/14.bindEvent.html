@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<input type="button" value="按钮4">
+<input type="button" value="按钮5">
+<script>
+    var ary=["red","yellow","pink","green","blue"];
+    var aBtn=document.getElementsByTagName('input');
+    /*for(var i=0; i<aBtn.length; i++){
+        aBtn[i].index=i;//把正确的i值保存在元素的自定义属性上；
+        aBtn[i].onclick=function(){
+            document.body.style.background=ary[this.index];
+        }
+    }*/
+    bindEvent();
+    function bindEvent(){
+        for(var i=0; i<aBtn.length; i++){
+            //alert(i);
+            //把正确的i值，保存在不同的私有作用域中；
+            (function(index){//index：形参
+                aBtn[i].onclick=function(){
+                    document.body.style.background=ary[index];
+                }
+            })(i);//i值是实参；
+        }
+    }
+
+</script>
+</body>
+</html>

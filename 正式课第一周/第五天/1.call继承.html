@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //call:把父类私有的，继承给了子类私有的；
+    function F(){
+        this.x=100;
+    }
+    F.prototype.getName=function(){};
+    var f1=new F;
+    console.dir(f1);
+    /*
+    * x:100,
+    * __proto__:
+    * constructor:F
+    * getName:function(){}
+    * */
+    function S(){
+        F.call(this);
+        this.z=300;
+    }
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * x:100,
+    * z:300,
+    * __proto__:
+    * constructor:S;
+    * */
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var a=4;
+    function b(x,y,a) {
+        alert(a);
+        arguments[2]=10;
+        alert(a);
+    }
+    a=b(1,2,3);
+    alert(a);*/
+    var foo='hello';
+    (function(foo){
+        console.log(foo);//hello
+        var foo=foo||'world';//hello
+        console.log(foo);
+    })(foo);
+    console.log(foo);//hello
+
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //原型链继承：把父类私有+公有，都给了子类公有的
+    //call继承：把父类私有的给了子类私有的；
+    //子类私有有父类私有的； 子类公有也有父类私有的；
+    function F(){
+        this.x=100;
+        this.y=200;
+    }
+    F.prototype.getName=function(){};
+    function S(){
+        F.call(this);//把父类私有给了子类私有；
+    }
+    S.prototype=new F;//把父类私有+公有，都给了子类公有的；
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * x:100,
+    * y:200,
+    * __proto__:
+    * x:100,
+    * y:200,
+    * __proto__:
+    * constructor:F;
+    * getName:function(){};
+    *
+    * */
+</script>
+</body>
+</html>

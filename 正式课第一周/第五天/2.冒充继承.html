@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //冒充继承：把父类私有+公有的，继承给子类私有的；
+    function F(){
+        this.x=100;
+    }
+    F.prototype.getName=function(){};
+    var f1=new F;
+    function S(){
+       for(var attr in f1){
+           this[attr]=f1[attr];
+       }
+    }
+    var s1=new S;
+    console.dir(s1)
+</script>
+</body>
+</html>

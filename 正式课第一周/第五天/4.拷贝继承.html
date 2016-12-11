@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //拷贝继承：私有继承私有的（call）； 公有继承公有的（extend）
+    function extend(obj1,obj2){
+        for(var attr in obj1){
+            obj2[attr]=obj1[attr];
+        }
+        return obj2;
+    }
+    function F(){
+        this.x=100;
+    }
+    F.prototype.getName=function(){
+        console.log('getName方法')
+    };
+    function S(){
+        F.call(this);
+    }
+    extend(F.prototype, S.prototype);
+    var s1=new S;
+    console.dir(s1);
+    /*
+    * x:100,
+    * __proto__:
+    * constructor:S,
+    * getName:function(){...}
+    * */
+</script>
+</body>
+</html>

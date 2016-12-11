@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function prev(curEle){
+        if(curEle.previousElementSibling){
+            return curEle.previousElementSibling;
+        }
+        var pre=curEle.previousSibling;//上一个哥哥节点
+        while(pre && pre.nodeType !== 1){
+            pre=pre.previousSibling;
+        }
+        return pre;
+    }
+</script>
+</body>
+</html>
