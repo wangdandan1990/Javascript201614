@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name){
+        this.name=name;
+    }
+    Person.prototype.zIndex=100;
+    var p1=new Person('leilei');
+    Person.prototype.zIndex=300;
+    //p1.zIndex=200;//如果我们给实例设置 zIndex;屏蔽了原型上的zIndex;
+    //相当于给实例添加了私有属性zIndex=200;
+    alert(p1.zIndex)
+    /*function Person(name){
+        var o={};
+        o.name=name;
+        return o;
+    }
+    var p1=new Person('leilei');
+    alert(p1 instanceof Person)*/
+</script>
+</body>
+</html>

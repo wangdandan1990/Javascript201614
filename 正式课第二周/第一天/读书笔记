@@ -1,0 +1,98 @@
+陪你读书：只是看书，不需要死记硬背
+第二章小总结：
+1.script的六个属性
+async:异步下载
+charset：编码字符集
+defer：立即下载，延迟执行
+language：加载的JS文件类型
+src：外部文件地址
+type：加载的JS文件类型
+    (MIME：服务器返回给前端脚本语言的内容类型：MIME：application/x-javascript;)
+2.使用script的注意事项：
+1）使用script方式有两种：内嵌+外链
+2）内嵌和外链不能二合一，如果二合一，只能外链，不能内嵌；
+3）在两个script中间，不能</script>--解决措施<\/script>
+4) 不建议在script中使用async属性和defer属性：会导致加载顺序错乱，文件依赖会出问题；
+3.标签位置：
+1.传统放head中；目的：让CSS，JS都放在同一个地方，方便管理
+2.如果JS文件过多，最好放body内容后面；避免加载JS时间过长，页面空白问题；
+4.XHTML问题，解决措施有两个：
+1）< -》&lt
+2)cData片段
+5.解决缓存的两种措施：
+1）network下，右键 clear browser cache
+2)给请求加链接地址后面?=+随机数
+6.内嵌和外链：
+大型项目：建议外链
+优点：
+1）方便管理
+2）缓存
+小型项目：建议内嵌
+优点：
+不需要发送请求，提高性能；
+第6章小总结：
+1.ECMAScript中有两种属性：数据属性和访问器属性
+1）数据属性：
+    Configurable:能否通过delete删除属性；注意：一旦设置不能删除属性，就再也无法改回来了；改回来会报错；
+    Enumerable:能够通过for-in遍历访问；
+    Writable:能否修改属性的值
+    Value:属性的数据值；
+2)访问器属性：
+    configurable:能否通过delete删除属性
+    enumerable:能否通过for-in遍历访问；
+    get:在读取属性时调用；
+    set:在设置属性时调用；
+注：访问器属性的作用：即设置一个属性的值，会导致其他属性发生变化；
+例： var book={
+          _year:2004,
+          edition:1
+      }
+      Object.defineProperty(book,'year',{
+          get:function(){
+              return '今年是'+this._year+'年';
+          },
+          set:function(newValue){
+              if(newValue>2004){
+                  this._year=newValue;
+                  this.edition+=newValue-2004;
+              }
+          }
+      })
+      book.year=2016;
+      alert(book.edition)
+2.修改属性：Object.defineProperty()
+有是3个参数：1）对象 2）属性名 3）描述符对象：configurable,enumerable,writable,value
+3.OO思想设计模式：
+1）单例模式 缺点：使用一个接口，创建很多对象，会产生大量冗余代码；
+解决措施：工厂模式
+2）工厂模式 缺点：没有解决对象识别问题（即：怎样知道一个对象的类型）
+解决措施：构造函数模式
+构造函数本身也是函数，只不过可以创建对象而已；
+3）构造函数模式 缺点：每个方法都是实例的私有方法，所以，不同实例上的同名方法实不相等的；
+解决措施：原型模式
+4）原型模式：
+Object.getPrototypeOf(obj1); 返回的对象，就是对象obj1的原型；（不兼容IE678）
+注意：虽然可以通过实例访问原型上的属性值，但不能通过对象实例重写原型中的值；这会导致给实例创建该属性，将会屏蔽原型中的该属性；
+重置constructor，但不让其可枚举：
+//重新设置constructor指向，但是不让其枚举出来；因为系统的属性一般不可枚举
+    Object.defineProperty(F.prototype,'constructor',{
+        enumerable:false,
+        value:F
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
