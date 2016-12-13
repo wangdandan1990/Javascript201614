@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function F(){};//类：类和系统原型之间的关系
+    F.prototype.showName=function(){};//给系统原型中添加属性名showName;
+    var f1=new F;
+    f1.__proto__={};//等号的作用：赋值的；
+    console.log(F.prototype);
+    /*
+    *constructor：F,
+    *showName:....
+    * __proto__
+    *
+    * */
+
+</script>
+</body>
+</html>

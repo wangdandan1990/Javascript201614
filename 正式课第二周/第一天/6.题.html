@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Fn(num){
+        this.x=this.y=num;
+    }
+    Fn.prototype={
+        x:20,
+        sum:function(){
+            console.log(this.x+this.y)
+        }
+    };
+    var f=new Fn(10);
+    console.log(f.sum==Fn.prototype.sum);//true
+    f.sum();//20--先走了私有属性
+    Fn.prototype.sum();//NaN; 没有走私有属性，直接跨到prototype原型空间；
+    console.log(f.constructor)//Object; function Object(){};
+</script>
+</body>
+</html>

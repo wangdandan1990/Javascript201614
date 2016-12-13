@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //构造函数
+    function Person(){};//建立了构造函数和系统原型之间的关系；
+    //实例
+    var friend=new Person;//建立了实例和系统原型之间的关系；
+    //原型
+    Person.prototype={//切断了构造函数和系统原型之间的联系，建立了构造函数跟手动创建对象之间的联系；
+        name:'leilei',
+        age:29,
+        sayName:function(){
+            console.log(this.name);
+        }
+    };
+    friend.sayName();
+</script>
+</body>
+</html>

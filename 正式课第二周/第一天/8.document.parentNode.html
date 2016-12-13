@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" id="h1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //域里面最大的是全局作用域window； HTML页面结构中最大的是document;
+    var oH=document.getElementById('h1');
+    alert(oH.parentNode===document)//<!DOCTYPE html>就是document
+    alert(document.parentNode)
+</script>
+</body>
+</html>

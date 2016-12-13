@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<script>
+    var aBtn=document.getElementsByTagName('input');
+    var ary=['red','green','orange'];
+    /*for(var i=0; i<aBtn.length; i++){
+        //把正确的i值，保存到元素的自定义属性上；
+        aBtn[i].index=i;
+        aBtn[i].onclick=function(){
+            //事件触发后，执行的函数中的i值一定有问题；
+            document.body.style.background=ary[this.index];
+        }
+    }*/
+    for(var i=0; i<aBtn.length; i++){
+        (function(index){
+            aBtn[i].onclick=function(){
+                document.body.style.background=ary[index];
+            }
+        })(i);
+    }
+</script>
+</body>
+</html>

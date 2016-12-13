@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj={};
+    //var  ary=[2,3];
+    function f1(n,m){
+        console.log(this,(n+m))
+    }
+    //f1.call(obj,2,3);
+    //f1.apply(obj,ary)
+    //apply:第一个参数，改变this指向； 第二个参数，虽然是个数组，但是相当于给apply前面的函数，从左往右一个个的赋值；
+    //当apply改完this指向，传完参数之后，让apply前面的函数立即执行；
+    //bind：预处理机制：先把bind前面的函数中的this改了，参数传了，然后返回一个修改后的函数；在需要的时候，手动调用；
+    var res=f1.bind(obj,2,3);
+    res();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[12,3,4,56,28];
+    //1.sort排序
+    /*ary.sort(function(a,b){
+        return a-b;
+    })
+    var max=ary[ary.length-1];
+    var min=ary[0];*/
+    //2.假设法；
+    /*var min=ary[0];
+    var max=ary[0];
+    for(var i=1; i<ary.length; i++){
+        //如果找到更小的，更换min的值；
+        if(ary[i]<min){
+            min=ary[i];
+        }
+        if(ary[i]>max){
+            max=ary[i];
+        }
+    }*/
+    //3.Math.max();
+    /*var max=Math.max.apply(Math,ary);
+    var min=Math.min.apply(Math,ary);*/
+    //4.eval:把字符串作为JS代码来执行；
+    //eval('Math.max(12,3,4,56,28)');//eval:把字符串作为JS代码来执行；
+    //alert(min+','+max)
+   /*alert(eval('Math.max('+ary.join(',')+')'))
+   alert(eval('Math.min('+ary.join(',')+')'))*/
+   alert(eval('Math.min('+ary+')'))
+</script>
+</body>
+</html>

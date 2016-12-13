@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Function.prototype.call方法中，this必须有；
+    /*Function.prototype.call=function(obj){
+       //this:实例f1;
+       //1：改变this这个实例的中的this关键字；
+       //2：this这个实例立即执行
+       this(); //f2();
+    }*/
+    //f1是Function的实例； Function.prototype原型上找：公有属性和方法；
+    var obj={};
+    function f1(){//f1中this关键字可有可无；
+        alert(1);
+    }
+    function f2(){
+        alert(2);
+    }
+    f1.call(f2);
+    //call前面的函数中的this关键字变成f2;
+    //让call前面的函数f1立即执行；
+    f1.call.call.call.call.call.call.call.call(f2);
+    //f1.call(obj);
+    //call的第一个参数，用来改变call前面这个实例中的this关键字；
+    //call改完this指向，传完参数之后，让call前面的函数立即执行；
+</script>
+</body>
+</html>
