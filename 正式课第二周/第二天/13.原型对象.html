@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function F(){
+        this.x=100;
+    }
+    F.prototype={
+        aa:function(){},
+        bb:function(){}
+    };
+    Object.defineProperty(F.prototype,'constructor',{
+        enumerable:false,
+        value:F
+    });
+    var f1=new F;
+    f1.aa=123;//不能通过实例原型的值；因为如果实例.aa就相当于给实例添加私有属性
+    delete F.prototype;
+    console.dir(F)
+    //for..in 只能遍历自定义的属性和方法；不能遍历系统的属性和方法；
+    for(var attr in f1){
+        console.log(attr+':'+f1[attr])
+    }
+</script>
+</body>
+</html>

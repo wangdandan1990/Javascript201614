@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var book={
+        "title":null,
+        "authors":[
+                "leilei",
+                "zhufeng"
+        ],
+        "year":2011,
+        toJSON:function(){
+            return this.title;
+        }
+    }*/
+    var book={
+        "title":'zhufeng',
+        "authors":[
+            "leilei",
+            "zhufeng"
+        ],
+        "year":2011,
+        "date":new Date()//月份比正常月份少一个月；
+    }
+    var jsonText=JSON.stringify(book,null,4);//string
+    var book1=JSON.parse(jsonText,function(key,value){
+        if(key==="date"){
+            return new Date(value)
+        }else if(key==="title"){
+            return value+123;
+        }else{
+            return value;
+        }
+    });
+    alert(book1.title)
+    //设置月份要减1，获取月份要+1；
+    //var jsonText=JSON.stringify(book,["title"],4);
+   /* var jsonText=JSON.stringify(book,function(key,value){
+        switch(key){
+            case "title":
+                return "bbbbbb";
+            case "authors":
+                return value.join('+');
+            default:
+                return value;
+        }
+    })
+    console.log(jsonText)*/
+</script>
+</body>
+</html>

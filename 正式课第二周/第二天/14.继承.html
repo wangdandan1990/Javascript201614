@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function F(){};
+    F.prototype.aa=function(){};
+    function S(){};
+    ,//如果使用了原型链继承，就不要再通过对象字面量重新赋值原型对象；
+    S.prototype={
+        aa:xxx,
+        b:xx
+    }
+</script>
+</body>
+</html>
