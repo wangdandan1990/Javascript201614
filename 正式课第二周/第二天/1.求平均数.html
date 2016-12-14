@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function average(){
+        //1.类数组转成数组
+        /*var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary.push(arguments[i]);
+        }*/
+        var ary=Array.prototype.slice.call(arguments);//类数组转数组；
+        /*
+        * call作用：改变this指向，并且让call前面的函数立即执行
+        * call第一个参数：用来改变call前面函数中的this指向；
+        * call第二个参数开始：从左往右一个个的赋值；
+        * */
+        //2.排序
+        ary.sort(function(a,b){
+            return a-b;
+        });
+        console.log(ary)
+        //3.掐头去尾
+        ary.shift();//移除数组第一项
+        ary.pop();//删除数组末尾项
+        //4.累加求和
+        return (eval(ary.join('+'))/ary.length).toFixed(2);
+    }
+    //window.average(9.8,7.77777,6.77777,0.77777,9.77777,3.333333);
+    var res=average(9.8,7.77777,6.77777,0.77777,9.77777,3.333333);
+    alert(res);
+</script>
+</body>
+</html>

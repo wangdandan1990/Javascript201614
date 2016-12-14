@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<!--<div>49</div>
+<div>29</div>-->
+<script src="utils.js"></script>
+<script>
+    //1.请求数据并解析数据；
+    var data=null;
+    getData();
+    function getData(){
+        var xml=new XMLHttpRequest;//创建对象
+        //打开地址
+        xml.open('get','data.txt',false);
+        //请求响应
+        xml.onreadystatechange=function(){
+            if(xml.readyState==4 && /^2\d{2}$/.test(xml.status)){
+                data=utils.jsonParse(xml.responseText);
+            }
+        };
+        //发送请求
+        xml.send();
+    }
+    //2.绑定数据
+    for(var i=0; i<data.length; i++){
+        //创建div
+        var oDiv=document.createElement('div');
+        oDiv.innerHTML=data[i].name;
+        document.body.appendChild(oDiv);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    //两种类数组：1）arguments 2）元素集合nodelist
+    //通过Array.prototype.slice.call 转换arguments-》完全兼容；
+    //元素集合-》通过Array.prototype.slice不兼容的；
+    var aDiv=document.getElementsByTagName('div');
+    var ary=Array.prototype.slice.call(aDiv);
+    /*function fn(){
+        var ary=Array.prototype.slice.call(arguments);
+        console.dir(ary);
+    }
+    fn(12,3,4,5,39)*/
+</script>
+</body>
+</html>

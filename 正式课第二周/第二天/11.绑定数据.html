@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        ul{
+            width: 400px;
+            box-shadow: 0px 0px 5px #ccc;
+            margin:40px auto;
+        }
+        ul li{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 18px;
+            padding: 0 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        ul li span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 8px;
+        }
+        ul li.bg1{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><span>0</span>lallalalalalalala</li>
+    <li><span>1</span>lallalalalalalala</li>
+    <li><span>2</span>lallalalalalalala</li>
+</ul>
+<script src="json1.js"></script>
+<script>
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aLi=document.getElementsByTagName('li');
+    var str='';
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].onmouseover=function(){
+            this.className='bg1';
+        };
+        aLi[i].onmouseout=function(){
+            this.className=null;
+        }
+    }
+    /*//数据绑定1：字符串拼接；
+    for(var i=0; i<ary.length; i++){
+        str+='<li><span>'+(3+i)+'</span>'+ary[i].desc+'</li>'
+    }
+    oUl.innerHTML+=str;*/
+    //oUl.innerHTML=oUl.innerHTML+str;
+    //把页面中的内容拿出来，跟str字符串拼接成一个新的字符串，放入页面，重新渲染，所以，之前元素身上的事件就都没了；
+    //数据绑定2：动态创建
+    for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+3)+'</span>'+ary[i].desc;
+        oUl.appendChild(oLi);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var data=null;//null：现在没有，以后会有 undefined:现在没有，以后也没有
+    //1.创建XML对象
+    var xml=new XMLHttpRequest();//实例创建，后续所有的操作，都用该对象上的属性
+    //2.打开地址 xml.open(method请求方式，url请求地址，是否异步-false)
+    xml.open('get','data.txt',false);//true:异步 false:同步
+    //3.响应请求
+    xml.onreadystatechange=function(){
+        //xml.readyState:4准备好了 && xml.status:响应的状态码-》成功2XX;
+        //^开头 $结尾 \d数字0-9  {n}正好几位
+        if(xml.readyState==4 && /^2\d{2}$/.test(xml.status)){
+            data=xml.responseText;
+            console.log(data);
+        }
+
+    };
+    //4.发送请求；
+    xml.send();//xml.send(null)
+</script>
+</body>
+</html>

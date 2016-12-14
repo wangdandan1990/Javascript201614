@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj={name:'zhufeng',age:8};
+    var json='{"name":"zhufeng123","age":8}';
+    var ary=[{"name":"zhufeng","age":8},{"name":"zhufeng2","age":18},{"name":"zhufeng2","age":38}];
+    console.log(jsonParse(json))
+    function jsonParse(jsonStr){
+        /*if('JSON' in window){
+         return JSON.parse(jsonStr);
+         }else{
+         return eval('('+jsonStr+')')
+         }*/
+        return 'JSON' in window?JSON.parse(jsonStr):eval('('+jsonStr+')');
+    }
+    //alert("JSON" in window)
+    //JSON是window的全局属性，他有两个方法
+    /*
+    * JSON.parse():把JSON格式的字符串，转成JSON格式的对象；
+    * JSON.stringify():把JSON格式的对象，转成JSON格式的字符串；
+    * */
+    //console.log(JSON.parse(json))
+    //console.log(eval('('+json+')'))
+    /*console.log(json)
+    console.log(JSON.parse(ary))*/
+    //jsonParse:功能-》把JSON格式的字符串转成JSON格式的对象；
+    /*
+    * 参数：JSON格式的字符串
+    * 返回值：JSON格式的对象
+    * */
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //alert(a)
+    var a=123;
+    try{//当浏览器可以正常执行时，走try中的语句--浏览器兼容
+        alert(a)
+    }catch (e){//浏览器不兼容
+        //alert(e)//e:报错信息
+        alert('不兼容')
+    }finally {
+        alert('我是finally，我来了')
+    }
+</script>
+</body>
+</html>

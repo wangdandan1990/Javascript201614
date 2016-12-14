@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div>28</div>
+<div>8</div>
+<div>13</div>
+<div>9</div>
+<div>18</div>
+<script>
+    function makeArray(arg){
+        try{//浏览器支持，直接使用slice+call方法；
+            return Array.prototype.slice.call(arg);
+        }catch(e){//浏览器不支持，我们自己写封装方法；
+            var ary=[];
+            for(var i=0; i<arg.length; i++){
+                ary.push(arg[i])
+            }
+            return ary;
+        }
+    }
+    //1.获取所有元素--类数组
+    var aDiv=document.getElementsByTagName('div');
+    //2.类数组转数组
+    var ary=makeArray(aDiv);
+    //数组中的每一项现在是谁？每一项都是DIV；
+    //3.sort排序
+    ary.sort(function(a,b){
+        //a: 当前项；元素 b:下一项 元素
+        return a.innerHTML- b.innerHTML;//-号属于隐式转换；
+    })
+    //4.把排好序的数组，重新放入页面；
+    //把元素放入页面：appendChild insertBefore  把字符串插入页面innerHTML;
+    for(var i=0; i<ary.length; i++){
+        document.body.appendChild(ary[i]);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+1.浏览器异常捕获：
+try....catch(e)...finally...
+因为无论走try，还是catch，finally中的语句都会执行，所以，一般不用finally；
+try...catch(e)...
+2.晚上测试：
+ajax:在不加载网页的情况下，部分更新数据；
+获取data.txt中的数据
+把名字放到div中；
+名字排序：
