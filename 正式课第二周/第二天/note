@@ -8,7 +8,7 @@ ajax:在不加载网页的情况下，部分更新数据；
 把名字放到div中；
 名字排序：
 。。。。。。。。。。。
-晚上笔记：
+读书笔记JSON：
 1：属性操作有三种：
 点， [],attribute
 2.JSON.stringify()三个参数：
@@ -17,6 +17,123 @@ ajax:在不加载网页的情况下，部分更新数据；
 如果是个函数，我们可以根据key的值不同，决定不同value--switch
 4.toJSON:是对过滤的补充；
 5.过滤器三种：1）数组 2）函数 3）toJSON
+陪你读书笔记2:面向对象1
+
+第6章面向对象小总结：
+    ECMAScript中有两种属性：数据属性和访问器属性
+    1）数据属性：
+    Configurable:能否通过delete删除属性；注意：一旦设置不能删除属性，就再也无法改回来了；改回来会报错；
+    Enumerable:能够通过for-in遍历访问；
+    Writable:能否修改属性的值
+    Value:属性的数据值；
+    2）访问器属性：
+    configurable:能否通过delete删除属性
+    enumerable:能否通过for-in遍历访问；
+    get:在读取属性时调用；
+    set:在设置属性时调用；
+    注：访问器属性的作用：即设置一个属性的值，会导致其他属性发生变化；
+    例：
+     var book={
+              _year:2004,
+              edition:1
+          }
+          Object.defineProperty(book,'year',{
+              get:function(){
+                  return '今年是'+this._year+'年';
+              },
+              set:function(newValue){
+                  if(newValue>2004){
+                      this._year=newValue;
+                      this.edition+=newValue-2004;
+                  }
+              }
+          })
+          book.year=2016;
+          alert(book.edition)
+    修改属性：Object.defineProperty()
+    有是3个参数：1）对象 2）属性名 3）描述符对象：configurable,enumerable,writable,value
+    OO思想设计模式：
+    1）单例模式 缺点：使用一个接口，创建很多对象，会产生大量冗余代码；
+    解决措施：工厂模式
+    2）工厂模式 缺点：没有解决对象识别问题（即：怎样知道一个对象的类型）
+    解决措施：构造函数模式
+    构造函数本身也是函数，只不过可以创建对象而已；
+    3）构造函数模式 缺点：每个方法都是实例的私有方法，所以，不同实例上的同名方法实不相等的；
+    解决措施：原型模式
+    4）原型模式：
+    Object.getPrototypeOf(obj1); 返回的对象，就是对象obj1的原型；（不兼容IE678）
+    注意：虽然可以通过实例访问原型上的属性值，但不能通过对象实例重写原型中的值；这会导致给实例创建该属性，将会屏蔽原型中的该属性；
+    重置constructor，但不让其可枚举：
+    //重新设置constructor指向，但是不让其枚举出来；因为系统的属性一般不可枚举
+        Object.defineProperty(F.prototype,'constructor',{
+            enumerable:false,
+            value:F
+        })
+陪你读书笔记3:面向对象2（原型模式+继承）
+
+    原型模式：（续第六章）
+
+    所有实例共享属性和方法；不必在构造函数中定义实例信息；
+
+    1.理解原型对象
+
+    Object.getPrototypeOf(obj1); 返回的对象，就是对象obj1的原型；（不兼容IE678）
+    注意：虽然可以通过实例访问原型上的属性值，但不能通过对象实例重写原型中的值；这会导致给实例创建该属性，将会屏蔽原型中的该属性；
+    2.原型和in操作符
+
+    in：私有+公有方法
+    hasOwnProperty ( ): 判断是否为实例私有属性
+    function hasPrototypeProperty(obj,name){
+        return (name in obj) && !Object.hasOwnProperty(name)
+    }
+    3.更简单的原型语法
+
+    用一个包含所有属性和方法的对象字面量来重写整个原型对象；
+    注意：以这种方式重设constructor属性，会导致他的[[Enumerable]]属性为true；默认情况下，原生的constructor属性是不可枚举的；
+    重置constructor，但不让其可枚举：
+
+    //重新设置constructor指向，但是不让其枚举出来；因为系统的属性一般不可枚举
+        Object.defineProperty(F.prototype,'constructor',{
+            enumerable:false,
+            value:F
+        })
+    4.原型的动态性
+
+    由于在原型中查找值是一次性搜索，因此我们对原型对象的任何修改都能立即从实力上反映出来；--即使先创建实例，后修改原型也照样如此
+
+    var p1=new Person();
+    Person.prototype.sayHi=function(){
+        alert('hi')
+    }
+    p1.sayHi() //"hi" 没有问题；
+    注意：尽管可以随时给原型添加属性和方法，并立即在实例上反映出来，但如果重写整个原型对象，只是切断了现有原型和任何之前实例的联系，以前的实例引用的仍然是最初的原型；
+
+    5.原型问题：
+
+    原型模式的最大问题是：共享导致所有属性都共享，但包含引用类型值的属性来说，一个属性值更改，所有实例上的该属性值都更改了；
+    解决措施：构造函数原型模式 （应用最广）
+
+    寄生构造函数模式和稳妥构造函数模式问题：
+
+    不能依赖instanceof操作符来确定对象类型；所以，不建议使用；
+
+    继承
+
+    1.原型链继承：
+
+    新类的原型是上一个类的实例：S.prototype=new F();
+    注意：
+
+    所有的函数的默认原型都是Object的实例；
+    确定原型和实例的关系：instanceof 和 isprototypeof( )
+    在通过原型链实现继承时，不能使用对象字面量创建原型方法；因为这样会导致原型继承无效
+    2.借用构造函数继承（call／apply继承）
+
+    3.组合继承（借用构造函数继承+原型链继承）
+
+    4.寄生组合式继承：call继承+Object.create()
+
+    5.拷贝继承：call继承+extend
 
 
 
