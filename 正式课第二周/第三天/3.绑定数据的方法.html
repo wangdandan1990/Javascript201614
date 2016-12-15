@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        ul{
+            width: 400px;
+            box-shadow: 0px 0px 5px #ccc;
+            margin:40px auto;
+        }
+        ul li{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 18px;
+            padding: 0 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        ul li span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 8px;
+        }
+        ul li.bg1{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><span>0</span>lallalalalalalala</li>
+    <li><span>1</span>lallalalalalalala</li>
+    <li><span>2</span>lallalalalalalala</li>
+</ul>
+<script src="json1.js"></script>
+<script>
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aLi=document.getElementsByTagName('li');
+    //对象/元素，通过appendChild、insertBefore放入页面；
+    //字符串，通过innerHTML放入页面
+    //操作每个元素
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].onmouseover=function(){
+            this.className='bg1'
+        };
+        aLi[i].onmouseout=function(){
+            this.className=null;
+        }
+    }
+    //第一种：字符串拼接的绑定方式；
+    /*var str='';
+    for(var i=0; i<ary.length; i++){
+        str+='<li><span>'+(3+i)+'</span>'+ary[i].desc+'</li>'
+    }
+    oUl.innerHTML+=str;
+    //oUl.innerHTML=oUl.innerHTML+str;
+    //字符串拼接，等于把页面中的内容拿出来，跟我们新的字符串重新拼接后，形成一个新的大字符串，在页面重新渲染，引发了一次回流；因为是新的字符串并被重新渲染，所以，之前元素身上的就不在了；--备注：字符串拼接在项目中经常用；*/
+    //第二种：元素创建；
+    /*for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(3+i)+'</span>'+ary[i].desc;
+        oUl.appendChild(oLi);
+    }*/
+    //动态创建元素的缺点：每创建一个元素，都需要往页面中插入一个元素；当数据很多的时候，会引发无数次回流；
+    //第三种：文档碎片
+    var frg=document.createDocumentFragment();//就相当于超市塑料袋；
+    for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(3+i)+'</span>'+ary[i].desc;
+        frg.appendChild(oLi);//把每个创建好并赋值过的元素，放入袋子；即放入文档碎片中；
+    }
+    oUl.appendChild(frg);//最后把文档碎片元素中的东西，放入元素ul中
+    frg=null;//把没用的文档碎片元素释放掉；
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        table{
+            width: 600px;
+            margin:30px auto;
+            border:3px solid lightgreen;
+            box-shadow: 0 0 10px darkgreen;
+            font-size: 18px;
+            border-radius: 10px;
+            padding:10px;
+        }
+        thead{
+            height:40px;
+            line-height: 40px;
+            background: darkgreen;
+            color: white;
+        }
+        thead tr{
+            width: 150px;
+            text-align: center;
+        }
+        tbody tr{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        tbody tr.bg0{
+            background: lightblue;
+        }
+        tbody tr.bg1{
+            background: lightyellow;
+        }
+        tbody tr.bg2{
+            background: lightpink;
+        }
+        tbody tr td{
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" id="tab">
+    <tHead>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>分数</th>
+            <th>性别</th>
+        </tr>
+    </tHead>
+    <tBody>
+        <!--<tr class="bg0">
+            <td>赵老大</td>
+            <td>45</td>
+            <td>89</td>
+            <td>0</td>
+        </tr>
+        <tr class="bg1">
+            <td>赵老大</td>
+            <td>45</td>
+            <td>89</td>
+            <td>0</td>
+        </tr>
+        <tr class="bg2">
+            <td>赵老大</td>
+            <td>45</td>
+            <td>89</td>
+            <td>0</td>
+        </tr>-->
+    </tBody>
+</table>
+<script src="utils.js"></script>
+<script>
+    //思路：1）获取元素 2）获取数据并解析数据（jsonParse）3)绑定数据 4）隔行换色 5）表格排序
+    //1）获取元素 table tbody tr thead th
+    var oTab=document.getElementById('tab');
+    var tBody=oTab.tBodies[0];//table里所有tbody中的第一个tbody
+    var aRows=tBody.rows;//tBody中所有的行；
+    var tHead=oTab.tHead;//table里的tHead;
+    var aCells=tHead.rows[0].cells;//表头中的第一行里面所有的列；
+    var data=null;
+    //2）获取数据并解析数据
+    getData();
+    function getData(){
+        //1.创建对象
+        var xml=new XMLHttpRequest();
+        //2.打开地址
+        xml.open('get','data.txt',false)
+        //3.响应请求
+        xml.onreadystatechange=function(){
+            if(xml.readyState===4 && /^2\d{2}$/.test(xml.status)){
+                data=utils.jsonParse(xml.responseText);
+            }
+        }
+        //4.发送请求
+        xml.send();
+    }
+    //3)绑定数据
+    //1.字符串拼接的绑定方式：有多少数据，拼接多少个tr;
+     bind();
+     function bind(){
+        var str='';//创建空字符串
+        for(var i=0; i<data.length; i++){//有多少数据拼接多少组tr；
+            var cur=data[i];//cur就是数组中的每一个对象
+            cur.sex=cur.sex===0?'男':'女';
+            //用转义符\解决报错的问题；
+            str+='<tr>\
+                    <td>'+cur.name+'</td>\
+                    <td>'+cur.age+'</td>\
+                    <td>'+cur.score+'</td>\
+                    <td>'+cur.sex+'</td>\
+                    </tr>';
+        }
+        tBody.innerHTML=str;
+    }
+    /*function bind(){
+        //有多少组数据创建多少个tr;
+        var frg=document.createDocumentFragment();
+        for(var i=0; i<data.length; i++){
+            var cur=data[i];//cur就是每个对象；
+            var oTr=document.createElement('tr');
+            for(var attr in cur){
+                var oTd=document.createElement('td');
+                if(attr==='sex'){
+                    cur[attr]=cur[attr]==0?'男':'女';
+                }
+                oTd.innerHTML=cur[attr];
+                oTr.appendChild(oTd);//把创建的每1列放入每个行；
+            }
+            frg.appendChild(oTr);//把每一行插入文档碎片；
+        }
+        tBody.appendChild(frg);
+        frg=null;//释放没用的对象；
+    }*/
+    //4）隔行换色
+    changeColor();
+    function changeColor(){
+        for(var i=0; i<aRows.length; i++){//%:有几种情况就%几
+            aRows[i].className='bg'+i%3;
+        }
+    }
+    //5）表格排序
+    function sort(n){
+        //1.类数组转数组: aRows这个类数组转成数组
+        var ary=utils.makeArray(aRows);//ary：中现在存的是每一行
+        //2.sort排序
+        ary.sort(function(a,b){//比较的当前行的第n列 跟 下一行的第n列
+            //a:当前行 b:下一行
+            a= a.cells[n].innerHTML;
+            b= b.cells[n].innerHTML;
+            if(isNaN(a) || isNaN(b)){//对汉字的处理
+                return a.localeCompare(b);
+            }
+            return a-b;
+        })
+        //3.把排好序的数组重新插入页面；
+        var frg=document.createDocumentFragment();
+        for(var i=0; i<ary.length; i++){
+            frg.appendChild(ary[i]);
+        }
+        tBody.appendChild(frg);
+        frg=null;
+        changeColor();
+    }
+    for(var i=0; i<aCells.length; i++){
+        aCells[i].index=i;//把正确的i值保存在元素的自定义属性里；
+        aCells[i].onclick=function(){
+            sort(this.index);//当前点击列的索引
+        }
+    }
+
+
+</script>
+</body>
+</html>
