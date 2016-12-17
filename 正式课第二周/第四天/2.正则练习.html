@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //var re=/^zhufeng$/;
+    //如果从一段字符串中，查找是否包含某个小字符-不要加开头和结尾
+    //严格匹配，必须加开头和结尾；
+    //alert(re.test('zhufeng'))
+    //var str='zhufeng';
+    //var re=/str/;//字面量创建-1)无法拼接变量 2)不需要转义
+    //var re=new RegExp(str);//实例创建：1）变量拼接 2）需要转义
+    //var re=new RegExp("^\\d+$","g");
+
+    //1.手机号：以1开头，后面10；
+    //var re=/^1\d{10}$/;
+    //2.有效数字 0-9 23 +23999999999324234 -23.1234
+    //var reg=/^[+-]?((\d|([1-9]\d+))(\.\d+)?)$/
+    //var reg=/^(\+|-)?((\d|([1-9]\d+))(\.\d+)?)$/;
+    /*
+    * 1.先分成两大块：1）正负号 -可有可无 2）数字
+    * 2.把数字分成两组：1）整数 2）小数-可有可无
+    * 3.整数分成两部分：1）一位数 0-9 2）多位数：不能以0开头的多位数；
+    * */
+    //3.18或19岁
+    //var reg=/^(zhufeng|leilei)$/;//[18|19]
+    //var reg=/^[(18|19)]$/;//[xyz]:三个字符中的任意一个；
+    //4.验证年龄 18-65： 18 19 20-59 60-65
+    //var reg=/^((1[89])|([2-5]\d)|(6[0-5]))$/;
+    //5.验证邮箱的正则
+    /*
+    * 397531236369.-_zhufeng @ qq184          .sina      .cn
+    * */
+    /*var reg=/^([\w.-]+)@([a-zA-Z\d]+)((\.[a-zA-Z]{2,4}){1,2})$/;
+    alert(reg.test('397.-536369@qq.com.cn'))*/
+    //1.手机
+    /*var reg=/^1\d{10}$/;
+    //2.有效数字：[+-] 20.333
+    var reg=/^(\+|-)?((\d|([1-9]\d+))(\.\d+)?)$/;
+    //3.18或19岁
+    var reg=/^(18|19)$/;
+    //4.验证年龄 18-65： 18|19 20-59 60-65;
+    var reg=/^((18|19)|([2-5]\d)|(6[0-5]))$/;
+    //5.5.验证邮箱的正则: zhang.-123 @ qq612 .com .cn
+    var reg=/^([\w.-]+)@([a-zA-Z\d]+)(\.[a-zA-Z]{2,4}){1,2}$/
+*/
+    //console.log('\u9fa5');
+    //console.dir(new String('1'))
+    //6.验证中文名字
+    //var reg=/^[\u4e00-\u9fa5]{2,4}$/;
+    var str='        zhufeng peixun      nodejs      javascript      ';
+    console.log('('+str+')');
+    str=str.replace(/\s+/g,' ');
+    str=str.replace(/(^ +| +$)/g,'');
+    var reg=/(^ +)|( +$)/g;//去除收尾空格
+    var reg=/(^ +| +$)/g;
+    var reg=/(^\s+|\s+$)/g;
+    var reg=/\s+/g;//去除字符串中所有的空格；
+    console.log('('+str+')');
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*(function(){
+        function prev(){ }
+        window.prev=prev;
+    })();*/
+    /*(function(){
+        //不带var就相当于给window添加属性；
+        prev=function (){}
+    })();*/
+    /*(function(){
+        var a=100;//私有变量
+        //特权函数
+        Pre=function(){}//构造函数
+        Pre.prototype.cc=function(){//原型
+            alert(a+123)
+        }
+    })();
+    var p1=new Pre();
+    p1.cc();*/
+    /*var obj=(function(){
+        var aa=100;
+        var Fn=function(){};
+        var f1=new Fn;//实例
+        f1.getA=function(){//私有方法--获取
+            alert(aa)
+        }
+        f1.setA=function(){
+            aa=900;
+        }
+        return f1;//实例；
+    })();
+    obj.setA();
+    obj.getA();
+    ()();*/
+
+
+</script>
+</body>
+</html>

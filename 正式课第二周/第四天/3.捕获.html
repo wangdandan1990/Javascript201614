@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //正则的方法总共：test()校验，匹配   exec()捕获
+    //介绍字符串跟正则配合的方法：replace() match()  search() split()
+    //捕获方法：exec()->正则的方法  replace，match->字符串的方法
+    var str='2014zhufeng2016zhangwang2017huigu2015';//[2016,2017,2015]
+    var reg=/\d+/g;
+    console.log(reg.exec(str))
+   /* var res=reg.exec(str);
+    var ary=[];
+    while(res){
+        ary.push(res[0]);
+        res=reg.exec(str);
+    }
+    console.log(ary);*/
+    var ary=str.match(/\d+/g);
+    //1.exec求数组写一下
+    //2.用exec封装一个match方法；
+    /*
+    * 1.match这个方法挂在哪里？String.prototype.match()
+    * 2.match中的this谁？
+    * 3.match这个方法有几个参数？
+    * 4.match这个方法是否有返回值？
+    * */
+
+
+    /*console.log(reg.exec(str));//2016
+    console.log(reg.exec(str));//2017
+    console.log(reg.exec(str));//2015
+    console.log(reg.exec(str));//null
+    console.log(reg.exec(str));//2016*/
+</script>
+</body>
+</html>

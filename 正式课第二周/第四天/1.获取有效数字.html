@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str='ksdjfhds12323kdlsfjlskfj89809sjldkfjsl90099lsdkfjld889';
+    //[12323,89809,90099,889]
+    //1.for循环
+    /*var ary=[];
+    var tmpStr='';
+    for(var i=0; i<str.length; i++){
+        var cur=str.charAt(i);
+        if(!isNaN(cur)){//如果是有效数字的话，就能进语句块
+            tmpStr+=cur;
+        }else{//如果不是有效数字，考虑满足情况，放入数组
+            if(tmpStr.length){
+                ary.push(tmpStr);
+                tmpStr='';
+            }
+        }
+    }
+    if(tmpStr.length){
+        ary.push(tmpStr);
+        tmpStr='';
+    }*/
+    console.log(str.match(/\d+/g))
+
+</script>
+</body>
+</html>

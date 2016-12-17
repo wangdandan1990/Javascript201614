@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var str='zhufeng2016peixunzhufeng2017zhanwang';
+    var re=/(zhufeng)(\d+)/g;
+    console.log(re.exec(str));*/
+    var str='alpha(opacity=10)';//opacity:0.1 ; filter:alpha(opacity=10)
+    var reg=/^alpha\(opacity=(\d+)\)$/g;
+    //必须验证str是否符合规则，如果符合，拿出里面的10；
+    //能够影响lastIndex的值的属性有两个，test exec
+    /*if(reg.test(str)){
+        console.log(reg.exec(str)[1])
+    }*/
+    if(reg.test(str)){
+        console.log(RegExp.$1)
+    }
+    /*console.log(RegExp.$1)
+    console.log(RegExp.$2)*/
+    /*var reg=/peixun(\d+)/;//new RegExp();
+    /!*if(reg.test(str)){
+        console.log(reg.lastIndex)
+        console.log(RegExp.input)
+    }*!/
+    reg.exec(str);//能够影响lastIndex的属性有两个：reg.test()  reg.exec()
+    //必须先影响lastIndex，才能走RegExp的属性和方法；
+    console.log(RegExp.rightContext)
+    console.log(RegExp.multiline)*/
+    /*re=new RegExp('cat','g');// 字面量：/cat/g
+    for(var i=0; i<10; i++){
+        //console.log(re.lastIndex);
+        console.log(re.test('catastrophe'));
+    }*/
+    /*var str='zhufeng2016peixun2017zhanwang';
+    var reg=/\d+/g;
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));//null
+    console.log(reg.exec(str));//2016*/
+</script>
+</body>
+</html>

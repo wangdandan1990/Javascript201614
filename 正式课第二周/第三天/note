@@ -1,0 +1,28 @@
+读书笔记：
+1.定义函数有两种方式：
+1）函数声明-按照带function的进行预解释
+function aa(){}
+当前函数有个私有属性 name=>function aa(){}.name：打印出当前函数的名字aa;
+2）函数表达式-按带var的进行预解释
+var aa=function(){};
+function(){}.name=>空字符串；
+2.把函数当做值来写：
+1)return后面可以直接跟匿名函数
+function aa(){
+    return function(){console.log(123)}
+}
+2）oDiv.onclick=function(){};
+var aa=function(){};
+3.arguments.callee：代表函数本身
+4.如果想实现递归，或者函数自己调用自己
+1）在非严格模式下：arugments.callee
+2)在严格模式下，arugments.callee会报错；把有名字的函数f赋值给一个变量，在函数体内调用f；
+5.子函数如果占用了父函数的私有的变量，父函数的该变量就无法得到释放；
+6.所有的实例共享的值，有三种方式：
+1）原型上
+2）类的静态方法：类的私有属性
+3）闭包+构造函数
+(function(){
+    写变量
+    构造函数
+})();

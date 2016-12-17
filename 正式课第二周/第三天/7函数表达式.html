@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*function fff(){};
+    console.log(fff.name)//打印出函数的名字；*/
+    /*var aa=function(){};
+    console.log(typeof function(){}.name)*/
+    //递归-阶乘函数
+    //var fn=xxff00;
+    //非严格模式
+    /*function fn(n){
+        if(n<1){
+            return 1;
+        }else{
+            return n*arguments.callee(n-1)//函数自己调用自己；
+        }
+    }
+    var cc=fn;
+    var fn=null;
+    var res=cc(5);//4*3*2
+    console.log(res)*/
+    //'use strict'//严格模式
+    var fn=(function f(n){
+        if(n<1){
+            return 1;
+        }else{
+            return n*f(n-1)//函数自己调用自己；
+        }
+    });
+    var cc=fn;
+    var fn=null;
+    var res=cc(5);//4*3*2
+    console.log(res)
+    /*function fn(){
+        //arguments.callee：代表函数本身
+        console.log(arguments.callee)
+    }
+    fn();*/
+</script>
+</body>
+</html>

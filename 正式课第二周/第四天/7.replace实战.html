@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var str='zhufeng123567peixun345zhufeng888';
+    var n=0;
+    str=str.replace(/zhufeng(\d+)/g,function($1,$2){
+        console.log(arguments)//跟exec一模一样；
+        return '**';
+    });*/
+    //replace的第二个参数，可以是个匿名函数，函数被调用的次数，取决于前面正则匹配成功的次数；
+    var str='习近平最近访问珠峰培训，习近平和彭丽媛都来了，习近平要求珠峰培训今年统一涨工资，但是彭丽媛觉得太费钱，坚决反对，珠峰培训的人民群众很不满';
+    var reg=/习近平|彭丽媛|珠峰培训/g;
+    str=str.replace(reg,function($0){
+        //**的个数，取决于$0的长度；
+        var str='';
+        for(var i=0; i<$0.length; i++){
+            str+='*'
+        }
+        return str;
+    });
+
+    console.log(str)
+</script>
+</body>
+</html>
