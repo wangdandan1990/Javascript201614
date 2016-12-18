@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[12,34,32,42];
+    var obj={};
+    Array.prototype.myForEach=function(cb,context){
+        context=context||window;
+        //浏览器兼容的情况：浏览器如果支持forEach，直接使用浏览器提供的forEach方法；
+        if('forEach' in Array.prototype){
+            this.forEach(cb,context);
+            return;//阻断程序执行的作用；
+        }
+        //当浏览器不支持的时候，自己写兼容方法；
+        for(var i=0; i<this.length; i++){
+            cb.call(context,this[i],i,this);
+        }
+    }
+    var res=ary.myForEach(function(item,index,input){
+        console.log(item,index,input)
+    },obj)
+    console.log(res)
+</script>
+</body>
+</html>

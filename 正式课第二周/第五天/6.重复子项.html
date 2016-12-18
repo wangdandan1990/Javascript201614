@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //book feel zoom foot good look boom
+    /*var re=/^\w(\w)\1\w$/;
+    //\1：代表跟第一个小分组一模一样；
+    //\2:跟第二个小分组一样；
+    var re1=/^\w(\w)(\w)\1\2$/; //'abcbc'*/
+    var str='aaaaaAAAAbbbbbbCCCCCCcccccc';
+    var re=/(\w)\1+/gi;
+    str.replace(re,function(){
+        console.log(arguments)
+    })
+
+</script>
+</body>
+</html>

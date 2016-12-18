@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*学好回调函数注意4点：
+    * 1.回调函数什么时候被调用，被调用多少次？
+    * 2.callback是否需要传参
+    * 3.callback中的this指向
+    * 4.callback是否有返回值；
+    * */
+    var ary=[12,34,32,42];
+    var obj={};
+    Array.prototype.myForEach=function(cb,context){
+        context=context||window;
+        //1.浏览器兼容，直接使用兼容的方法
+        if('forEach' in Array.prototype){
+            this.forEach(cb,context);
+            return;//阻断程序执行的作用；
+        }
+        //2.自己做兼容处理
+        for(var i=0; i<this.length; i++){
+            cb.call(context,this[i],i,this);
+        }
+
+    }
+    var res=ary.myForEach(function(item,index,input){
+        console.log(this===obj)
+    },obj)
+    console.log(res);
+</script>
+</body>
+</html>

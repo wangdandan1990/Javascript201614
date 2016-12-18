@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //出现次数最多的单词，已经出现多少次
+    //1.利用对象不重名的特性，先把所有的次数和单词放入对象；
+    //2.利用假设法，求出最多的次数
+    //3.根据最多次数，遍历对象，求出出现次数最多的单词；
+    var str='abbbbbbaaccccccaCCCCCCBBBBBBAAAAA';
+    var obj={};
+    //1.利用对象不重名的特性，先把所有的次数和单词放入对象；
+    for(var i=0; i<str.length; i++){
+        var cur=str[i].toLocaleLowerCase();//注意项
+        if(obj[cur]){
+            obj[cur]++;
+        }else{
+            obj[cur]=1;
+        }
+    }
+    //2.利用假设法，求出最多的次数
+    var max=0;//假设法；
+    for(var attr in obj){
+        if(obj[attr]>max){
+            max=obj[attr];
+        }
+    }
+    //var ary=[];
+    var strMax='';
+    //3.根据最多次数，找到最多次数的单词
+    for(var attr in obj){
+        if(obj[attr]===max){
+            //ary.push(attr);
+            strMax+=attr+' ';
+        }
+    }
+    console.log(strMax)
+</script>
+</body>
+</html>

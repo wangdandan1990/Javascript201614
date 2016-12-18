@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.replace热身运动
+    /*var str='zhufeng123lala456';
+    str=str.replace(/\d+/g,function($0,$1,$2){
+        //1.拿到参数
+        console.log(arguments);//['123',index:7,input：'zhufeng123']
+        //2.根据参数，做一系列操作，最后提供一个返回值
+        console.log($0)
+        var str='';
+        for(var i=0; i<$0.length; i++){
+            str+='*';
+        }
+        return str;
+        //3.返回值每次替换正则匹配到的内容；
+    })*/
+    //2.模板替换
+    var str='my name is {0}, i come from {1},i like {2}';
+    var ary=['zhufeng','beijing','前端'];
+    //核心：把数字取出来，当做数组的索引，替换正则找的内容{X};
+    var re=/{(\d)}/g;
+    str=str.replace(re,function($0,$1){
+        //把$1作为索引，返回数组对应的内容
+        return ary[$1];//return ary[arguments[1]]
+    })
+
+</script>
+</body>
+</html>

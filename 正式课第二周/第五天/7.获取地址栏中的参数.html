@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str='www.baidu.com?name=zhufeng&age=8&sex=caicai';
+    //{name:zhufeng,age:8,sex:caicai};
+    var reg=/([^?=&]+)=([^?=&]+)/g;
+    var obj={};
+    str.replace(reg,function($0,$1,$2){
+        //console.log(arguments)
+        obj[$1]=$2;
+    })
+    console.log(obj)
+
+</script>
+</body>
+</html>

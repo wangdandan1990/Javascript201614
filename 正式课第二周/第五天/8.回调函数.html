@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //回调函数：把一个函数aa当做参数，传给另一个函数fn
+    /*
+    *1.当把aa作为参数，传给另一个函数的时候，aa被调用的次数，以及什么时候被调用，取决于fn函数中；
+    *2.可以对回到函数进行传参
+    *3.可以改变回调函数的this指向；回调函数中，默认的this指向是window；
+    *4.返回值-可有可无；
+    * 回调函数的返回值跟函数fn的返回值没有任何关系，一定要区分清楚
+    * 回调函数的参数 跟 函数fn的参数 没有关系；
+    * */
+    var obj={};
+    function aa(n,m){
+        console.log(arguments)
+        return (this+(n+m));
+    }
+    function fn(cb){//n接收的就是aa;  cb:callback
+        var ary=[];
+        for(var i=0; i<4; i++){
+            var res=cb.call(obj,2,3);//aa();
+            ary.push(res);
+        }
+       // return ary;
+    }
+   var res = fn(aa);//fn有且只有与一个返回值
+</script>
+</body>
+</html>

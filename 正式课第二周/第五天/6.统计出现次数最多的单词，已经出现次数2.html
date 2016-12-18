@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str='abbbbbbaaccccccaCCCCCCBBBBBBAAAAA';
+    /*//1.把字符串转成数组，数组排序，数组重新拼接成字符串；
+    str=str.split('').sort(function(a,b){return a.localeCompare(b)}).join('');
+    var re=/(\w)\1+/gi;
+    //2.假设法；
+    var max=0;
+    var maxValue='';
+    str.replace(re,function($0,$1){
+        if($0.length>max){
+            max=$0.length;
+            maxValue=$1;
+        }else if($0.length==max){
+            maxValue+=','+$1;
+        }
+    })*/
+    str=str.split('').sort(function(a,b){return a.localeCompare(b)}).join('');//"aaaaAAAAAbbbbbbBBBBBBccccccCCCCCC"
+    var max=0;
+    var maxValue='';
+    str.replace(/(\w)\1*/gi,function($0,$1){
+        if($0.length>max){
+            max=$0.length;
+            maxValue=$1;
+        }else if($0.length==max){
+            maxValue+=','+$1;
+        }
+    })
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[12,34,32,42];
+    var obj={};
+    //关于回调函数的分析
+    //1.forEach中的cb,被调用了4次；调用的次数取决于数组ary这个实例的长度；
+    //2.cb中的this，默认是window；this可以被forEach的第二个参数修改；
+    //3.回调函数被传了几个参数？三个参数：1）当前项 2）索引 3）原始数组；
+    //4.回调函数没有返回值；
+
+    //关于forEach的分析：
+    //1.forEach这个方法应该挂在Array.prototy上
+    //2.forEach有两个参数：参1：cb 参2：改变cb中的this指向-forEach中的第二个参数，可传可不传
+    //3.forEach没有返回值；
+    var res=ary.forEach(function(item,index,input){
+        return 1223444;
+    },obj)
+    console.log(res)
+</script>
+</body>
+</html>
