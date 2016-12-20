@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background: red;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    //getComputedStyle:得到计算机计算过的样式（行间+非行间）--不兼容IE678；
+    //console.log(getComputedStyle(oDiv,null).height)
+    //obj.currentStyle[attr] --兼容IE678，但不兼容标准浏览器；
+    //console.log(oDiv.currentStyle.height)
+    //getCss:获取当前元素的某个样式
+    //参数：1）当前元素 2）某个样式
+    //返回值：获取到的样式值；
+    /*function getCss(curEle,attr){
+        var val=null;
+        try{
+            val=getComputedStyle(curEle,false)[attr];
+        }catch(e) {
+            val=curEle.currentStyle[attr];
+        }
+        return val;
+    }*/
+    /*function getCss(curEle,attr){
+        var val=null;
+        /!*if('getComputedStyle' in window){
+            val=getComputedStyle(curEle,false)[attr];
+        }else{
+            val=curEle.currentStyle[attr];
+        }
+        return val;*!/
+        /!*if(window.getComputedStyle){
+            val=getComputedStyle(curEle,false)[attr];
+        }else{
+            val=curEle.currentStyle[attr];
+        }
+        return val;*!/
+        if(typeof window.getComputedStyle==='function'){
+            val=getComputedStyle(curEle,false)[attr];
+        }else{
+            val=curEle.currentStyle[attr];
+        }
+        return val;
+    }
+    alert(getCss(oDiv,'height'))*/
+    //浏览器判断
+    var re=/chrome/gi;
+    //console.log(window.navigator.userAgent.match(re))
+    //alert(window.navigator.userAgent.search(re)===-1)//等于-1说明没找到，不是IE6-8
+    //alert(re.test(window.navigator.userAgent))
+    console.log(re.exec(window.navigator.userAgent))
+</script>
+</body>
+</html>

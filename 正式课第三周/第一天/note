@@ -1,0 +1,53 @@
+1.CSS盒子模型由四部分构成：手动设定的宽高，padding，border，margin
+2.JS盒子模型：可以通过系统提供的方法，来获取元素的样式；
+3.JS盒子模型中系统提供的属性和方法：
+1）client系列：clientWidth  clientHeight clientLeft clientTop;
+2) offset系列：offsetWidth offsetHeight offsetLeft offsetTop offsetParent
+3) scroll系列：scrollWidth scrollHeight scrollLeft scrollTop;
+4.关于父级：
+结构父级 parentNode
+定位父级 offsetParent
+5.逐个解读JS盒子模型的方法：
+1）client系列
+   clientWidth/clientHeight:手动设定的宽度/高度+左右的padding/上下的padding
+   clientLeft/clientTop:左边框的宽度/上边框的宽度
+   跟内容溢出无关；
+2）offset系列：
+    offsetWidth/offsetHeight:clientWidth/clientHeight+左右border/上下border;
+    offsetLeft/offsetTop:当前元素的外边框，到定位父级的内边框之间的距离；
+    跟内容溢出无关；
+3)scroll系列：
+    跟内容溢出有关：
+    当内容没有溢出的情况：
+        scrollHeight:等于clientHeight
+        同理：scrollWidth
+        scrollTop:被浏览器卷去高度；
+    当内容溢出的情况：
+        约等于上padding+真实内容的高度；
+    约等于：
+    1）当内容溢出时，不同浏览器得到的值不同；
+    2）同一浏览器下，是否设置overflow:hidden得到的值也不同；
+6.关于JS盒子模型的小问题：
+1）以上属性，只能拿到复合值，无法拿到单独的值；--getCss(获取非行间样式)
+2）以上属性，只能拿到整数，无法获取小数；--不解决
+3）关于JS盒子模型的封装-win;
+4) offsetLeft只能求出当前元素的外边框距离定位父级的内边框之间的距离，无法得到到body的距离；--封装offset(求的就是元素到body的偏移量)
+7.关于浏览器的兼容处理思想：
+1)try...catch....
+2)属性判断:三种方法
+    1. attr in obj  *****他最常用；
+    2. obj.attr
+    3. typeof obj.attr === 'function'
+3)浏览器判断
+    var re=/MSIE (6|7|8)/
+    1.window.navigator.userAgent.match(re)  拿到[] 拿不到null
+    2.window.navigator.userAgent.search(re) 拿到：索引 拿不到：-1
+    3.re.test(window.navigator.userAgent)  拿到：true 拿不到：false
+    4.re.exec(window.navigator.userAgent) 拿到[] 拿不到null
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[12,34,52,28];
+    var obj={};
+    //1.forEach应该挂在原型上
+    //2.forEach有两个参数
+    //3.forEach没有返回值，所以，我们不需要接收回调函数的返回值；
+    Array.prototype.myForEach=function(cb,context){
+        var context=context||window;
+        //当浏览器支持的时候，直接使用浏览器提供的方法
+        if('forEach' in Array.prototype){
+            this.forEach(cb,context);
+            return;//阻断程序执行的作用；
+        }
+        //当浏览器不支持，自己做兼容处理；
+        for(var i=0; i<this.length; i++){
+            cb.call(context,this[i],i,this);
+        }
+    }
+    var res=ary.myForEach(function(item,index,input){
+        console.log(this===obj)
+    },obj)
+    console.log(res)
+</script>
+</body>
+</html>

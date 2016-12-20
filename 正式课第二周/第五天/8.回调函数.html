@@ -17,7 +17,7 @@
     * */
     var obj={};
     function aa(n,m){
-        console.log(arguments)
+
         return (this+(n+m));
     }
     function fn(cb){//n接收的就是aa;  cb:callback
@@ -26,7 +26,7 @@
             var res=cb.call(obj,2,3);//aa();
             ary.push(res);
         }
-       // return ary;
+        return ary;
     }
    var res = fn(aa);//fn有且只有与一个返回值
 </script>

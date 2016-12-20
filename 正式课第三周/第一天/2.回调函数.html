@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*回调函数需要注意得几点：
+    * 1.callback什么时候被调用，以及被调用多少次？
+    * 2.callback是否有参数？
+    * 3.callback中this默认指向window，可以通过call/apply对this进行修改；
+    * 4.callback是否有返回值：
+    *
+    * */
+    //关于返回值,涉及两个地方：
+    //1)fn中的返回值:在没有被循环调用的情况下，fn只有一个返回值；
+    //2)回调函数的返回值；取决于循环的次数；
+    var obj={};
+    function aa(n,m){
+        console.log(this,(n+m));
+    }
+    function fn(cb){//cb==aa;
+        var ary=[];
+        for(var i=0; i<4; i++){
+           // cb && cb();
+            if(typeof cb === 'function'){
+                var res=cb.apply(obj,[2,3]);
+                ary.push(res);
+            }
+        }
+        return ary;
+    }
+    fn(aa);
+    //ary.forEach(function(){},context)
+    //ary.map(function(){},context)
+    //ary.sort(function(a,b){return a-b})
+    //setInterval(function(){},timer)
+</script>
+</body>
+</html>

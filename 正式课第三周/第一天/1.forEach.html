@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //forEach没有返回值，map有返回值；
+    var ary=[12,43,25,38];
+    /*var res=ary.forEach(function(item,index,input){
+     return item*100;
+     })*/
+    //map有返回值，map的返回值实际是接收的每个匿名函数返回值的集合；
+    var res=ary.map(function(item,index,input){
+        return item*100;
+    })
+    console.log(res)
+</script>
+</body>
+</html>

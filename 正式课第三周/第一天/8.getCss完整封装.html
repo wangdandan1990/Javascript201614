@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background: red;
+            padding:10px;
+            opacity:0.1;
+            float:left;
+            opacity:0.1;
+            filter:alpha(opacity:10);
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+</body>
+<script>
+    var oDiv=document.getElementById('div');
+    function getCss(curEle,attr){
+        var val=null;
+        var re=null;
+        //浏览器兼容
+        if('getComputedStyle' in window){//标准浏览器
+            val=getComputedStyle(curEle,false)[attr];
+        }else{//IE6-8
+            if(attr==='opacity'){//当用户传opacity时，其实我们想取的是filter的值；并且，filter的值要验证是否符合"alpha(opacity:10)";
+                val=curEle.currentStyle.filter;
+                re=/^alpha\(opacity[=:](\d+)\)$/i;
+                //以上正则不建议写全局g;如果用了全局g，lastIndex就会增加，那么，test影响过lastIndex之后，exec捕获到的值是null;null没有[1]属性，就会报错；
+                //return re.test(val)?re.exec(val)[1]/100:1;
+                return re.test(val)?RegExp.$1/100:1;
+            }else{
+                val=curEle.currentStyle[attr];
+            }
+
+        }
+        //有效数字的正则
+        re=/^([+-])?(\d+(\.\d+)?)(px|pt|rem|em)?$/gi;
+        return re.test(val)?parseFloat(val):val;
+    }
+    alert(getCss(oDiv,'opacity'))
+</script>
+</html>
