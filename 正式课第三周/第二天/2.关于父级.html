@@ -1,0 +1,39 @@
+<!DOCTYPE html id="document">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+           position: relative;
+        }
+        #div2{
+            position: relative;
+        }
+    </style>
+</head>
+<body id="body">
+<div id="div1">
+    <div id="div2">
+        <div id="div3"></div>
+    </div>
+</div>
+<script>
+    var od=document.getElementById('document');
+    var oDiv3=document.getElementById('div3');
+    //需求：根据oDiv3，找到他所有的父亲元素
+    //在结构父级中最大的元素是HTML元素；最大的节点document节点；
+    //在定位父级中最大的元素是body元素；
+    /*var par=oDiv3.parentNode;
+    while(par){
+        alert(par)
+        par=par.parentNode;
+    }*/
+    /*var par=oDiv3.offsetParent;
+    while(par){
+        alert(par.id);//定位父级
+        par=par.offsetParent;
+    }*/
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            float: right;
+            opacity: 0.1;
+            filter:ALPHA(OPACITY=10)
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+<div id="div"></div>
+<script src="utils.js"></script>
+<script>
+    var str='[{"name":"zhufeng","age":8}]';
+    var oDiv=document.getElementById('div');
+    //不要拿颜色做条件判断；因为各大浏览器拿到的颜色格式不同；
+    //alert(utils.getCss(oDiv,'backgroundColor'))
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            height:300%;
+        }
+        a{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: fixed;
+            right:30px;
+            bottom:30px;
+            background: darkgreen;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+            text-decoration: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="javascript:;" id="btn">toTop</a>
+<script src="utils.js"></script>
+<script>
+    var oBtn=document.getElementById('btn');
+    window.onscroll=computedDisplay;
+    function computedDisplay(){
+        //当滚动距离大于一屏的时候，显示按钮，否则隐藏按钮；
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oBtn.style.display='block';
+        }else{
+            oBtn.style.display='none';
+        }
+    }
+    //点击按钮回到顶部
+    oBtn.onclick=function(){
+        //当发生点击时间时，让按钮立即隐藏；
+        this.style.display='none';
+        //同时接触onscroll的事件绑定；
+        window.onscroll=null;
+        //总路程
+        var target=utils.win('scrollTop');
+        //总时间-》决定了运动速度的快慢
+        var duration=1000;
+        //频率
+        var interval=10;//可能是bug;
+        //步长
+        var step=target/duration*10;
+        var timer=setInterval(function(){
+            //每次拿到最新的距离；
+            var curTop=utils.win('scrollTop');
+            //在最新的距离上，每次减去固定的步长
+            curTop-=step;
+            if(curTop<=0){
+                curTop=0;
+                clearInterval(timer);
+                //等回到顶部的时候，重新给onscroll绑定事件；
+                window.onscroll=computedDisplay;
+            }
+            //重新设置新距离；
+            utils.win('scrollTop',curTop);
+        },interval)
+
+    }
+</script>
+</body>
+</html>

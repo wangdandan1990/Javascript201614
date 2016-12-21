@@ -44,6 +44,10 @@
     2.window.navigator.userAgent.search(re) 拿到：索引 拿不到：-1
     3.re.test(window.navigator.userAgent)  拿到：true 拿不到：false
     4.re.exec(window.navigator.userAgent) 拿到[] 拿不到null
+    ...................
+    1.创建数组的方式有三种：1）字面量  2）new Array   3）Array
+    2.Array.isArray():验证传进来的值是否为数组，不兼容IE678
+    3.数组的迭代方法5个：every() filter() forEach map()  some
 
 
 

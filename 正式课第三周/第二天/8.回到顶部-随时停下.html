@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            height:300%;
+        }
+        a{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: fixed;
+            right:30px;
+            bottom:30px;
+            background: darkgreen;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+            text-decoration: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="javascript:;" id="btn">toTop</a>
+</body>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('btn');
+    var timer=null;
+    var bOk=false;
+    window.onscroll=function(){//手动触发+定时器触发
+        //只要手动触发，都是连续触发
+        if(bOk) clearInterval(timer);
+        bOk=true;
+        //当滚动距离大于一屏的时候，按钮显示，否则隐藏；
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oDiv.style.display='block';
+        }else{
+            oDiv.style.display='none';
+        }
+    }
+    //当发生点击事件的时候；
+    oDiv.onclick=function(){
+        //总距离
+        var target=utils.win('scrollTop');
+        //总时间
+        var duration=1000;
+        //频率
+        var interval=30;
+        //计算步长
+        var step=target/duration*interval;
+        //开启定时器，每次在最新的位置上，减去固定的步长
+        timer=setInterval(function(){//只有定时器触发；
+            //获取最新的位置
+            var curTop=utils.win('scrollTop');
+            //减去固定的步长
+            curTop-=step;
+            //边界判断
+            if(curTop<=0){
+                curTop=0;
+                clearInterval(timer);
+            }
+            //设置最新的距离；
+            utils.win('scrollTop',curTop);
+            bOk=false;
+        },interval)
+    }
+</script>
+</html>

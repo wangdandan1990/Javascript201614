@@ -1,0 +1,17 @@
+1.判断参数的思路：
+1）形参===undefined
+2)typeof形参===‘undefined’
+3）if(arugments.length===1){
+        ...
+   }else if(arguments.length===2){
+        ...
+   }
+2.a链接：
+1）如果href中不写，或写#；默认都会回到顶部；
+2）锚点；
+3.当我往下滑动滚动条的时候，window.onscroll中bOk=true;因为还没开定时器，所以也不会关闭；
+当我发生点击事件的时候 bOk=false;
+    定时器：bOk=false;
+    onscroll:bOk=true;
+    定时器：bOk=false;
+    onscroll:bOk=true;

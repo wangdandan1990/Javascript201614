@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width:1320px;
+            margin:0 auto;
+        }
+        div ul{
+            width:200px;
+            float: left;
+            margin:0 10px;
+        }
+        div ul li{
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var aUl=document.getElementsByTagName('ul');
+    var n=0;
+    //动态创建一个li,高度随机，颜色随机；
+    function createLi(){
+        //创建li元素
+        var oLi=document.createElement('li');
+        //给li元素添加随机的高度
+        oLi.style.height=utils.rnd(100,300)+'px';
+        //给li元素添加随机的背景色；
+        oLi.style.background='rgb('+utils.rnd(0,255)+','+utils.rnd(0,255)+','+utils.rnd(0,255)+')';
+        return oLi;
+    }
+    //动态创建50个li元素；
+    function li50(){
+        //创建50个li元素
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            oLi.innerHTML=++n;
+            //类数组转数组；
+            var ary=utils.makeArray(aUl);
+            //sort排序
+            ary.sort(function(a,b){
+                a= a.offsetHeight;
+                b= b.offsetHeight;
+                return a-b;
+            })
+            //把每次创建的li插入最短的ul;
+            ary[0].appendChild(oLi);
+        }
+    }
+    li50();
+    window.onscroll=function(){
+        if(utils.win('scrollTop')+utils.win('clientHeight')+10>=document.body.scrollHeight){
+            li50();
+        }
+    }
+
+</script>
+</body>
+</html>
