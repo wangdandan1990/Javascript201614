@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div" index="123"></div>
+</body>
+<script>
+    var oDiv=document.getElementById('div');
+    //通过点来添加元素的自定义属性，一定要在页面加载完成后的JS代码中写，否则，添加不上；
+    //alert(oDiv.getAttribute('index'))
+    oDiv.aaa=456;
+    //alert(oDiv.aaa)
+    alert(oDiv.getAttribute('aaa'))//“.” 和 attribute不要混合操作；
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 400px;
+            height: 250px;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+        }
+        div img{
+            width: 100%;
+            height:100%
+        }
+    </style>
+</head>
+<body>
+<p style="height: 1000px;"></p>
+<div><img src="" realImg="img2/1.jpg" alt=""></div>
+<div><img src="" realImg="img2/2.jpg" alt=""></div>
+<div><img src="" realImg="img2/311111.jpg" alt=""></div>
+<div><img src="" realImg="img2/4.jpg" alt=""></div>
+<div><img src="" realImg="img2/5.jpg" alt=""></div>
+</body>
+<script src="utils.js"></script>
+<script>
+    //先获取所有img标签，在onscroll事件中，分别判断每个张图片是否满足加载的条件：img.top+height<=scrollTop+clientHeight;
+    var aImg=document.getElementsByTagName('img');
+    window.onscroll=function(){
+        for(var i=0; i<aImg.length; i++){
+            var curImg=aImg[i];
+            //求出滚动条卷去的距离+可视区的高度
+            var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+            //求出每张图片的位置
+            var imgPos=utils.offset(curImg).top+curImg.offsetHeight;
+            //满足条件时，开始加载图片
+            if(imgPos<=scrollBottom){
+                lazyImg(curImg);
+            }
+        }
+    }
+    function lazyImg(img){
+        //避免重复加载；
+        if(img.loaded) return;
+        //1.创建临时图片对象，并且赋值地址
+        var tmpImg=new Image();
+        tmpImg.src=img.getAttribute('realImg');
+        //2.校验地址:成功onload 失败：onerror
+        tmpImg.onload=function(){
+            //3.把正确的图片地址赋值给元素；
+            //3.1.把正确的地址赋值给元素
+            img.src=this.src;
+            //3.2.释放临时标签
+            tmpImg=null;
+            //3.3.避免重复加载
+            img.loaded=true;
+        };
+        tmpImg.onerror=function(){
+            //1.更改当前元素的父级元素的背景图
+            img.parentNode.style.background='url("img2/error.gif") no-repeat center #e1e1e1'
+            //2.释放临时标签
+            tmpImg=null;
+            //3.避免重复加载
+            img.loaded=true;
+        };
+
+    }
+</script>
+</html>

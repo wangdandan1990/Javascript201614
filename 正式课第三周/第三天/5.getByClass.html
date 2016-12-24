@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box1 box2 box3 box4"></div>
+<div class="box1 box2 box3"></div>
+<div class="box1 box2"></div>
+<div class="box1"></div>
+<p class="box4 box3"></p>
+<script>
+    /*var aDiv=document.getElementsByClassName('       box3          box4    ');*/
+    //console.log(aDiv)
+    //getByClass功能："限定范围"的通过"class名"获取元素
+    //参数2个：class名(字符串中可以包含多个class名)  限定范围（没传按document）
+    //返回值：数组；
+    var res=getByClass('   box3      box4       ');
+    console.log(res)
+    function getByClass(classStr,context){
+        context=context||document;
+        //标准浏览器:当浏览器支持的时候，直接使用浏览器提供的方法；
+        //所有浏览器下拿到的数据格式是一致的；
+        if('getComputedStyle' in window){
+            return Array.prototype.slice.call(context.getElementsByClassName(classStr));
+        }else{//IE678
+            //1.把字符串转成数组：数组中的每一项都是calss名：先取出首尾空格，再通过空格切分成数组
+            var aryClass=classStr.replace(/(^ +)|( +$)/g,'').split(/\s+/g);
+            //2.获取当前容器下的所有子元素；*通配符，代表所有元素
+            var nodeList=context.getElementsByTagName('*');
+            var ary=[];
+            //3.逐个验证容器下的每个子元素，是否包含数组中的每一项；合格的元素放入数组
+            for(var i=0; i<nodeList.length; i++){
+                //当前容器下的每个元素
+                var cur=nodeList[i];
+                //假设法：假设该元素包含数组中的每一项；
+                var bOk=true;
+                //验证当前容器下的每个元素，是否包含数组中的每个class名
+                for(var j=0; j<aryClass.length; j++){
+                    //保证每个class名必须是独立的个体；
+                    var reg=new RegExp('(^| +)'+aryClass[j]+'( +|$)');
+                    if(!reg.test(cur.className)){
+                        bOk=false;
+                        break;//节省性能
+                    }
+                }
+                if(bOk){
+                    ary.push(cur);
+                }
+            }
+            return ary;
+        }
+    }
+</script>
+</body>
+</html>

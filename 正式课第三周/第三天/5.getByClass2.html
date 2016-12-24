@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="      box1      box2       box3      box3         box4             box5        "></div>
+<div class="box1 box2 box3"></div>
+<div class="box1 box2"></div>
+<div class="box1"></div>
+<p class="box1   box2    box4 box3"></p>
+<script src="utils.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    //console.log(utils.hasClass(aDiv[0],'box4'))
+    //utils.removeClass(aDiv[0],'box2          ')
+    //getByClass功能：限定范围的通过class名来获取元素
+    //参数2：strClass context(可传可不传，不传默认document)
+    //返回值：ary;
+   // var res=getByClass('    box1   box2        ',document);
+    /*var res=utils.getByClass('   box1    box2   box3    ')
+    console.log(res)
+    function getByClass(strClass,context){
+        context=context||document;
+        //系统提供了方法，按照系统提供的来；否则，自己做兼容处理
+        if('getComputedStyle' in window){
+            return Array.prototype.slice.call(context.getElementsByClassName(strClass));
+        }else{
+            //1.字符串转数组:先去除首尾空格，然后按照空格来切分
+            var aryClass=strClass.replace(/(^ +)|( +$)/g,'').split(/\s+/g);
+            //2.获取当前容器下的所有子元素
+            var nodeList=context.getElementsByTagName('*');
+            //3.逐个校验每个元素的class名是否包含数组中的每一项
+            var ary=[];
+            for(var i=0; i<nodeList.length; i++){
+                var cur=nodeList[i];
+                //假设法：假设该元素的class名中，包含数组中的每一项；
+                var bOk=true;
+                for(var j=0; j<aryClass.length; j++){
+                    var reg=new RegExp('(^| +)'+aryClass[j]+'( +|$)','g');
+                    if(!reg.test(cur.className)){
+                        bOk=false;
+                        break;
+                    }
+                }
+                if(bOk){
+                    ary.push(cur);
+                }
+            }
+            return ary;
+        }
+    }*/
+</script>
+</body>
+</html>

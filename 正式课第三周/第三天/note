@@ -1,0 +1,92 @@
+1.复习DOM
+1）获取元素的方式
+id
+className--不兼容
+tagName
+name
+querySelector
+querySelectorAll
+document.documentElement.clientWidth||document.body.clientWidth
+2)节点类型
+        nodeType     nodeName     nodeValue
+文本节点    3           #text         文本内容
+元素节点    1           大写标签名     null
+注释节点    8           #comment      注释内容
+document   9           #document     null
+3)节点关系
+parentNode 父节点
+children   子元素   IE8:当IE8有注释不兼容
+childNodes 子节点
+previousSibling
+nextSibling
+firstChild
+lastChild
+4)节点的动态操作
+1.创建
+   动态创建： document.createElement(标签名)
+   克隆：obj.cloneNode(true/false)  true:深度克隆    false：只克隆表面、
+2.动态插入：所有的动态插入，都发生在父元素
+    插入父容器的末尾：parent.appendChild(curEle)
+    插入到指定元素的前面：parent.insertBefore(curEle,oldEle)
+3.动态删除和替换
+    动态删除 parent.removeChild(curEle);
+    动态替换 parent.replaceChild(curEle,oldEle);
+5)关于属性的操作：
+属性操作有三种方法：1 "." ; 2 "[]" ; 3.attribute系列
+attribute系列：
+    获取：obj.getAttribute(attr)--拿到元素身上自带的系统属性+自定义的属性
+    设置：setAttribute(attr,value)
+    删除：removeAttribute(attr)
+关于"."和attribute系列的区别：
+1）获取时：直接给标签上添加自定义属性，通过"."获取不到，但是通过getAttribute可以获取到
+2）设置时：通过“.”设置的自定义属性，可以设置成功，但是在标签上看不到；而通过setAttribute设置的属性，可以看到；
+注意："."和attribute不要混合操作；
+用"."来设置，就用"."来获取
+用"setAttribute"来设置，就用"getAttribute"来获取
+.............................
+一、关于属性操作：单张图片延迟加载+多张图片延迟加载
+二、DOM库：
+获取元素：
+    getByClass:通过class名来获取元素   √
+    hasClass:判断元素身上是否有某个class名 √
+            参数2：curEle   cName
+            返回值：Boolean
+    setClass:添加class名；   √
+            功能：当元素身上没有class名的时候，添加该class名；（可以添加一系列的class名:strClass）
+            设置：没有返回值；
+            参数2：curEle
+    removeClass:移出class名；
+            功能：如果元素身上有某个class名，替换为空格
+            参数2：curEle strClass
+            设置：没有返回值；
+    getCss:获取非行间样式
+    setCss:设置一个非行间样式
+    setGroupCss:设置一组样式；
+    css:三合一-》具有获取，设置一个，设置一组的功能；
+    win：盒子模型兼容处理
+    offset:元素偏移量的兼容处理；
+节点关系：
+    getChildren 获取当前元素的所有标签为***的子元素；1）获取所有子元素 2）增加一个过滤功能
+    prev：上一个哥哥元素
+    next：下一个弟弟元素
+    prevAll:当前元素所有的哥哥元素
+    nextAll:当前元素所有的弟弟元素
+    index：当前元素的索引
+    sibling:当前元素的相邻元素；
+    siblings:当前元素所有的兄弟元素；
+    firstChild:第一个子元素
+    lastChild:最后一个子元素
+元素动态操作：
+    appendChild(curEle); 把当前元素插入到父容器的末尾；
+    prependChild(curEle); 把当前元素插入到父容器的开头；
+    insertBefore(curEle,oldEle); 把当前元素插入到指定元素的前面；
+    insetAfter(curEle,oldEle); 把当前元素插入到指定元素的后面；
+    24+makeArray+jsonParse+rnd=27;
+
+
+
+
+
+
+
+

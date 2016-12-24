@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width:800px;
+            height:200px;
+            margin:50px auto;
+            position: relative;
+            border: 5px dashed lightgreen;
+            overflow: hidden;
+        }
+        div ul{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        div ul li{
+            float: left;
+            width:200px;
+            height:200px;
+        }
+        div ul li img{
+            width: 100%;
+            height:100%
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul>
+        <li><img src="img/1.jpg" alt=""></li>
+        <li><img src="img/2.jpg" alt=""></li>
+        <li><img src="img/3.jpg" alt=""></li>
+        <li><img src="img/4.jpg" alt=""></li>
+    </ul>
+</div>
+<script>
+    //思路：1）改变ul的left值，让图片动起来--定时器 2）给后面空白处，拷贝一份一模一样的放后面
+    var oDiv=document.getElementsByTagName('div')[0];
+    var oUl=oDiv.getElementsByTagName('ul')[0];
+    var aLi=oUl.getElementsByTagName('li');
+    //1.给ul克隆一份一模一样的内容
+    oUl.innerHTML+=oUl.innerHTML;
+    //2.更改ul的宽度；为了防止折行；
+    oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+    //3.开启定时器，不断改变ul的left，当left的值<=-oUl.offsetWidth/2,让left=0；
+    var timer=setInterval(function(){
+        //每次获取最新的left值；
+        var curLeft=oUl.offsetLeft;
+        //在最新的left值上减去2
+        curLeft-=2;
+        //边界判断
+        if(curLeft<=-oUl.offsetWidth/2){
+            curLeft=0;
+        }
+        //给left设置最新的值；
+        oUl.style.left=curLeft+'px';
+    },10)
+</script>
+</body>
+</html>
