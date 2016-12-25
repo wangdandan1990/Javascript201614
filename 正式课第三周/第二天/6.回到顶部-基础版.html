@@ -30,6 +30,7 @@
 <script src="utils.js"></script>
 <script>
     var oDiv=document.getElementById('btn');
+    console.log(oDiv)
     window.onscroll=function(){
         //当滚动距离大于一屏的时候，按钮显示，否则隐藏；
         if(utils.win('scrollTop')>utils.win('clientHeight')){

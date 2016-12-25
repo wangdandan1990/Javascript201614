@@ -49,6 +49,7 @@
     var aLi=oUl.getElementsByTagName('li');
     //1.给ul克隆一份一模一样的内容
     oUl.innerHTML+=oUl.innerHTML;
+    console.log(oUl.innerHTML)
     //2.更改ul的宽度；为了防止折行；
     oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
     //3.开启定时器，不断改变ul的left，当left的值<=-oUl.offsetWidth/2,让left=0；

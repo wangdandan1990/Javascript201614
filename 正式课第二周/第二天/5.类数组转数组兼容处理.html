@@ -17,7 +17,7 @@
     * 参数：1个 类数组
     * 返回值：数组
     * */
-    var ary=makeArray(aDiv);
+    var ary=makeArray(1,2,3,4);
     console.log(ary)
     function makeArray(arg){
         try{//浏览器支持，直接使用slice+call方法；
@@ -30,5 +30,6 @@
             return ary;
         }
     }
+
 </script>
 </html>

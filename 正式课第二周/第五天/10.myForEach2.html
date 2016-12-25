@@ -26,10 +26,10 @@
             cb.call(context,this[i],i,this);
         }
 
-    }
+    };
     var res=ary.myForEach(function(item,index,input){
         console.log(this===obj)
-    },obj)
+    },obj);
     console.log(res);
 </script>
 </body>
