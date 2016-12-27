@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <div>0</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <p>p1</p>
+    <p>p2</p>
+    <span>span1</span><span>span2</span><span>span3</span>
+</div>
+</body>
+<script src="utils.js"></script>
+<script>
+    var oH=document.getElementById('h1');
+    var oBox=document.getElementById('box');
+    var aDiv=utils.getChildren(oBox,'div');
+    var aP=utils.getChildren(oBox,'p');
+    /*console.log(utils.prevAll(aP[1]));
+    console.log(utils.nextAll(aP[1]));*/
+    console.log(utils.getChildren(oBox))
+    //console.log(utils.getChildren(oBox,'span'))
+    //alert('previousElementSibling' in oBox)
+</script>
+</html>
