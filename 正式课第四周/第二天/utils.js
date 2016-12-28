@@ -151,7 +151,7 @@ var utils=(function(){
         var reg=/^(width|height|top|right|bottom|left|((margin|padding)(top|right|bottom|left)?))$/i;
         //toString是转成字符串；距离实例最近的原型上的toString()
         if(reg.test(attr)){
-            if(/!(%|auto)/.test(value)){
+            if(!/(%|auto)/.test(value)){
                 value=parseInt(value)+'px';
             }
         }

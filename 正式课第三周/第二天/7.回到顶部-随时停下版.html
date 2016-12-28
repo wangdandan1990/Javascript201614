@@ -53,6 +53,7 @@
         //计算步长
         var step=target/duration*interval;
         //开启定时器，每次在最新的位置上，减去固定的步长
+        clearInterval(timer);
         timer=setInterval(function(){//setInterval：只有定时器触发
             //获取最新的位置
             var curTop=utils.win('scrollTop');
