@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            width:100px;
+            height:100px;
+            position: absolute;
+            left:0;
+            top:40px;
+            background: red;
+        }
+        #target{
+            width:1px;
+            height:400px;
+            background: #000;
+            position: absolute;
+            left:1000px;
+            top:0px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点我吧" id="btn">
+<div id="div"></div>
+<div id="target"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    var target=1000;
+    var duration=3777;
+    var interval=37;
+    var step=target/duration*interval;
+    //开启定时器，不断的改变left值；
+    var timer=setInterval(function(){
+        //获取当前的left值；
+        var curL=oDiv.offsetLeft;
+        //因为step也是求出的一个固定值，所以，也要做边界值判断
+        if(curL+step>=target){
+            oDiv.style.left=target;
+            clearInterval(timer);
+            return;
+        }
+        curL+=step;
+        oDiv.style.left=curL+'px';
+    },interval)
+</script>
+</body>
+</html>

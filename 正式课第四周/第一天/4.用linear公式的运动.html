@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            width:100px;
+            height:100px;
+            position: absolute;
+            left:300px;
+            top:40px;
+            background: red;
+        }
+        #target{
+            width:1px;
+            height:400px;
+            background: #000;
+            position: absolute;
+            left:1000px;
+            top:0px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点我吧" id="btn">
+<div id="div"></div>
+<div id="target"></div>
+<script>
+    //t：timer走了多久
+    //b:起始位置；
+    //c:change还有走多远=>target-begin
+    //d：duration总时间
+    function Linear(t,b,c,d){//Linear公式的目的，就是为了计算最新的“位置"
+        return c/d*t
+    }
+    var oDiv=document.getElementById('div');
+    //1:为linear公式的参数做准备
+    var begin=oDiv.offsetLeft;
+    var target=1000;
+    var change=target-begin;
+    //要走的总时间
+    var duration=500;
+    //走了多久
+    var time=0;
+    //定时器的名字
+    var timer=setInterval(function(){
+        //通过是时间不断的累加，利用linear公式求出最新的位置；
+        time+=10;
+        if(time>=duration){
+            oDiv.style.left=target+'px';
+            clearInterval(timer);
+            return;//阻断程序执行的作用
+        }
+        //2.用公式求出最新位置，并且设置最新位置；
+        var curPos=Linear(time,begin,change,duration);
+        oDiv.style.left=curPos+'px';
+    },10)
+</script>
+</body>
+</html>

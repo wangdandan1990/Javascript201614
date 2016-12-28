@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:300px;
+            top:0px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    //t:time 走了多久
+    //b:begin 起始位置
+    //c:change 还要走的路程 target-begin
+    //d:duration 总时间
+    //注意：linear公式目的是为了求最新位置；
+    function Linear(t,b,c,d){
+        return c/d*t+b;
+    }
+    var oDiv=document.getElementById('div');
+    //1.为linear公式参数做准备
+    var b=oDiv.offsetLeft;
+    var target=1000;
+    var c=target-b;
+    var d=500;
+    var t=0;
+    var timer=setInterval(function(){
+        t+=10;
+        if(t>=d){
+            oDiv.style.left=target+'px';
+            clearInterval(timer);
+            return;
+        }
+        //2.利用linear公式计算新位置，并且设置新位置
+        var curPos=Linear(t,b,c,d);
+        oDiv.style.left=curPos+'px';
+    },10)
+
+
+</script>
+</body>
+</html>

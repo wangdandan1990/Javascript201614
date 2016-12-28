@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*for(var i=0; i<5; i++){
+        document.onclick=function(){
+            alert(i)
+        }
+    }*/
+    /*for(var i=0; i<5; i++){
+        setTimeout(function(){
+            alert(i)
+        },0)
+    }*/
+    //异步：需要准备任务的时间，不会等待，继续开始后面的任务
+   /* setTimeout(function(){
+        alert(2)
+    },0)
+    //死循环
+    while(2){
+
+    }*/
+    var n=0;
+    //定时器越小越不准确
+    setTimeout(function(){
+        alert(n+=2)
+    },50)
+    setTimeout(function(){
+        alert(n+=5)
+    },500)
+    for(var i=0; i<100000000; i++){};
+    alert(n)
+</script>
+</body>
+</html>

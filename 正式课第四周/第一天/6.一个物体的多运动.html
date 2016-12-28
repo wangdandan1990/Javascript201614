@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left:300px;
+            top:100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="utils.js"></script>
+<script src="move2.js"></script>
+<script>
+
+    var oDiv=document.getElementById('div');
+    animate(oDiv,{left:1000,top:400,width:500,height:200},function(){
+        this.style.background='green';
+    });
+    /*//linear目的：每次求出最新的位置； {left:1000,top:200,opacity:xxx,margnLeft:xxx} utils.getCss(元素，top)
+    function Linear(t,b,c,d){
+        return c/d*t+b;
+    }
+    //1.为参数做准备
+    var beginL=utils.getCss(oDiv,'left'),beginT=utils.getCss(oDiv,'top');
+    var targetL=1000,targetT=400;
+    var changeL=targetL-beginL,changeT=targetT-beginT;
+    var duration=1000;
+    var time=0;//null在计算过程中，自动转化为0；
+    //2.通过定时器，不断累加时间，利用linear公式，求出最新位置，并设置最新位置
+    var timer=setInterval(function(){
+        //2.1累加时间
+        time+=10;
+        //当累加的时间大于总时间的时候，让物体直接等于目标值；同时停止运动，并且阻断程序执行；
+        if(time>=duration){
+            oDiv.style.left=targetL+'px';
+            oDiv.style.top=targetT+'px';
+            clearInterval(timer);
+            return;
+        }
+        var curL=Linear(time,beginL,changeL,duration);
+        var curT=Linear(time,beginT,changeT,duration);
+        oDiv.style.left=curL+'px';
+        oDiv.style.top=curT+'px';
+    },10)
+*/
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            width:100px;
+            height:100px;
+            position: absolute;
+            left:0;
+            top:40px;
+            background: red;
+        }
+        #target{
+            width:1px;
+            height:400px;
+            background: #000;
+            position: absolute;
+            left:1000px;
+            top:0px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点我吧" id="btn">
+<div id="div"></div>
+<div id="target"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oBtn=document.getElementById('btn');
+    var step=7;
+    var target=1000;
+    var timer=null;
+    oBtn.onclick=function(){
+        //在开启定时器前，先关闭没用的定时器
+        clearInterval(timer);
+        //开启定时器，不断改变oDiv的left；
+        timer=setInterval(function(){
+            var curL=oDiv.offsetLeft;
+            //边界值判断：当走到最后，如果再多走一步会超过目标值的话，就直接等于目标值
+            if(curL+step>=target){
+                oDiv.style.left=target+'px';
+                clearInterval(timer);
+                return;
+            }
+            curL+=step;
+            oDiv.style.left=curL+'px';
+        },10)
+    }
+</script>
+</body>
+</html>
