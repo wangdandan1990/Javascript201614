@@ -186,7 +186,7 @@
         //设置默认值；
         var defaultOpt={
             duration:1000,
-            effect:'Linear'
+            effect:0
         };
         //如果传了的话，按照传的来；没传，按照默认值来；
         for(var attr in opt){
@@ -214,8 +214,8 @@
         var duration=defaultOpt.duration;
         var time=null;
         //开启定时器，不断累加时间，通过公式求出最新位置，并设置最新位置；
-        clearInterval(timer);
-        var timer=setInterval(function(){
+        clearInterval(curEle.timer);
+        curEle.timer=setInterval(function(){
             time+=10;
             //边界判断
             if(time>=duration){
