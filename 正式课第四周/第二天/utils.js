@@ -150,15 +150,10 @@ var utils=(function(){
         //处理单位：width,height,left,top,right,bottom,margin,marginLeft,padding,paddingLeft
         var reg=/^(width|height|top|right|bottom|left|((margin|padding)(top|right|bottom|left)?))$/i;
         //toString是转成字符串；距离实例最近的原型上的toString()
-<<<<<<< HEAD
-        if(reg.test(attr) && value.toString().indexOf('%')===-1){
-            value=parseInt(value)+'px';
-=======
         if(reg.test(attr)){
-            if(/!(%|auto)/.test(value)){
+            if(!/(%|auto)/.test(value)){
                 value=parseInt(value)+'px';
             }
->>>>>>> e074e014ed7a5156f143dc1c46d83b40b13b505a
         }
         curEle.style[attr]=value;
     }

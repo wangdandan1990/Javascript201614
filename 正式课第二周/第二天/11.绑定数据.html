@@ -59,14 +59,14 @@
             this.className=null;
         }
     }
-    /*//数据绑定1：字符串拼接；
+    //数据绑定1：字符串拼接；
     for(var i=0; i<ary.length; i++){
         str+='<li><span>'+(3+i)+'</span>'+ary[i].desc+'</li>'
     }
-    oUl.innerHTML+=str;*/
-    //oUl.innerHTML=oUl.innerHTML+str;
+    oUl.innerHTML+=str;
+    oUl.innerHTML=oUl.innerHTML+str;
     //把页面中的内容拿出来，跟str字符串拼接成一个新的字符串，放入页面，重新渲染，所以，之前元素身上的事件就都没了；
-    //数据绑定2：动态创建
+   // 数据绑定2：动态创建
     for(var i=0; i<ary.length; i++){
         var oLi=document.createElement('li');
         oLi.innerHTML='<span>'+(i+3)+'</span>'+ary[i].desc;

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            height:40px;
+            width: 200px;
+        }
+        div{
+            position: absolute;
+            left:500px;
+            top:50px;
+            background: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="向左走" id="left">
+<input type="button" value="向右走" id="right">
+<div id="div"></div>
+<script src="utils.js"></script>
+<script>
+    var oLeft=document.getElementById('left');
+    var oRight=document.getElementById('right');
+    var oDiv=document.getElementById('div');
+    //向左走和向右走思路一样，所以，肯定是一个方法；通过目的地跟现在位置的比较，决定运动方向；
+    oLeft.onclick=function(){
+        move(0)
+    };
+    oRight.onclick=function(){
+        move(1200)
+    }
+    function move(target){
+        _move();
+        function _move(){
+            //当前位置
+            var curPos=utils.css(oDiv,'left');
+            //判断想走还是向右
+            if(target>curPos){//right
+                //1.边界值判断
+                if(curPos+10>=target){
+                    curPos=target;
+                    utils.css(oDiv,'left',curPos);
+                    return;
+                }
+                curPos+=10;
+                utils.css(oDiv,'left',curPos);
+            }else if(target<curPos){//left
+                //边界值判断
+                if(curPos-10<=target){
+                    curPos=target;
+                    utils.css(oDiv,'left',curPos);
+                    return;
+                }
+                curPos-=10;
+                utils.css(oDiv,'left',curPos);
+            }else{
+                return;
+            }
+            //2.开启定时器前，先关闭没用的定时器
+            clearTimeout(oDiv.timer);
+            //4.可以把全局变量，存在元素的私有属性上；避免全局变量的污染和冲突
+            //5.当匿名函数中的东西被外面占用的时候，会形成无数个不销毁的私有作用域；解决措施，不要这个参数；用_move来解决；
+            oDiv.timer=setTimeout(_move,10);
+        }
+    }
+</script>
+</body>
+</html>

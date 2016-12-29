@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            width:100%;
+        }
+        div{
+            position: absolute;
+            left:300px;
+            top:50px;
+            width:10%;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="utils.js"></script>
+<script src="move5.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    /*animate(oDiv,{left:1000,top:400},function(){
+        this.style.background='green';
+    });*/
+    animate({
+        id:oDiv,
+        target:{
+            left:1000,
+            top:400
+        }
+    })
+</script>
+</body>
+</html>
