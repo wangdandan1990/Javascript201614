@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            height:40px;
+        }
+        li.bg0{
+            background: red;
+        }
+        li.bg1{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div2" zIndex="456">我是div2222222</div>
+<div class="warp">
+    <div class="box1" id="box"></div>
+    <ul zIndex="45667">
+        <li class="box1 box2 box3"></li>
+        <li class="box1 box2"></li>
+        <li class="box1"></li>
+        <li class="box1 box2"></li>
+        <li class="box1 box2 box3"></li>
+    </ul>
+</div>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<div class="div3"></div>
+<div class="div4"></div>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    //通过原生JS获取元素：oDiv aDiv 通过jquery:$
+    //基本选择器：# . element
+    //层叠选择器：
+    //:first :last :eq(index) :even :odd :lt :gt
+    //first() last()
+    var $box=$('div:gt(2)');
+    var $ul=$('.warp ul');
+    var oUl=document.getElementsByTagName('ul')[0];
+    //取值赋值合体
+    //取值
+    //alert($('.div2').html())
+    //赋值
+   // $('.div2').html('嘻嘻，元旦快乐')
+    //alert($('.div2').attr('zIndex'))
+    //$('.div2').attr('zIndex','元旦快乐')
+    //设置一个值
+   // $('.div2').css('background','red')
+    //设置一组
+    $('.div2').css({
+        height:400,
+        background:'yellow',
+        opacity:0.4
+    })
+    //alert($('.div2').css('height'))
+    //alert($('.div2').height())
+    //$ul.css('background','red')
+    /*$('.warp li:even').addClass('bg0')
+    $('.warp li:odd').addClass('bg1')*/
+   // console.log($box)
+    /*console.log($('div').eq(3))
+*/
+    //alert($ul.attr('zIndex'))
+    /*console.log($ul)
+    console.log(oUl)*/
+</script>
+</body>
+</html>

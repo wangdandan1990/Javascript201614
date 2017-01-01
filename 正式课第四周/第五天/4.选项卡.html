@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 600px;
+            height: 300px;
+        }
+        .box input{
+            width: 200px;
+            float: left;
+            height: 40px;
+        }
+        .box input.on{
+            background:lightblue;
+        }
+        .box div{
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: lightblue;
+        }
+        .box div.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box1" class="box">
+    <input type="button" value="按钮1" class="on">
+    <input type="button" value="按钮2">
+    <input type="button" value="按钮3">
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</div>
+<!--
+<div id="box2" class="box">
+    <input type="button" value="按钮1" class="on">
+    <input type="button" value="按钮2">
+    <input type="button" value="按钮3">
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</div>-->
+<script src="jquery-2.0.3.js"></script>
+<script src="tab2.js"></script>
+<script>
+    $.tab();
+    //$().xxx(); //给是实例扩充方法：$.fn.extend({})
+    /*$('#box1').tab();
+    $('#box2').tab();*/
+    /*var nodelist=$('.box');
+    for(var i=0; i<nodelist.length; i++){
+        nodelist.eq(i).tab();
+    }*/
+    //$.tab();
+
+
+</script>
+</body>
+</html>

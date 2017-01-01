@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    //DOM0级事件，可以给同一个元素，相同行为，会存在覆盖的问题；
+    /*oDiv.onclick=function(){
+        alert(1)
+    }
+    oDiv.onclick=function(){
+        alert(2)
+    }*/
+    //DOM2级事件，可以给同一个元素，相同行为，绑定多个不同的方法；-- 不兼容
+    /*oDiv.addEventListener('click',function(){
+        alert(1)
+    },false)
+    oDiv.addEventListener('click',function(){
+        alert(2)
+    },false)*/
+    /*$('div').click(function(){
+        alert(1)
+    })
+    $('div').click(function(){
+        alert(2)
+    })*/
+    function fn1(){
+        alert(1)
+    }
+    function fn2(){
+        alert(2)
+    }
+    /*$('div').on('click',fn1)
+    $('div').on('click',fn2)
+    $('div').off('click',fn1)*/
+    //one：事件绑定，只执行1次；
+    $('div').one('click',fn2)
+
+</script>
+</body>
+</html>

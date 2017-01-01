@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    var $div=$('<div>');
+    var $div2=$div.clone();
+    $div.html('元旦快乐,xixi');
+    //appendTo和append的区别：操作的主体不同；
+    //$div.appendTo($('body')) //appendTo:把谁插入到谁里面去；
+    $('body').append($div).css({
+        background:'red'
+    })
+    $div2.html('中午吃点好的，毕竟过节嘛').appendTo($('body')).remove();
+</script>
+</html>

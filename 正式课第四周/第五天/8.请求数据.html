@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    var data=null;
+    $.ajax({
+        type:'GET',
+        url:'data1.txt',
+        async:false,
+        dataType:'json',
+        success:function(val){
+            data=val;
+        }
+    });
+    console.log(data)
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*function Fn(){//构造函数
+        this.x=100;
+    }
+    Fn.prototype.aa=function(){alert(123)}
+    ;*/
+    var ary=new Array();//类：Array()
+    /*Array.abc=123;
+    alert(ary.abc);*/
+    /*
+    * ary是实例：实例只能使用构造函数中的存放的私有属性；原型上的“公有方法”；
+    * 静态属性和方法：Array.xxx=123; Array.bb=function(){}
+    *
+    * */
+    //es6
+    class Fn{
+        constructor(){//构造函数：存放的都是私有属性
+            this.x=100;
+        }
+        //构造函数以下都是公有方法；
+        aa(){
+            alert(123)
+        }
+        //存放静态的属性和方法；--这里的属性和方法实例不能用；
+        static bb(){
+            alert('这是类的私有属性')
+        }
+    }
+    var f1=new Fn();
+    var f2=new Fn();
+    /*alert(f1.constructor===Fn)
+    alert(f1.aa===f2.aa)*/
+    Fn.bb();
+    f1.bb();
+
+</script>
+</body>
+</html>
