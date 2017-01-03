@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //箭头函数：两种写法：1）表达式 2）函数体
+    //表达式写法：
+    // 第一个a代表形参，箭头后面的，代表返回值
+    var fn= a => a;
+    var fn1 = a => console.log(a+5);
+    var fn2=()=>console.log('这个函数没有参数')
+    var fn3=(a,b)=>console.log(a+b)
+    //函数体
+    var fn4=(a,b)=>{
+        var m=a+b;
+        console.log(this)
+        return m;
+    }
+
+    //var fs=fn(4556);
+    fn1(3);
+    fn2();
+    fn3(3,5);
+    console.log(fn4(10,20))
+</script>
+</body>
+</html>

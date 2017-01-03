@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    var ary=[12,3,4,5,6];
+    var obj={name:'zfpx',age:8}
+    var $aLi=$('li');
+    /*$().xxx()//实例在调用共有方法；
+    $.xxx()//工具属性，实例不能使用；因为他是类的私有属性*/
+    //$.ajax({})
+    //遍历数组
+    /*$.each(ary,function(index,item){
+        console.log(arguments)
+    })*/
+    //each拿不到回调函数的返回值，但是each执行完，会返回原始对象；
+    /*var res=$.each($aLi,function(index,n){
+        //item：原生的元素
+        //console.log(item)
+        return n + 4;
+    })*/
+    /*//map有返回值：
+    var res1=$.map( [0,1,2], function(n){
+        return n + 4;
+    });*/
+    /*obj.each(function(index,item){
+        console.log(arguments)
+    })*/
+    /*$.each(obj,function(index,item){
+        console.log(index)
+    })*/
+    //$().each(cb) 实例的each方法  和 $.each(obj,cb)静态方法 区别：静态方法能够遍历的对象种类更多，功能更强大；
+
+</script>
+</body>
+</html>

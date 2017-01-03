@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj={data:123};//普通对象
+    var a=1;
+    var b='zhufeng';
+    var fn=(n,m)=>console.log(n+m);
+    var objOther={__proto__:obj,a,b,fn};
+    //__proto__:obj=》让objOther继承了obj;
+    //objOther.fn(2,3)
+    alert(objOther.data)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="https://www.baidu.com/">
+    <p><label for="username">用户名</label><input type="text" id="username" name="name"></p>
+    <p><label for="pass">密码</label><input type="password" id="pass" name="pass"></p>
+    <p><input type="radio" name="sex" value="girl">女</p>
+    <p><input type="radio" name="sex" value="boy">男</p>
+    <input type="checkbox" name="like" value="eatting">吃
+    <input type="checkbox" name="like" value="sleepping">睡
+    <input type="checkbox" name="like" value="playing">玩
+    <input type="button" value="提交按钮" id="btn">
+</form>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    $('#btn').click(function(){
+        /*var res=$('form').serialize();//serialize:表单序列化，拿到的是键值对，就是前端向后台传送数据的；*/
+        var res=$('form').serializeArray();//把键值对放到一个数组里面；
+        console.log(res);
+    })
+</script>
+</body>
+</html>

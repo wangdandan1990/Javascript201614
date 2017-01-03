@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<input type="button" value="按钮4">
+<input type="button" value="按钮5">
+<script src="jquery-2.0.3.js"></script>
+<script>
+    //jquery中的事件绑定
+    $('input').click(function(){
+        //不能混淆：jquery只能使用jquery的属性和方法； JS只能使用JS的属性和方法；
+        //jquery和JS可以共存：JS转jquery=>$(原生)  jquery转JS： $('.box').get(0) [0]
+        //alert($(this).index())
+        //$(this).css('background','red')
+        this.style.background='red';
+    })
+</script>
+</body>
+</html>
