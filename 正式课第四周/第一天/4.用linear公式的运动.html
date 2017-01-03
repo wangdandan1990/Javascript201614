@@ -37,6 +37,7 @@
     var oDiv=document.getElementById('div');
     //1:为linear公式的参数做准备
     var begin=oDiv.offsetLeft;
+    console.log(oDiv.offsetLeft)
     var target=1000;
     var change=target-begin;
     //要走的总时间
@@ -46,7 +47,7 @@
     //定时器的名字
     var timer=setInterval(function(){
         //通过是时间不断的累加，利用linear公式求出最新的位置；
-        time+=10;
+        time+=20;
         if(time>=duration){
             oDiv.style.left=target+'px';
             clearInterval(timer);

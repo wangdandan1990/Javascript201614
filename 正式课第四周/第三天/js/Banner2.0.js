@@ -1,0 +1,112 @@
+/**
+ * Created by 39753 on 2016/12/29.
+ */
+function Banner(opt){
+    this.el=opt.el;//直接拿到的是元素
+    this.interval=opt.interval||2000;
+    this.oBoxInner=this.el.getElementsByTagName('div')[0];
+    this.aDiv=this.oBoxInner.getElementsByTagName('div');
+    this.oUl=this.el.getElementsByTagName('ul')[0];
+    this.aLi=this.oUl.getElementsByTagName('li');
+    this.oLeft=this.el.getElementsByTagName('a')[0];
+    this.oRight=this.el.getElementsByTagName('a')[1];
+    this.oBoxInner.innerHTML+='<div><img src="img/banner1.jpg" alt=""></div>';
+    this.oBoxInner.style.width=this.aDiv[0].offsetWidth*this.aDiv.length+'px';
+    //决定让第几张图片显示
+    this.n=0;
+    this.timer=null;
+    this.init();
+}
+Banner.prototype={
+    constructor:'Banner',
+    init:function(){
+        var _this=this;
+        //1.图片自动轮播
+        clearInterval(this.timer);
+        this.timer=setInterval(function(){
+            _this.autoMove();
+        },this.interval)
+        //2.焦点自动轮播
+        //3.移入停止，移出继续
+        this.overout();
+        //4.点击焦点手动切换
+        this.handleChange();
+        //5.点击左右按钮进行切换
+        this.leftRight();
+    },
+    autoMove:function(){
+        if(this.n>=this.aDiv.length-1){
+            this.n=0;
+            utils.css(this.oBoxInner,'left',-this.n*1000)
+        }
+        this.n++;
+        //utils.css(this.oBoxInner,'left',-this.n*1000)
+        animate({
+            id:this.oBoxInner,
+            target:{
+                left:-this.n*1000
+            }
+        })
+        //焦点自动轮播
+        this.bannerTip();
+    },
+    bannerTip:function(){
+        for(var i=0; i<this.aLi.length; i++){
+            this.aLi[i].className=this.n%this.aLi.length==i?'on':null;
+        }
+    },
+    overout:function(){
+        var _this=this;
+        this.el.onmouseover=function(){
+            clearInterval(_this.timer);
+            _this.oLeft.style.display=_this.oRight.style.display='block';
+        };
+        this.el.onmouseout=function(){
+            _this.timer=setInterval(function(){
+                _this.autoMove();
+            },_this.interval)
+            _this.oLeft.style.display=_this.oRight.style.display='none';
+        }
+    },
+    handleChange:function(){
+        var _this=this;
+        //把每个元素的索引作为n的值；
+        for(var i=0; i<this.aLi.length; i++){
+            this.aLi[i].index=i;
+            this.aLi[i].onclick=function(){
+                //_this:实例；this:当前发生事件的这个元素；
+                _this.n=this.index;
+                animate({
+                    id:_this.oBoxInner,
+                    target:{
+                        left:-_this.n*1000
+                    }
+                })
+                //焦点自动轮播
+                _this.bannerTip();
+            }
+        }
+    },
+    leftRight:function(){
+        var _this=this;
+        this.oRight.onclick=function(){
+            _this.autoMove();
+        }
+        this.oLeft.onclick=function(){
+            if(_this.n<=0){
+                _this.n=_this.aDiv.length-1;
+                utils.css(_this.oBoxInner,'left',-_this.n*1000);
+            }
+            _this.n--;
+            animate({
+                id:_this.oBoxInner,
+                target:{
+                    left:-_this.n*1000
+                }
+            })
+            //焦点自动轮播
+            _this.bannerTip();
+        }
+    }
+
+}
