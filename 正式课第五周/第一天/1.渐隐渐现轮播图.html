@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        .box{
+            width: 1000px;
+            height:300px;
+            margin:10px auto;
+            position: relative;
+            background: url("img/default.gif") no-repeat center #ccc;
+        }
+        .box .boxInner{
+            position: absolute;
+        }
+        .box .boxInner div{
+            position: absolute;
+            left:0;
+            top:0;
+
+            z-index: 0;
+            /*opacity: 0;
+            filter:alpha(opacity=0);*/
+            display:none;
+        }
+        /*.box .boxInner div.show{
+            z-index: 1;
+            opacity: 1;
+            filter:alpha(opacity=100);
+        }*/
+        .box ul{
+            position: absolute;
+            right:10px;
+            bottom:10px;
+            z-index: 10;
+        }
+        .box ul li{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-left: 10px;
+            border-radius: 50%;
+            background: #333;
+        }
+        .box ul li.on{
+            background: lightblue;
+        }
+        .box a{
+            width:30px;
+            height:48px;
+            background-image: url("img/pre.png");
+            background-repeat: no-repeat;
+            position: absolute;
+            top:126px;
+            opacity: 0.3;
+            filter:alpha(opacity=30);
+            display: none;
+            z-index: 10;
+        }
+        .box a:hover{
+            opacity: 1;
+            filter:alpha(opacity=100);
+        }
+        .box a.left{
+            left:30px;
+            background-position: 0 0;
+        }
+        .box a.right{
+            right:30px;
+            background-position: -50px 0;
+        }
+    </style>
+    <script src="js/jquery-2.0.3.js"></script>
+    <script src="js/Banner.js"></script>
+    <script>
+        //window.onload:等页面所有东西（DOM，图片，音频，视频等等）都加载完成的时候，开始执行JS代码；
+        //$() 只是等DOM加载完成的时候，开始执行JS代码；
+        //$()跟 $(document).ready功能一样；
+        $(document).ready(function(){
+            var tab1=new Banner({
+                el:'#box'
+            });
+        })
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="boxInner">
+        <!--<div><img src="img/banner1.jpg" alt=""></div>
+        <div><img src="img/banner2.jpg" alt=""></div>
+        <div><img src="img/banner3.jpg" alt=""></div>
+        <div><img src="img/banner4.jpg" alt=""></div>-->
+    </div>
+    <ul>
+        <!--<li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>-->
+    </ul>
+    <a href="javascript:;" class="left"></a>
+    <a href="javascript:;" class="right"></a>
+</div>
+</body>
+</html>
