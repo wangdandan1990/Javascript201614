@@ -1,0 +1,24 @@
+1.DOM0级事件和DOM2级事件的区别：
+1）DOM0级事件是元素身上的私有属性 2）DOM0级事件，当给同一个元素，同一个行为上绑定多个不同的方法的时候，后面的方法会“覆盖”前面的方法；
+1）DOM2级事件是元素身上的公有属性，存放在元素所属的eventTarget这个类的原型上；2）DOM2级事件，可以给同一个元素的同一个行为上绑定多个不同的方法；
+2.什么是事件？
+1）鼠标事件MouseEvent
+onclick  ondbclick onmouseover onmouseout onmouseenter onmouseleave oncontextmenu ...
+2)系统事件
+onload onscroll onerror onresize...
+3)键盘事件keyboardEvent
+onkeydown onkeyup onkeypress...
+4)表单事件
+onfocus onblur ...
+3.事件对象：就是描述了当前所触发行为的详细信息；
+1）标准浏览器下，通过形参e来得到事件对象
+2）IE6-8下的事件对象，跟形参没有任何关系；通过window.event来获取
+兼容处理：e=e||window.event;
+4.关于事件对象的详细信息：
+1）clientX/clientY:当前鼠标落脚点距离可视区左上角的坐标位置；--兼容
+2) pageX/pageY:当前鼠标落脚点距离第一屏左上角的坐标位置；--不兼容；
+3) 事件源e.target：当前发生事件的这个元素--不兼容
+兼容处理：e.target||e.srcElement;
+4) keyCode:键盘的键码；
+5) 阻止默认事件:e.preventDefault? e.preventDefault(): e.returnValue=false;
+6)阻止事件冒泡：

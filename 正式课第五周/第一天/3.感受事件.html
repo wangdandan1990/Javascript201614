@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width:200px;
+            height:200px;
+            background: red;
+        }
+        input{
+            height: 40px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body style="height:3000px;">
+<p>注意！此框内只能包容数字：<input type="text" id="t1"></p>
+<div id="div">
+    <a href="JavaScript:;" id="a">我是链接</a>
+</div>
+<script>
+   var oDiv=document.getElementById('div');
+   var oT=document.getElementById('t1');
+   var oA=document.getElementById('a');
+   oA.onclick=function(e){
+       e=e||window.event;
+       alert('a')
+       e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+   };
+   /*oDiv.onclick=function(){
+       alert('div')
+   };*/
+
+   /*oT.onkeydown=function(e){
+       e=e||window.event;
+       //思路1：用正则验证=》正则验证的是数字和backspace；
+       /!*var reg=/^((4[89])|(5[0-7])|8)$/;
+       if(!reg.test(e.keyCode)){
+           e.preventDefault? e.preventDefault(): e.returnValue=false;
+       }*!/
+       //思路2：判断非数字，并且不是8，都阻止默认事件；
+       /!*if((e.keyCode<47 || e.keyCode>57) && (e.keyCode!==8)){
+           e.preventDefault? e.preventDefault(): e.returnValue=false;
+       }*!/
+       //思路3：除了数字和8之外，都阻止默认事件
+       /!*if(!((e.keyCode>=48&& e.keyCode<=57)|| e.keyCode==8)){
+           e.preventDefault? e.preventDefault(): e.returnValue=false;
+       }*!/
+        //思路4：e.key可以打印出所按键的内容；不兼容IE6-8
+       /!*var reg=/^\d$/;
+       if((!reg.test(e.key)) && e.keyCode!=8){
+           e.preventDefault?e.preventDefault:e.returnValue=false;
+       }*!/
+   }*/
+   //oncontextmenu:鼠标右键
+   /*document.body.oncontextmenu=function(e){
+        e=e||window.event;
+       //e.preventDefault();
+       //e.returnValue=false;
+       e.preventDefault? e.preventDefault(): e.returnValue=false;
+   }*/
+     /*oDiv.onclick=function(){
+        console.dir(this)
+    }*/
+    /*oDiv.onclick=function(e){
+        e=e||window.event;
+        //注意：一定要加()来提高优先级；
+        //鼠标坐标
+        /!*e.pageY= e.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
+        e.pageX= e.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft);*!/
+        //事件源的兼容处理
+        //var target= e.target|| e.srcElement;
+       // console.log(e.target);
+        console.log(target.nodeName);
+        //alert(e.clientX)
+        //alert(window.event.clientY)
+        //console.dir(window.event);
+    }*/
+</script>
+</body>
+</html>
