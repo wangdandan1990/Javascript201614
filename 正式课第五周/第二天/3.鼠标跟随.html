@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 840px;
+            height:auto;
+            margin:10px auto;
+            position: relative;
+        }
+        .box:after{
+            content:'';
+            overflow: hidden;
+            clear:both;
+            display: block;
+        }
+        .box > img{
+            width: 200px;
+            float: left;
+            margin:5px;
+        }
+        #mark{
+            position: absolute;
+            let:0;
+            top:0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box" class="box">
+    <img src="img/apple_1.jpg" bigSrc="img/apple_1_bigger.jpg" alt="">
+    <img src="img/apple_2.jpg" bigSrc="img/apple_2_bigger.jpg" alt="">
+    <img src="img/apple_3.jpg" bigSrc="img/apple_3_bigger.jpg" alt="">
+    <img src="img/apple_4.jpg" bigSrc="img/apple_4_bigger.jpg" alt="">
+    <div id="mark"><img src="img/apple_1_bigger.jpg" alt=""></div>
+</div>
+<script src="js/jquery-2.0.3.js"></script>
+<script>
+    var $Box=$('#box');
+    var $mark=$('#mark');
+    var $offset=$Box.offset();//{left:xx,top:xxx}
+    //当一个容器中，很多个元素都要发生某个行为的时候，我们可以把这个行为委托给他们共同的父级
+    $Box.mouseover(function(e){
+        $mark.show();
+        //通过事件源来做不同的区分；
+       /* $mark.find('img').attr('src', $(e.target).attr('bigSrc'));*/
+        $Box.mousemove(function(e){
+            $mark.css({
+                left: e.clientX-$offset.left+30,
+                top: e.clientY-$offset.top+30
+            }).find('img').attr('src', $(e.target).attr('bigSrc'))//
+            //通过事件源来做不同的区分；
+        })
+        $Box.mouseout(function(){
+            $mark.hide();
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            padding:100px;
+            font-size: 30px;
+        }
+        #div1{
+            background: red;
+        }
+        #div2{
+            background: green;
+        }
+        #div3{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">div1
+    <div id="div2">div2
+        <div id="div3">div3</div>
+    </div>
+</div>
+<script>
+    var oDiv1=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    var oDiv3=document.getElementById('div3');
+    //DOM0级事件，只能发生在事件流的冒泡阶段；
+    function getId(id){
+        alert(id)
+    }
+    oDiv1.addEventListener('click',function(){
+        getId(this.id)
+    },true);//捕获
+    oDiv2.addEventListener('click',function(){
+        getId(this.id)
+    },false);//冒泡
+    oDiv3.addEventListener('click',function(){
+        getId(this.id)
+    },false);
+    /*oDiv1.onclick=function(){
+        getId(this.id);
+    }
+    oDiv2.onclick=function(){
+        getId(this.id);
+    }
+    oDiv3.onclick=function(e){
+        e=e||window.event;
+        e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        getId(this.id);
+    }*/
+</script>
+</body>
+</html>

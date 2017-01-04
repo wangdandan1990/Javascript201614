@@ -1,0 +1,32 @@
+1.DOM0级和DOM2级的区别：
+DOM0级：1）私有属性 2）同一个元素相同行为绑定不同方法会有覆盖问题 3)只能发生在事件流的冒泡阶段
+DOM2级：1）公有属性：当前元素所属的eventTarget这个类的原型上；obj.addEventListener()
+2)同一个元素同一个行为上，可以绑定多个不同的方法
+3）可以通过控制addEventListener(type,cb,useCapture)中的第三个参数，决定发生在事件流的哪个阶段；
+2.事件对象不兼容：e=e||window.event;
+3.事件对象的详细信息：
+1）clientX/clientY:当前鼠标落脚点距离可视区左上角的坐标位置
+2）pageX/pageY:当前鼠标落脚点距离第一屏左上角的坐标位置
+e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+e.clientY;
+3）事件源：var target=e.target||e.srcElement;
+4)键码：e.keyCode
+5)阻止默认事件:e.preventDefault?e.preventDefault():e.returnValue=false;
+6)取消冒泡：e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+4.事件流：
+1）事件流包含两阶段：1）捕获阶段（从外向里） 2）冒泡阶段（从里向外）
+2）事件流包含三阶段：1）捕获阶段 2）事件源 e.target 3）冒泡
+注意：顺序问题=》先捕获再冒泡；
+5.需求：当鼠标移入一个div的时候，创建一个小的div；
+当鼠标在div中快速移动的时候，小div跟着鼠标移动
+当鼠标离开div的时候，小div消失；
+6.事件委托：本质就是对冒泡的运用；
+如果一个容器中有n多个元素，都要发生某个事件，我们可以把这个事件委托给他们共同的父级；
+通过事件源来做不同的区分；
+- 小米购物车；
+- 鼠标跟随；
+7.onmouseover和onmouseout解决措施
+1）onmouseenter 和 onmouseleave
+2)关联元素：
+onmouseover=>var oTo=e.relatedTarget||e.fromElement;
+onmouseout=>var oTo=e.relatedTarget||e.toElement;
+obj.contains(xxx)=>布尔数据

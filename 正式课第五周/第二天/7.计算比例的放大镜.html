@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border: none;
+        }
+        .box{
+            width: 430px;
+            height: 430px;
+            box-shadow: 0 0 10px #333;
+        }
+        #s{
+            background: url("img/1.jpg") no-repeat center;
+            position: relative;
+            left:20px;
+            top:20px;
+        }
+        #m{
+            position: absolute;
+            left:0;
+            top:0;
+            width:240px;
+            height: 240px;
+            background: blue;
+            opacity: 0.3;
+            filter:alpha(opacity:30);
+            display: none;
+        }
+        #b{
+            overflow: hidden;
+            position: absolute;
+            left:490px;
+            top:20px;
+            display: none;
+        }
+        #b img{
+            display: block;
+            position:absolute;
+            left: 0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="s" class="box">
+    <div id="m"></div>
+</div>
+<div id="b" class="box">
+    <img src="img/2.jpg" alt="" id="img">
+</div>
+<script>
+    var oS=document.getElementById('s');
+    var oM=document.getElementById('m');
+    var oB=document.getElementById('b');
+    var oImg=document.getElementById('img');
+    //oM.offsetWidth/oS.offsetWidth=oB.offsetWidth/?
+    oS.onmouseenter=function(){
+        console.log('ok')
+        oM.style.display=oB.style.display='block';
+    };
+    oS.onmousemove=function(e){
+        e=e||window.event;
+        var l=e.clientX-oS.offsetLeft-oM.offsetWidth/2;
+        var t=e.clientY-oS.offsetTop-oM.offsetHeight/2;
+        var maxL=oS.offsetWidth- oM.offsetWidth;
+        var maxT=oS.offsetHeight- oM.offsetHeight;
+        if(l<=0){
+            l=0;
+        }else if(l>=maxL){
+            l=maxL;
+        }
+        if(t<=0){
+            t=0;
+        }else if(t>=maxT){
+            t=maxT;
+        }
+        oM.style.left=l+'px';
+        oM.style.top= t+'px';
+        //核心：l/maxL=?/oB.offsetWidth-oImg.offsetWidth;
+        oImg.style.left=l/maxL*(oB.offsetWidth-oImg.offsetWidth)+'px';
+        oImg.style.top=t/maxT*(oB.offsetHeight-oImg.offsetHeight)+'px';
+    };
+    oS.onmouseleave=function(){
+        oM.style.display=oB.style.display='none';
+    }
+</script>
+</body>
+</html>
