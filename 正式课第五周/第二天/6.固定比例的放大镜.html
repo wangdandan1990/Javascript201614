@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border: none;
+        }
+        .box{
+            width: 400px;
+            height: 400px;
+            box-shadow: 0 0 10px #333;
+        }
+        #s{
+            background: url("img/1.jpg") no-repeat center;
+            position: relative;
+            left:20px;
+            top:20px;
+        }
+        #m{
+            position: absolute;
+            left:0;
+            top:0;
+            width:200px;
+            height: 200px;
+            background: blue;
+            opacity: 0.3;
+            filter:alpha(opacity:30);
+            display: none;
+        }
+        #b{
+            overflow: hidden;
+            position: absolute;
+            left:450px;
+            top:20px;
+            display: none;
+            background: red;
+        }
+        #b img{
+            display: block;
+            width:200%;
+            height: 200%;
+            position:absolute;
+            left: 0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="s" class="box">
+    <div id="m"></div>
+</div>
+<div id="b" class="box">
+    <img src="img/2.jpg" alt="" id="img">
+</div>
+<script>
+    var oS=document.getElementById('s');
+    var oM=document.getElementById('m');
+    var oB=document.getElementById('b');
+    var oImg=document.getElementById('img');
+    /*
+    * 1.当鼠标移入OS的时候，oM显示，同时oB也显示；
+    * 2.当鼠标移动的时候，oM跟着鼠标移动，同时，大图也跟着按比例的走；
+    * 3.当鼠标移出的时候，oM隐藏；大图也隐藏；
+    * */
+    oS.onmouseover=function(){
+        oM.style.display=oB.style.display='block';
+    };
+    oS.onmousemove=function(e){
+        e=e||window.event;
+        var l=e.clientX-oS.offsetLeft-oM.offsetWidth/2;
+        var maxL=oS.offsetWidth-oM.offsetWidth;
+        var t=e.clientY-oS.offsetTop-oM.offsetHeight/2;
+        var maxT=oS.offsetHeight-oM.offsetHeight;
+        if(l>=maxL){
+            l=maxL;
+        }else if(l<=0){
+            l=0;
+        }
+        if(t>=maxT){
+            t=maxT;
+        }else if(t<=0){
+            t=0;
+        }
+        oM.style.left= l+'px';
+        oM.style.top= t+'px';
+        oImg.style.left=-2*l+'px';
+        oImg.style.top=-2*t+'px';
+    }
+    oS.onmouseout=function(){
+        oM.style.display=oB.style.display='none';
+    }
+</script>
+</body>
+</html>

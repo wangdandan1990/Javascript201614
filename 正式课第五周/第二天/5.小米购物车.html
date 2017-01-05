@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        span{
+            display: block;
+            width:200px;
+            height: 50px;
+            position: relative;
+            background: #333333;
+            margin:50px auto;
+        }
+        div{
+            width: 400px;
+            height: 200px;
+            position: absolute;
+            left:0;
+            top:50px;
+            background: lightblue;
+            display: none;
+        }
+        div.on{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<span id="box">
+    <div id="mark"></div>
+</span>
+<script>
+    //开关思想：1）条件判断 2）bOk=!bOk 3)%的思想；
+    /*var oSpan=document.getElementById('span');
+    var oMark=document.getElementById('mark');*/
+    //var bOk=false;
+    //思路1：因为很多元素，都要发生点击事件，所以全部委托了body，然后通过事件源做不同的区分
+    /*document.body.onclick=function(e){
+        e=e||window.event;
+        //1.判断事件源如果是span,那就点击显示，点击隐藏。。。
+        if(e.target==oSpan){
+            //oMark.style.display:因为没在行内写，所以行内样式，拿不到值；
+            if(oMark.style.display==='block'){
+                oMark.style.display='none'
+            }else{
+                oMark.style.display='block'
+            }
+            return;
+        }
+        //2.判断事件源如果是Mark，不隐藏；
+        if(e.target==oMark){
+            return;
+        }
+        oMark.style.display='none';
+    }*/
+    //思路2：优点：1）全局变量存在元素的私有属性上 2）oBox.flag= !oBox.flag;
+    /*var oBox = document.getElementById('box');
+    var oMark = document.getElementById('mark');
+    oBox.flag = false;
+    oBox.onclick = function (e) {
+        e =e||window.event;
+        var target = e.target|| e.srcElement;
+        e.stopPropagation? e.stopPropagation():cancelBubble=true; // 阻止冒泡事件
+
+        if(target.id=='mark') return; // 如果点击的是 Mark 自己 不进行任何操作
+
+        oBox.flag= !oBox.flag;
+        oMark.className=  oBox.flag?'on':null;
+    };
+    document.body.onclick = function (e) {
+        //对box做了恢复初始值的处理；
+        oBox.flag= false;
+        oMark.className=null;
+    }*/
+    //思路3：%的思想；
+    /*var wrap=document.getElementById('box');
+    var con=document.getElementById('mark');
+    var n =0;
+    wrap.onclick = function (event) {
+        event = event||window.event;
+        event.stopPropagation?event.stopPropagation():event.cancelable=true;
+        if(event.target==con){
+            return;
+        }
+        n++;
+        if(n%2){//奇数
+            con.style.display = "block";
+            window.onclick = function (event) {
+                event = event||window.event;
+                con.style.display = "none";
+                n=0;
+            }
+        }else{
+            con.style.display = "none";
+        }
+    };*/
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:400px;
+            height: 400px;
+            background: red;
+            margin:0 auto;
+            position: relative;
+        }
+        .mark{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="box" class="box"></div>
+<script>
+    var oBox=document.getElementById('box');
+    var mark=null;
+    //当移入绿色div的时候，会触发绿色div的onmouseover事件，但是，绿色div是红色div的子集，就触发了红色div的onmouseover事件，于是，就开始创建绿色div；--冒泡
+    /*oBox.onmouseover=function(e){
+        e=e||window.event;
+        mark=document.createElement('div');
+        mark.className='mark';
+        /!*!/!*有用没用？*!/
+        mark.style.left= e.clientX-oBox.offsetLeft+'px';
+        mark.style.top= e.clientY-oBox.offsetTop+'px';*!/
+        //阻止绿色div的冒泡；
+        mark.onmouseover=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        }
+        oBox.appendChild(mark);
+    }
+    oBox.onmousemove=function(e){
+        e=e||window.event;
+        mark.style.left= e.clientX-oBox.offsetLeft+'px';
+        mark.style.top= e.clientY-oBox.offsetTop+'px';
+    }
+    oBox.onmouseout=function(){
+        mark.onmouseout=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        };
+        this.removeChild(mark);
+    }*/
+    //用onmouseenter解决
+    /*oBox.onmouseenter=function(){
+        mark=document.createElement('div');
+        mark.className='mark';
+        //先创建，再移动
+        this.appendChild(mark);
+        oBox.onmousemove=function(e){
+            e=e||window.event;
+            mark.style.left= e.clientX-this.offsetLeft+'px';
+            mark.style.top= e.clientY-this.offsetTop+'px';
+        };
+        oBox.onmouseleave=function(){
+            this.removeChild(mark);
+        }
+    }*/
+    //用关联元素解决
+    oBox.onmouseover=function(e){
+        e=e||window.event;
+        var oTo= e.relatedTarget|| e.fromElement;//关联元素
+        //判断：如果遇到跟我有关系的元素，什么操作也不做；
+        if(oBox.contains(oTo)) return;
+        //e.relatedTarget?e.relatedTarget:e.fromElement;
+        mark=document.createElement('div');
+        mark.className='mark';
+        //先创建，再移动
+        this.appendChild(mark);
+        oBox.onmousemove=function(e){
+            e=e||window.event;
+            mark.style.left= e.clientX-this.offsetLeft+'px';
+            mark.style.top= e.clientY-this.offsetTop+'px';
+        };
+        oBox.onmouseout=function(e){
+            e=e||window.event;
+            var oTo= e.relatedTarget|| e.toElement;
+            if(oBox.contains(oTo)) return;
+            this.removeChild(mark);
+        }
+    }
+
+</script>
+</body>
+</html>
