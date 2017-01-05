@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+        }
+        .box{
+            position: relative;
+            top:100px;
+            float: left;
+            margin:0px 10px;
+            background: url("./img2/1.jpg") no-repeat center;
+            overflow: hidden;
+        }
+        .box2{
+            background: url("./img2/2.jpg") no-repeat center;
+        }
+        .box3{
+            background: url("./img2/3.jpg") no-repeat center;
+        }
+        .box4{
+            background: url("./img2/4.jpg") no-repeat center;
+        }
+        .box5{
+            background: url("./img2/5.jpg") no-repeat center;
+        }
+        .box .mark{
+            position: absolute;
+            background: rgba(0,179,138,.9);
+            left:200px;
+            top:0;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="mark">呆呆</div>
+</div>
+<div class="box box2">
+    <div class="mark">小丸子</div>
+</div>
+<div class="box box3">
+    <div class="mark">萌萌哒</div>
+</div>
+<div class="box box4">
+    <div class="mark">蒲公英</div>
+</div>
+<div class="box box5">
+    <div class="mark">乔巴</div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var aDiv=utils.getByClass('box');
+    var data=['呆呆','小丸子','萌萌哒','蒲公英','乔巴']
+    for(var i=0; i<aDiv.length; i++){
+        chuanqiang(aDiv[i]);
+    }
+    //这个函数hoverDir用来判断方向；
+    function chuanqiang(oDiv){
+        var oMark=oDiv.getElementsByTagName('div')[0];
+        function hoverDir(e){
+            var x=oDiv.offsetWidth/2+ oDiv.offsetLeft- e.clientX;
+            var y=oDiv.offsetHeight/2+ oDiv.offsetTop- e.clientY;
+            return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
+            //1.利用公式Math.atan2(y,x) 求出弧度
+            //2.弧度转度的公式：   弧度＝度×π/180=》度=弧度*180/π
+            //3.拿度/90=>bottom:1; left:2; top:3; right:4 / 0
+            //4.把3再%下；
+        }
+        oDiv.onmouseover=function(e){
+            e=e||window.event;
+            var oTo= e.relatedTarget|| e.fromElement;
+            if(this.contains(oTo)) return ;
+            var con=hoverDir(e);
+            switch (con){
+                case 0:
+                    utils.css(oMark,{left:200,top:0});
+                    break;
+                case 1:
+                    utils.css(oMark,{left:0,top:200});
+                    break;
+                case 2:
+                    utils.css(oMark,{left:-200,top:0});
+                    break;
+                default:
+                    utils.css(oMark,{left:0,top:-200});
+            }
+            animate({
+                id:oMark,
+                target:{
+                    left:0,
+                    top:0
+                },
+                duration:400,
+                effect:3
+            })
+        };
+        oDiv.onmouseout=function(e){
+            e=e||window.event;
+            var oTo= e.relatedTarget|| e.toElement;
+            if(this.contains(oTo)) return ;
+            var con=hoverDir(e);
+            switch (con){
+                case 0:
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:200,
+                            top:0
+                        },
+                        duration:400
+                    });
+                    break;
+                case 1:
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:0,
+                            top:200
+                        },
+                        duration:400
+                    });
+                    break;
+                case 2:
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:-200,
+                            top:0
+                        },
+                        duration:400
+                    });
+                    break;
+                default:
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:0,
+                            top:-200
+                        },
+                        duration:400
+                    });
+                    break;
+            }
+        }
+    }
+</script>
+</body>
+</html>
