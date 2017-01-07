@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+我们是丐帮的要饭的，都是配角，，，，，，，，
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    oDiv.onmousedown=down;
+    function down(e){
+        e=e||window.event;
+        this.disX= e.clientX-this.offsetLeft;
+        this.disY= e.clientY-this.offsetTop;
+        //在IE浏览器下，对oDiv聚焦
+        if(this.setCapture){
+            this.setCapture();
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else{//标准浏览器
+            var _this=this;
+            document.onmousemove=function(){
+                move.call(_this);
+            };
+            document.onmouseup=function(){
+                up.call(_this);
+            }
+            e.preventDefault();
+        }
+    }
+    //在移动过程中，要设置位移的元素，是div元素；
+    function move(e){
+        e=e||window.event;
+        this.style.left= e.clientX-this.disX+'px';
+        this.style.top= e.clientY-this.disY+'px';
+    }
+    function up(){
+        //抬起后释放焦点--IE
+        if(this.releaseCapture){
+            this.releaseCapture()
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{
+            document.onmousemove=null;
+            document.onmouseup=null;
+
+        }
+    }
+</script>
+</body>
+</html>
