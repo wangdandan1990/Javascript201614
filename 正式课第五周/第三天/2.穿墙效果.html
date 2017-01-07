@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+        }
+        .box{
+            position: relative;
+            top:100px;
+            float: left;
+            margin:0px 10px;
+            background: url("./img2/1.jpg") no-repeat center;
+            overflow: hidden;
+        }
+        .box2{
+            background: url("./img2/2.jpg") no-repeat center;
+        }
+        .box3{
+            background: url("./img2/3.jpg") no-repeat center;
+        }
+        .box4{
+            background: url("./img2/4.jpg") no-repeat center;
+        }
+        .box5{
+            background: url("./img2/5.jpg") no-repeat center;
+        }
+        .box .mark{
+            position: absolute;
+            background: rgba(0,179,138,.9);
+            left:200px;
+            top:0;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="mark">呆呆</div>
+</div>
+<div class="box box2">
+    <div class="mark">小丸子</div>
+</div>
+<div class="box box3">
+    <div class="mark">萌萌哒</div>
+</div>
+<div class="box box4">
+    <div class="mark">蒲公英</div>
+</div>
+<div class="box box5">
+    <div class="mark">乔巴</div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var aDiv=utils.getByClass('box');
+   // var oDiv=aDiv[aDiv.length-1];
+    //当一大堆元素都有某个效果，肯定要封装，先拿一个进行封装；循环调用；
+    for(var i=0; i<aDiv.length; i++){
+        chuanqiang(aDiv[i]);
+    }
+    function chuanqiang(oDiv){
+        var oMark=oDiv.getElementsByTagName('div')[0];
+        function hoverDir(e){
+            var x=oDiv.offsetWidth/2+oDiv.offsetLeft- e.clientX;
+            var y=oDiv.offsetHeight/2+oDiv.offsetTop- e.clientY;
+            return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
+            //1.求弧度
+            //2.弧度转度
+        }
+        oDiv.onmouseover=function(e){
+            e=e||window.event;
+            var oTo= e.relatedTarget|| e.fromElement;
+            if(this.contains(oTo)) return;
+            var con=hoverDir(e);
+            //当鼠标移入的时候，让物体迅速的移到起始位置，然后，运动的移动到0,0位置；
+            switch(con){
+                case 0://right
+                    utils.css(oMark,{left:200,top:0})
+                    break;
+                case 1://bottom
+                    utils.css(oMark,{left:0,top:200})
+                    break;
+                case 2://left
+                    utils.css(oMark,{left:-200,top:0})
+                    break;
+                default://top
+                    utils.css(oMark,{left:0,top:-200})
+                    break;
+
+            }
+            animate({
+                id:oMark,
+                target:{
+                    left:0,
+                    top:0
+                },
+                duration:400
+            })
+
+        }
+        oDiv.onmouseout=function(e){
+            e=e||window.event;
+            var oTo= e.relatedTarget|| e.toElement;
+            if(this.contains(oTo)) return;
+            var con=hoverDir(e);
+            //当鼠标移入的时候，让物体迅速的移到起始位置，然后，运动的移动到0,0位置；
+            switch(con){
+                case 0://right
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:200,
+                            top:0
+                        },
+                        duration:400
+                    })
+                    break;
+                case 1://bottom
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:0,
+                            top:200
+                        },
+                        duration:400
+                    })
+                    break;
+                case 2://left
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:-200,
+                            top:0
+                        },
+                        duration:400
+                    })
+                    break;
+                default://top
+                    animate({
+                        id:oMark,
+                        target:{
+                            left:0,
+                            top:-200
+                        },
+                        duration:400
+                    })
+                    break;
+
+            }
+
+
+        }
+    }
+</script>
+</body>
+</html>

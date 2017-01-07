@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        *{
+            margin:0;
+            padding:0;
+            outline: none;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        input{
+            border: none;
+        }
+        img{
+            display: block;
+            border:none;
+            width: 280px;
+            margin:50px auto;
+        }
+        .box{
+            width:802px;
+            height: 50px;
+            margin:0 auto;
+            position: relative;
+        }
+        .box input{
+            padding:5px;
+            width: 670px;
+            height: 38px;
+            float: left;
+            border:1px solid #ccc;
+            font-size: 18px;
+        }
+        .box span{
+            float: left;
+            display: block;
+            width: 120px;
+            height: 100%;
+            background: #3385ff;
+            color:white;
+            text-align: center;
+            line-height: 50px;
+        }
+        .box ul{
+            width: 800px;
+            position: absolute;
+            left:1px;
+            top:50px;
+            box-shadow: 0 1px 2px #666;
+            display: none;
+        }
+        .box ul li{
+            height: 40px;
+            line-height:40px;
+            width: 800px;
+        }
+        .box ul li a{
+            width:795px;
+            height: 100%;
+            display: block;
+            padding-left: 5px;
+            font-size: 18px;
+        }
+        .box ul li a:hover{
+            background:#e1e1e1;
+        }
+        .box ul li a.on{
+            background:#e1e1e1;
+        }
+
+    </style>
+</head>
+<body>
+<img src="img/bd_logo1.png" alt="">
+<div class="box"><input type="text" id="t1"><span id="btn">百度一下</span>
+    <ul id="ul">
+        <li><a href="javascript:;">全栈-JavaScript</a></li>
+        <li><a href="javascript:;">全栈-react</a></li>
+        <li><a href="javascript:;">全栈-node</a></li>
+        <li><a href="javascript:;">全栈-express</a></li>
+        <li><a href="javascript:;">全栈-es6</a></li>
+        <li><a href="javascript:;">全栈-webpack</a></li>
+    </ul>
+</div>
+<script>
+    var oT=document.getElementById('t1');
+    var oBtn=document.getElementById('btn');
+    var oUl=document.getElementById('ul');
+    var aA=oUl.getElementsByTagName('a');
+    var oldValue=null;
+    var n=-1;
+    /*
+    *1.聚焦的时候，如果有内容，ul显示，否则隐藏；
+    *2.当编辑内容的时候，如果有内容，ul显示，否则隐藏；
+    *3.当“点击”下拉单的时候，对应的内容，会输入到input中；同时，ul隐藏；
+    *4.“点击”其他任何地方，ul都隐藏；
+    *5.当按键盘上下键的时候，列表内容跟着走，同时input中的内容也跟着走；
+    *6.当按下enter键的时候，内容“搜索”；
+    *7.点击搜索按钮的时候，开始“搜索”内容；
+    * */
+    //1)聚焦的时候，如果有内容，ul显示，否则隐藏；2)当编辑内容的时候，如果有内容，ul显示，否则隐藏；
+    oT.onkeyup=oT.onfocus=function(){
+        var val=oT.value;
+        if(val.length){//有内容，ul显示；
+            oUl.style.display='block';
+        }else{//没内容，ul隐藏
+            oUl.style.display='none';
+        }
+    }
+    //3)“点击”其他任何地方，ul都隐藏；4)当“点击”下拉单的时候，对应的内容，会输入到input中；同时，ul隐藏；5)给input聚焦的时候，也相当于点击
+    document.body.onclick=function(e){
+        e=e||window.event;
+        var target= e.target|| e.srcElement;
+        //给input聚焦的时候，也相当于点击,不做处理；
+        if(target===oT){
+            return;
+        }
+        //当“点击”下拉单的时候，对应的内容，会输入到input中；同时，ul隐藏；也开始搜索；
+        if(target===oBtn){
+            search();
+        }
+        if(target.tagName.toLowerCase()==='a'){
+            //1.对应的内容，会输入到input中
+            oT.value=target.innerHTML;
+            //2.也开始搜索:_self 当前页面打开；_blank 新窗口打开；
+            //window.open(URL,_self)
+            search();
+        }
+        //3.ul隐藏
+        oUl.style.display='none';
+    }
+    //当按键盘上下键的时候，列表内容跟着走，同时input中的内容也跟着走；
+    oT.onkeydown=function(e){
+        e=e||window.event;
+        //up 38; down 40;
+        if(e.keyCode===40){
+            n++;
+            if(n>=aA.length){
+                n=-1;
+            }
+            change();
+        }else if(e.keyCode===38){
+            n--;
+            if(n<-1){
+                n=aA.length-1;
+            }
+            change();
+        }else if(e.keyCode===13){
+            search();
+        }
+    }
+    function change(){
+        //当没有的时候，给oldValue赋值，如果已经有了值，不再重新赋值；--保证oldValue只存第一次的值；
+        if(!oldValue){
+            oldValue=oT.value;
+        }
+        for(var i=0; i<aA.length; i++){
+            aA[i].className='';
+        }
+        if(n==-1){
+            oT.value=oldValue;
+        }else{
+            aA[n].className='on';
+            oT.value=aA[n].innerHTML;
+        }
+    }
+    function search(){
+        window.open('https://www.baidu.com/s?wd='+oT.value,'_self')
+    }
+</script>
+</body>
+</html>

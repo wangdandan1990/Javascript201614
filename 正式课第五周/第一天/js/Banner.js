@@ -9,7 +9,7 @@ class Banner{
         this.config={
             url:'data1.txt',
             interval:2000
-        }
+        };
         //传了按照传的来；
         Object.assign(this.config,opt);
         //把默认值进行简写，数据初始化
@@ -45,7 +45,7 @@ class Banner{
         clearInterval(this.timer);
         this.timer=setInterval(()=>{
             this.autoMove();
-        },this.interval)
+        },this.interval);
         //移入停止移出继续
         this.overout();
         //点击焦点，进行切换
@@ -111,7 +111,7 @@ class Banner{
         }).mouseout(()=>{
             this.timer=setInterval(()=>{
                 this.autoMove();
-            },this.interval)
+            },this.interval);
             this.$left.hide().next().hide();
         })
     }
