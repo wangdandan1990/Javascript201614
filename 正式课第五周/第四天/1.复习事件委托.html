@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin:10px;
+            float: left;
+        }
+        a{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--<div><a href="javascript:;"></a></div>-->
+<script>
+    //需求，假设页面中有30个div，每个div中都有一个a链接，我们点击a链接的，可以删除对应的div;
+    //1.给页面绑定元素
+    //2.事件委托；
+    //1.动态创建 2.字符串拼接
+    var str='';
+    for(var i=0; i<30; i++){
+        str+='<div><a href="javascript:;">'+(i+1)+'</a></div>'
+    }
+    document.body.innerHTML=str;
+    var aA=document.getElementsByTagName('a');
+    document.body.onclick=function(e){
+        e=e||window.event;
+        var target= e.target|| e.srcElement;
+        for(var i=0; i<aA.length; i++){
+            if(target==aA[i]){
+                this.removeChild(target.parentNode);
+            }
+        }
+    }
+    /*document.body.onclick=function(e){
+        e=e||window.event;
+        var target= e.target|| e.srcElement;
+        if(target.tagName.toLowerCase()==='a'){
+            //思路2：
+            this.removeChild(target.parentNode);
+            //思路1：
+            //target.parentNode.parentNode.removeChild(target.parentNode);
+        }
+    }*/
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    oDiv.onmousedown=down;
+    function down(e){
+        e=e||window.event;
+        this.x= e.clientX;
+        this.y= e.clientY;
+        this.l=this.offsetLeft;
+        this.t=this.offsetTop;
+        if(this.setCapture){
+            this.setCapture();
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else{//标准浏览器-document
+            var _this=this;
+            document.onmousemove=function(){
+                move.call(_this);
+            };
+            document.onmouseup=function(){
+                up.call(_this);
+            }
+            //阻止默认事件
+            e.preventDefault();
+        }
+    }
+    function move(e){//offset只能获取，不能设置，如果设置，只能通过style.xxx
+        e=e||window.event;
+        this.style.left= e.clientX-this.x+this.l+'px';
+        this.style.top= e.clientY-this.y+this.t+'px';
+    }
+    function up(){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+    }
+</script>
+</body>
+</html>

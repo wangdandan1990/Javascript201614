@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    oDiv.onmousedown=down;
+    //当鼠标落下的时候，需要保存初始的值：l,t,x,y;
+    function down(e){
+        e=e||window.event;
+        this.l=this.offsetLeft;
+        this.t=this.offsetTop;
+        this.x= e.clientX;
+        this.y= e.clientY;
+        oDiv.onmousemove=move;
+        oDiv.onmouseup=up;
+    }
+    //移动的时候，开始计算新位置；移动过程中，本质就是鼠标坐标的移位；
+    function move(e){
+        e=e||window.event;
+        this.style.left= e.clientX-this.x+this.l+'px';
+        this.style.top= e.clientY-this.y+this.t+'px';
+    }
+    function up(){
+        this.onmousemove=null;
+        this.onmouseup=null;
+    }
+</script>
+</body>
+</html>
