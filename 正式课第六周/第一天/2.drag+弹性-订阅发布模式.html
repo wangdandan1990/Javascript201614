@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            overflow: hidden;
+        }
+        div{
+            width:100px;
+            height:100px;
+            position: absolute;
+        }
+        .box1{
+            left:0;
+            top:0;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box1" id="div"></div>
+<script src="js/event.js"></script>
+<script src="js/drag3.js"></script>
+<script>
+    //1：订阅阶段:就是把跟自定义行为有关的方法，都放进一个数组；
+    on(oDiv,'selfDown',clearEffect);
+    on(oDiv,'selfDown',testDown);
+    on(oDiv,'selfMove',getSpeedX);
+    on(oDiv,'selfMove',testMove);
+    on(oDiv,'selfUp',fly);
+    on(oDiv,'selfUp',drop);
+    function testDown(){
+        console.log('我是用来测试down下面发生的事情的')
+    }
+    function testMove(){
+        console.log('我是用来测试move下面发生的事情的')
+    }
+    function clearEffect(){//down
+        clearTimeout(this.flyTimer);
+        clearTimeout(this.dropTimer);
+    }
+    //move
+    function getSpeedX(e){
+        //计算横向速度：
+        if (!this.preSpeed) {
+            this.preSpeed = e.clientX;
+        } else {
+            this.speedX = e.clientX - this.preSpeed;
+            this.preSpeed = e.clientX;
+        }
+    }
+    function fly(){
+        clearTimeout(this.flyTimer);
+        this.speedX*=.93;
+        var l=this.offsetLeft+this.speedX;
+        var maxL=(document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth;
+        //边界值的判断
+        if(l>=maxL){
+            l=maxL;
+            this.speedX*=-1;
+        }else if(l<=0){
+            l=0;
+            this.speedX*=-1;
+        }
+        if(Math.abs(this.speedX)>=0.5){
+            this.style.left=l+'px';
+            this.flyTimer=setTimeout(processThis(fly,this),10);
+        }
+    }
+    function drop(){
+        clearTimeout(this.dropTimer);
+        if(!this.speedY){
+            this.speedY=9.8;
+        }
+        this.speedY+=9.8;
+        this.speedY*=.93;
+        var t=this.offsetTop+this.speedY;
+        var maxT=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        if(t>=maxT){//触底
+            t=maxT;
+            this.speedY*=-1;
+            this.flag++;
+        }else{//正常运动的效果；
+            this.flag=0;
+        }
+        if(this.flag<2){
+            this.style.top=t+'px';
+            this.dropTimer=setTimeout(processThis(drop,this),10);
+        }
+    }
+</script>
+</body>
+</html>

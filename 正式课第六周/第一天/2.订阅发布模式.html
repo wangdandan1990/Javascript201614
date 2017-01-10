@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[];
+    function boiling(){
+        console.log('水开了，你们可以干活啦')
+        //发布模式；等水烧开后，顺序调用数组中的每个方法；
+        fire();
+    }
+    function coffee(){
+        console.log('冲咖啡')
+    }
+    function shower(){
+        console.log('我要洗澡')
+    }
+    function flowers(){
+        console.log('开水浇花')
+    }
+    function footer(){
+        console.log('泡脚')
+    }
+    function on(fn){
+        ary.push(fn);
+    }
+    function fire(){
+        for(var i=0; i<ary.length; i++){
+            ary[i]();
+        }
+    }
+
+    //订阅模式：把水开后，要执行的函数，都放到数组中去；
+   // on(coffee);
+    on(shower);
+   // on(flowers);
+    on(footer);
+
+    //烧水
+    boiling();
+</script>
+</body>
+</html>
