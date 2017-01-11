@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>移动端开发</title>
+    <!--引入css样式文件：注意把rel改成"stylesheet/less"-->
+    <link rel="stylesheet/less" href="./css/index.less">
+</head>
+<body>
+<section class="musicBox">
+    <div class="musicBg"></div>
+    <audio src="img/demo.m4a"></audio>
+    <!--
+    auto中常用的属性：
+        autoplay：是否自动播放
+        loop：是否循环
+        currentTime：从开始播放到现在所用的时间，也就是音频的当前时间；
+        duration：总播放时间；
+        volume:播放音量，范围为0到1,0为静音，1为最大音量
+        preload：none不会被缓存；
+        src:嵌入的音视频的URL
+        played:已播放的音频片段
+        paused:媒体是否暂停(只读)，true停止播放，false正在播放
+        ended:媒体是否播放完毕(只读)
+    audio常用的方法：
+        play()播放
+        pause()暂停
+    audio常用的事件：
+        canplay：资源能够正常播放的话；
+        ended：播放结束后触发；
+
+
+
+
+    -->
+    <header class="header">
+        <div class="base">
+            <img src="img/poster.jpg" alt="">
+            <p>
+                <span>模特</span>
+                <span>李荣浩</span>
+            </p>
+        </div>
+        <div class="btn">
+            <a href="javascript:;" class="play"></a>
+            <a href="javascript:;" class="pause"></a>
+        </div>
+    </header>
+    <main class="main">
+        <div class="lyric">
+            <p>模特 - 李荣浩</p>
+            <p>词：周耀辉</p>
+            <p>曲：李荣浩</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="storage">
+            <a href="javascript:;"></a>
+        </div>
+        <div class="progress">
+            <div class="current">00:00</div>
+            <div class="timeLine"><span></span></div>
+            <div class="duration">00:00</div>
+        </div>
+        <div class="downLoad"><i>下载这首音乐</i></div>
+    </footer>
+</section>
+<!--less：负责编译； zepto：类同jquery-->
+<script src="js/less-2.5.3.min.js"></script>
+<script src="js/zepto.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

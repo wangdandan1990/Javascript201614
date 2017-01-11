@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/zepto.min.js"></script>
+<script>
+    var jiantingzhe= $.Callbacks();
+    $('div').click(function(){
+        //alert(1)
+        jiantingzhe.fire();//发布
+    })
+    //通过add来订阅；
+    jiantingzhe.add(function(){
+        console.log('事件1')
+    })
+    jiantingzhe.add(function(){
+        console.log('事件2')
+    })
+    jiantingzhe.add(function(){
+        console.log('事件3')
+    })
+
+</script>
+</body>
+</html>
