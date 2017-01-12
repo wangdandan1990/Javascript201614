@@ -28,12 +28,14 @@
 var musicUtils=(function(){
     var $callbacks= $.Callbacks(),
         $lyric=$('.lyric'),
-        $audio=$('audio'),
+        oAudio=$('audio')[0],
         $current=$('.current'),
         $duration=$('.duration'),
         $btn=$('.btn'),
         $play=$('.play'),
-        $pause=$('.pause');
+        $pause=$('.pause'),
+        $timeProgress=$('.timeProgress'),
+        timer=null;
     //日期格式化：秒转换为00:00；
     function formatDate(s){
         var m=Math.floor(s/60);
@@ -54,7 +56,7 @@ var musicUtils=(function(){
     //开始播放音频，并且，拿到音频的当前时间和总时间；
     $callbacks.add(function(){
         //资源播放事件发生的时候，开始播放音频；
-        $audio.on('canplay',function(){
+        $(oAudio).on('canplay',function(){
             //事件中的this都是原生的；
             this.play();
             //播放的时候，显示暂停按钮；同时，隐藏播放按钮；
@@ -65,16 +67,43 @@ var musicUtils=(function(){
             //给按钮添加移动端的点击事件；//移动端，用tap来代替点击事件；
             $btn.on('tap',function(){
                 //如果暂停了就让其播放，否则就暂停，同时注意对应的按钮；
-                if($audio[0].paused){
-                    $audio[0].play();
+                if(oAudio.paused){
+                    oAudio.play();
                     $pause.show().prev().hide();
                 }else{
-                    $audio[0].pause();
+                    oAudio.pause();
                     $pause.hide().prev().show();
                 }
             })
         })
     });
+    //1）动态获取当前时间，并设置；2）让文字变色，等到了歌词的地方，让歌词往上移；3）歌词进度条
+    $callbacks.add(function(){
+        timer=setInterval(function(){
+            var currentTime=formatDate(oAudio.currentTime),
+                minute=currentTime.split(':')[0],
+                second=currentTime.split(':')[1];
+            //设置当前时间
+            $current.html(currentTime)
+            //设置进度条
+            $timeProgress.css('width',oAudio.currentTime/oAudio.duration*100+'%');
+            //设置文字变色：通过属性进行过滤；
+            var $tar=$lyric.find('p').filter('[data-minute="'+minute+'"]').filter('[data-second="'+second+'"]');
+            $tar.addClass('on').siblings('p').removeClass('on');
+            //当前歌词所对应的索引；
+            var n=$tar.index();
+            //播放完毕的时候，想干什么事；
+            if(oAudio.ended){
+                clearInterval(timer);//关闭定时器；
+                console.log('播放完毕');
+                $pause.hide().prev().show();//显示播放按钮；
+                return;
+            }
+            if(n>=3){
+                $lyric.animate({top:(n-2)*-.84+'rem'},1000);
+            }
+        },1000);
+    })
     return {
         init:function(){
             $.ajax({

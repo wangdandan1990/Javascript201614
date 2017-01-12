@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .div2{
+            background: green;
+            left:120px;
+        }
+        .div3{
+            background: yellow;
+            left:240px;
+        }
+        .div4{
+            background: blue;
+            left:360px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" class="div1">1</div>
+<div id="div2" class="div2">2</div>
+<div id="div3" class="div3">3</div>
+<div id="div4" class="div4">4</div>
+<!--event：现在用来绑定系统事件；EventEmitter这个构造函数中封装了自定义事件-->
+<script src="event.js"></script>
+<script src="Drag2.js"></script>
+<script>
+    /*var oDiv=document.getElementById('div');*/
+    //var drag1=new Drag({ele:oDiv});
+    /*drag1.on('selfMove',function(e){
+        range({
+            l:0,
+            t:0,
+            r:500,
+            b:400
+        },e)
+    });
+    function range(opt,e){
+        var l=e.clientX-drag1.x+drag1.l;
+        var t=e.clientY-drag1.y+drag1.t;
+        if(l<=opt.l){
+            l=opt.l;
+        }else if(l>=opt.r){
+            l=opt.r;
+        }
+        if(t<=opt.t){
+            t=opt.t;
+        }else if(t>=opt.b){
+            t=opt.b
+        }
+        oDiv.style.left= l+'px';
+        oDiv.style.top= t+'px';
+    }*/
+    //如果让所有的div都能拖拽的话，需要循环遍历；
+    var aDiv=document.getElementsByTagName('div');
+    for(var i=0; i<aDiv.length; i++){
+        var drag=new Drag({ele:aDiv[i]});
+        if(i==1){
+            drag.range({
+                left:100,
+                top:0,
+                right:600,
+                bottom:400
+            });
+        }
+    }
+</script>
+</body>
+</html>
