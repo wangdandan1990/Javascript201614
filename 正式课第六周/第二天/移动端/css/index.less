@@ -1,0 +1,207 @@
+@import "reset";//重置样式
+@import (reference)"public";//index需要依赖public.less，但不需要在浏览器渲染该组件；
+html{
+  font-size: 100px;//一般的设计稿都是我们设备的2倍；假设：640px宽度的页面，他的字体大小为100px=1rem;
+}
+html,body,.musicBox{
+  width:100%;
+  height:100%;
+  overflow: hidden;
+}
+/*背景图*/
+.musicBox{
+  position: relative;
+  .musicBg{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: url("../img/poster.jpg") no-repeat center;
+    background-size: cover;
+    -webkit-filter:blur(10px);//以webkit开头，代表Chrome浏览器；
+    filter:blur(10px);
+    transform: scale(1.1);
+    z-index: -2;
+    &:after{
+      height:100%;
+      content: '';
+      display: block;
+      background: rgba(0,0,0,.6);
+      z-index:-1;
+    }
+  }
+}
+/*头部*/
+.header{
+  height:1.2rem;
+  padding:.3rem;
+  background: rgba(0,0,0,.2);
+  position: relative;
+  .base{
+    width:4.5rem;
+    img{
+      width:1.2rem;
+      height:1.2rem;
+      display: inline-block;
+      vertical-align: top;
+    }
+    p{
+      display: inline-block;
+      vertical-align: top;
+      span{
+        font-size: .36rem;
+        display: block;
+        color:@color-white;
+        line-height: .6rem;
+      }
+    }
+  }
+  .btn{
+    width:.9rem;
+    height:.9rem;
+    position: absolute;
+    right:.3rem;
+    top:50%;
+    margin-top:-.45rem;
+    border-radius: 50%;
+    border:.02rem solid @color-gray;
+    .play{
+      display: block;
+      width:.32rem;
+      height:.38rem;
+      .spriteFn(@y:-3rem);
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-left: -.17rem;
+      margin-top:-.19rem;
+      opacity: .5;
+    }
+    .pause{
+      display: none;
+      width: .18rem;
+      height:.3rem;
+      .spriteFn(@y:-3.6rem);
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-left: -.09rem;
+      margin-top:-.15rem;
+      opacity: .5;
+    }
+  }
+}
+/*main*/
+.main{
+  margin:.4rem .2rem;
+  position: relative;
+  overflow: hidden;
+  .lyric{
+    width: 100%;
+    position: absolute;
+    left:0;
+    top:0;
+    p{
+      width: 100%;
+      text-align: center;
+      line-height: .84rem;
+      font-size: .32rem;
+      color: @color-gray;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+/*footer*/
+.footer{
+  margin:0 .2rem;
+  height:3rem;
+  .storage{
+    position: relative;
+    height: .8rem;
+    a{
+      position: absolute;
+      width:.5rem;
+      height:.44rem;
+      .spriteFn();
+      right:.2rem;
+      top:50%;
+      margin-top:-.22rem;
+      display: block;
+    }
+  }
+  .progress{
+    height:.8rem;
+    line-height: .8rem;
+    width: 100%;
+    position: relative;
+    .current{
+      text-align: center;
+      width:.9rem;
+      height: .8rem;
+      line-height: .8rem;
+      position: absolute;
+      left:.1rem;
+      top:0;
+      font-size: .24rem;
+      color: @color-gray;
+    }
+    .duration{
+      text-align: center;
+      width:.9rem;
+      height: .8rem;
+      line-height: .8rem;
+      position: absolute;
+      right:.1rem;
+      top:0;
+      font-size: .24rem;
+      color: @color-gray;
+    }
+    .timeLine{
+      width: 4rem;
+      height: 0.04rem;
+      background: @color-gray;
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-left:-2rem;
+      margion-top:-0.02rem;
+      span{
+        position: absolute;
+        left:0;
+        top:0;
+        height:100%;
+        width:30%;
+        background: @color-green;
+      }
+    }
+  }
+  .downLoad{
+    width:4.4rem;
+    height:.9rem;
+    background: @color-green;
+    margin:0 auto;
+    text-align: center;
+    border-radius: .45rem;
+    position: relative;
+    i{
+      font-style: normal;
+      font-size: .36rem;
+      color: @color-white;
+      display: block;
+      line-height: .9rem;
+      &:after{
+        width:.66rem;
+        height:.66rem;
+        .spriteFn(@y:-6rem);
+        display: block;
+        content: "";
+        position: absolute;
+        left:.11rem;
+        top:50%;
+        margin-top:-.33rem;
+      }
+    }
+  }
+}
+
