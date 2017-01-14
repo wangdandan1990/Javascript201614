@@ -1,0 +1,44 @@
+一：simpleInheritance.js的使用方法：
+1.先到官网中找到JS源码,创建一个JS文件：
+http://ejohn.org/blog/simple-javascript-inheritance/
+2.创建一个EventEmitter类；
+var EventEmitter=Class.extend({
+    init:function(){//原来写在构造函数中的私有属性和方法，现在写在init中；
+
+    }
+    //公有方法就如下面的写法；
+    on:function(){
+
+    }
+})
+//创建一个Drag类，来继承EventEmitter类；
+var Drag=EventEmitter.extend({
+    init:function(){
+        this._super();
+        //该在构造函数中写的还在init中写；
+    }
+    //公有方法就如下面的写法；
+    down:function(){
+        ...
+    }
+})
+二. Es6的继承写法：
+class EventEmitter{
+    constructor(){
+       //构造函数中的私有属性，都写在这里
+    }
+    //原型上的公有方法都写在下面
+    on(){
+
+    }
+}
+//子类Drag想继承父类EventEmitter
+class Drag extends EventEmitter{
+    constructor(){
+        super();
+    }
+    //原型上的公有方法都写在下面
+    down(){}
+    move(){}
+    up(){}
+}

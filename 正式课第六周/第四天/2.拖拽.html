@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .div2{
+            background: green;
+            left:120px;
+        }
+        .div3{
+            background: yellow;
+            left:240px;
+        }
+        .div4{
+            background: blue;
+            left:360px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" class="div1">1</div>
+<div id="div2" class="div2">2</div>
+<div id="div3" class="div3">3</div>
+<div id="div4" class="div4">4</div>
+<!--event：现在用来绑定系统事件；EventEmitter这个构造函数中封装了自定义事件-->
+<script src="simpleInheritance.js"></script>
+<script src="event.js"></script>
+<script src="Drag3.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    for(var i=0; i<aDiv.length; i++){
+        new Drag({
+            ele:aDiv[i]
+        }).creaseIndex();
+    }
+
+</script>
+</body>
+</html>
