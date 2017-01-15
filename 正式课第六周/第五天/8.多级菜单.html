@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        .box{
+            width: 500px;
+            background: -webkit-linear-gradient(top,lightblue,lightgreen,lightgrey);
+            padding:5px 20px;
+        }
+        .box li{
+            line-height: 30px;
+            position: relative;
+        }
+        .box li p{
+            padding-left:20px;
+        }
+        .box li em{
+            /*background: url("icon.png") no-repeat -42px -28px;*/
+            background: url("icon.png") no-repeat -59px -28px;
+            width:16px;
+            height:16px;
+            position: absolute;
+            left:0;
+            top:7px;
+
+        }
+        .box2,.box3,.box4{
+            display: none;
+        }
+        .box2{
+            margin-left:20px;
+        }
+        .box3{
+            margin-left: 40px;
+        }
+        .box4{
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+<ul class="box">
+    <li>
+        <p><em></em>第一级第一个</p>
+        <ul class="box2">
+            <li>
+                <p><em></em>第二级第一个</p>
+                <ul class="box3">
+                    <li>第三级第一个</li>
+                    <li>
+                        <p><em></em>第三级第二个</p>
+                        <ul class="box4">
+                            <li>第四级第一个</li>
+                            <li>第四级第二个</li>
+                            <li>第四级第三个</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><em></em>第三级第三个</p>
+                        <ul class="box4">
+                            <li>第四级第一个</li>
+                            <li>第四级第二个</li>
+                            <li>第四级第三个</li>
+                        </ul>
+                    </li>
+                    <li>第三级第四个</li>
+                </ul>
+            </li>
+            <li>
+                <p><em></em>第二级第二个</p>
+                <ul class="box3">
+                    <li>第三级第一个</li>
+                    <li>
+                        <p><em></em>第三级第二个</p>
+                        <ul class="box4">
+                            <li>第四级第一个</li>
+                            <li>第四级第二个</li>
+                            <li>第四级第三个</li>
+                        </ul>
+                    </li>
+                    <li>第三级第三个</li>
+                    <li>
+                        <p><em></em>第三级第四个</p>
+                        <ul class="box4">
+                            <li>第四级第一个</li>
+                            <li>第四级第二个</li>
+                            <li>第四级第三个</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><em></em>第二级第三个</p>
+                <ul class="box3">
+                    <li>
+                        <p><em></em>第三级第一个</p>
+                        <ul class="box4">
+                            <li>第四级第一个</li>
+                            <li>第四级第二个</li>
+                            <li>第四级第三个</li>
+                        </ul>
+                    </li>
+                    <li>第三级第二个 </li>
+                    <li>第三级第三个</li>
+                    <li>
+                        <p><em></em>第三级第四个</p>
+                        <ul class="box4">
+                            <li>第四级第一个</li>
+                            <li>第四级第二个</li>
+                            <li>第四级第三个</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<script src="jquery-2.0.3.js"></script>
+<script>
+    //给能够打开的菜单中加入小手移上的效果；
+    $('p').css('cursor','pointer');
+    //点击p元素，可以展开，收缩；
+    $('.box').click(function(e){
+        var target= e.target;
+        if(target.tagName.toLowerCase()=='p'||target.tagName.toLowerCase()=='em'){
+            var $ul=$(target).next();
+            //因为em没有兄弟元素ul，只有p元素有兄弟元素em;
+            if($ul){
+                var $em=$(target).children('em');
+                //如果显示就让其隐藏，如果隐藏就让其显示
+                if($ul.css('display')==='none'){
+                    //显示的时候，让当前元素的兄弟元素ul显示，同时em变成-号；
+                    $ul.show();
+                    $em.css('background','url("icon.png") no-repeat -42px -28px')
+                }else{
+                    //隐藏的时候，让当前元素的父容器下所有的ul都隐藏，所有的em都变成+号；
+                    var $aUl=$(target).parent().find('ul');
+                    var $aEm=$(target).parent().find('em');
+                    $aUl.hide();
+                    $aEm.css('background','url("icon.png") no-repeat -59px -28px')
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

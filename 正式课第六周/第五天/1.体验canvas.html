@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<!--canvas中的宽和高必须通过属性来设置，不能通过样式设置-->
+<canvas id="canvas" width="800" height="500">您的浏览器不支持canvas</canvas>
+<script>
+    //获取canvas元素
+    var canvas=document.getElementById('canvas');
+    //创建一个2d的画布环境，他是上下文，也就是一个对象，后面所有的操作，都依据这个对象；
+    var ctx=canvas.getContext('2d');
+    //圆
+    //ctx.arc(100,100,50,0,Math.PI*2,false);
+    ctx.arc(100,200,50,0,Math.PI);
+    //ctx.fill();
+    ctx.stroke();
+    //矩形
+    /*ctx.fillRect(100,100,200,50)
+    ctx.strokeRect(100,170,200,50)
+    ctx.clearRect(0,0,canvas.width,canvas.height);*/
+    //体验
+    /*ctx.fillStyle='red';
+    ctx.fillRect(100,100,200,100);*/
+    //线
+    /*ctx.beginPath();//开始一个新路径
+    ctx.moveTo(130,106);
+    ctx.lineTo(130,287);
+    ctx.lineTo(248,287);
+    //ctx.closePath();//闭合路径
+    ctx.strokeStyle='orange';
+    ctx.stroke(); //stroke线
+    //ctx.fillStyle='green';
+    //ctx.fill();//fill填充：即色块*/
+</script>
+</body>
+</html>
