@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fn(a,b,c){
+        console.log(arguments)//[1,2]
+        arguments[2]=10;
+        console.log(c);//[1,2,10]
+    }
+    fn(1,2,3);
+</script>
+</body>
+</html>

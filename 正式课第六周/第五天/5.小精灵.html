@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="500"></canvas>
+<script>
+    var canvas=document.getElementById('canvas');
+    var ctx=canvas.getContext('2d');
+    function Gril(x,y){
+        this.state=0;
+        this.x=x;
+        this.y=y;
+    }
+    Gril.prototype={
+        update:function(){
+            //横着跑
+            this.x+=10;
+            //%的思想；
+            this.state=++this.state%4;
+            return this;
+        },
+        render:function(){
+            //这里是canvas中的画布中画图片；
+            ctx.drawImage(img,96*this.state,96*2,96,96,this.x,this.y,96*2,96*2)
+        }
+    }
+    var gril1=new Gril(10,100);
+    //这里是JS中的加载图片；
+    var img=new Image();
+    img.src='2.png';
+    img.onload=function(){
+        setInterval(function(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            gril1.update().render();
+        },100)
+    }
+
+</script>
+</body>
+</html>
