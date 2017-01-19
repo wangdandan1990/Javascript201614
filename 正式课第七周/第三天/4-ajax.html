@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/ajax.js"></script>
+<script>
+    ajax({
+        url: 'student.xml',
+        type: 'get',
+        dataType: 'xml',
+        success: function (result) {
+            //this->xhr
+            console.log(result);
+        }
+    });
+    //->dataType:不能影响服务器返回给客户端的结果,我们设定的标识(json/xml)仅仅是告诉我们自己封装的方法库,把从服务器获取的数据进行二次解析和加工,最后变为我们需要的数据格式
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest;
+    xhr.open('get', 'student.xml?_=' + Math.random());
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>
