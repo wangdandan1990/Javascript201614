@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest;
+    xhr.open('head', 'temp.xml?_=' + Math.random());
+    xhr.onreadystatechange = function () {
+        if (xhr.status !== 200) return;
+        if (xhr.readyState === 2) {
+            var serverTime = xhr.getResponseHeader('Date');//->获取的服务器时间是格林尼治时间字符串
+            serverTime = new Date(serverTime);
+            console.log(serverTime);
+        }
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>

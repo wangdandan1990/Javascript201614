@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    /*$.ajax({
+     url: 'temp.xml'
+     });
+     $.ajax('temp.xml', {});*/
+
+    $.ajax({
+        url: 'temp.xml',
+        method: 'get',//->type:'get'
+        async: true,
+        cache: true,//->在GET系列请求并且设置为FALSE的情况下，我们需要在URL的末尾追加随机数来清除缓存
+        dataType: 'json',//->预设定服务器返回的数据格式(它不能影响服务器反回的数据格式,服务器返回的数据格式一般都是字符串),我们只是自己在类库中通过相关的JS操作,二次把返回的字符串转换为我们预设定的DATA TYPE的值 -> text、json、xml
+        data: null,//->设置请求主体内容,支持数据格式两种:字符串、对象，如果是对象格式的话，我们需要把其转换为 'key1=value1&key2=value2...'这样的字符串  如果是GET系列的请求，我们把内容放在URL的末尾通过问号传参的方式传递给服务器，如果POST系列的在通过请求主体传递给服务器
+        success: function (result) {
+            console.log(result);
+        }//->当请求成功后执行这个回调函数:result是从服务器获取的结果 方法中的THIS是XHR(JQ不是)
+    });
+</script>
+</body>
+</html>
