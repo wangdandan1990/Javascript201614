@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<script>
+    /*
+     * 处理细节：
+     *  请求的方式使用HEAD也可以,前提是我们只需要获取响应头信息
+     *  因为是GET系列的请求,我们如果想要清除缓存,需要加随机数
+     */
+    var xhr = new XMLHttpRequest;
+    xhr.open('get', 'student.xml?_=' + Math.random());
+    xhr.onreadystatechange = function () {
+        if (xhr.status !== 200) return;
+
+        if (xhr.readyState === 2) {
+            //->HEADERS_RECEIVED
+            //响应头信息已经接收了,在响应头中就已经有服务器的时间了
+
+            //->xhr.getResponseHeader:获取响应头信息
+            //获取到的服务器时间是格林尼治时间GMT(字符串类型),我们还需要把获取的时间转换为北京标准时间
+            var time = xhr.getResponseHeader('Date');
+            time = new Date(time);
+            console.log(time);
+        }
+
+        if (xhr.readyState === 4) {
+            //console.log(xhr.responseText, xhr.responseXML);
+            console.log(xhr.getResponseHeader('Date'));
+        }
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>
