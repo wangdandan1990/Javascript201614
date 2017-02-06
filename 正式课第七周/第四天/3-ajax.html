@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/ajax.js"></script>
+<script>
+    ajax({
+        url:'temp.json',
+        type: 'post',
+        dataType: 'json',
+        cache:false,
+        data: {
+            name: 'zf',
+            age: 8
+        },
+        success: function (result) {
+            console.log(result);
+        }
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    //    $.ajax({
+    //        url:'temp.json'
+    //    });
+    //    $.ajax('temp.json?aa=12', {
+    //        method: 'get', //->请求方式:get、post... 属性名叫做type也可以
+    //        dataType: 'json',//->预设返回的数据格式:text、json、xml...
+    //        cache: false,//->是否清除GET请求下的缓存,默认是TRUE不清除,想要清除我们设置为FALSE
+    //        async: true,//->设置同步还是异步,TRUE是默认值代表异步
+    //        data: null,
+    //        //timeout:3000, //->设置超时时间,这里的意思是,只要3000MS内没有把数据成功获取,本次请求就算做超时
+    //        success: function (result) {//->当获取成功后触发的回调函数,RESULT是从服务器获取的最后结果
+    //            console.log(this, result);
+    //        }
+    //    });
+
+    $.ajax('temp.json', {
+        method: 'post',
+        data: null,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/temp.css"/>
+</head>
+<body>
+欢迎大家回来上课
+<script src="js/temp.js"></script>
+<script>
+    var xhr = new XMLHttpRequest;
+    xhr.open('get', 'temp.xml?_=' + Math.random());
+    xhr.setRequestHeader('zhufeng', encodeURIComponent('珠峰'));//->设置自定义请求头信息不能出现汉字,如果一定需要汉字的话,我们需要对汉字进行编码
+    //->escape / unescape
+    //->encodeURI / decodeURI
+    //->encodeURIComponent / decodeURIComponent  思考题：回去后查询三种方式的区别，重点是最后两种的区别
+
+    //xhr.abort() ->终止AJAX  xhr.onabort=function...
+    //xhr.timeout=3000 ->设置超时时间  xhr.ontimeout=function...
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            //->获取响应头信息
+            //xhr.getResponseHeader([key])
+            //xhr.getAllResponseHeaders()
+
+            //->获取响应主体内容
+            //xhr.responseText
+            //xhr.responseXML
+
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send(null);
+
+
+    /*
+     * 1、请求方式
+     * GET:GET/DELETE/HEAD
+     * POST:POST/PUT
+     *
+     * 不管是哪一种方式，客户端都可以把数据传递给服务器，服务器也可以把内容返回给客户端，传递的方式：
+     * 客户端 -> 服务器
+     *   问号传参 A1
+     *   设置请求头 A2
+     *   设置请求主体 A3
+     *
+     * 服务器 -> 客户端
+     *   设置响应头 B1
+     *   设置响应主体 B2
+     *
+     * GET系列的请求统一使用A1的方式把内容传递给服务器，POST系列统一使用A3把内容传递给服务器
+     * ->GET传递给服务器的内容有大小限制(因为URL长度有大小限制:谷歌8KB 火狐7KB IE2KB...)
+     * ->GET请求有缓存(清除缓存：在URL的末尾以问号传参的方式追加随机数)
+     * ->GET请求相对没有POST请求安全(传递的是用户名、密码等重要信息都使用POST)
+     */
+
+    /*
+     * 2、AJAX状态码
+     * 0 UNSENT 未发送,刚开始创建AJAX对象的初始值
+     * 1 OPENED 已打开,已经执行了OPEN这个方法
+     * 2 HEADERS_RECEIVED 响应头信息已经接收
+     * 3 LOADING 响应主体内容正在加载
+     * 4 DONE 响应主体内容加载完成
+     *
+     * AJAX这次事物
+     * 开始：XHR.SEND()
+     * 结束：XHR.READYSATE===4
+     */
+
+    /*
+     * 3、服务器返回的网络状态码 XHR.STATUS
+     * 200 OK
+     *
+     * 301 永久重定向 360buy.com => jd.com
+     * 302 临时重定向 解决服务器的负载均衡问题
+     * 304 读取的是缓存数据(性能优化的一种)
+     *
+     * 400 参数错误
+     * 401 无权限
+     * 404 请求地址不存在
+     *
+     * 500 未知服务器错误
+     * 503 服务器超负荷
+     */
+</script>
+</body>
+</html>

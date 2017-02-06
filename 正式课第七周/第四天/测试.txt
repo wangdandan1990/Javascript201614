@@ -1,0 +1,50 @@
+1、AJAX是什么，干什么用的
+  async javascript and xml
+
+2、AJAX中常用的HTTP请求方式都有哪些？ GET请求和POST请求的区别？
+  get、delete、head、post、put...
+  1、get传递给服务器的数据内容有大小限制
+  2、get请求容易出现缓存
+  3、get请求不安全
+
+3、AJAX中经常出现的HTTP STATUES(网络状态码)都是什么意思？
+   200 成功
+   301 永久重定向
+   302 临时重定向
+   304 读取缓存数据
+   400 参数错误
+   401 权限错误
+   404 地址错误
+   500 未知的服务器错误
+   503 服务器超负载
+
+4、AJAX的状态码都是什么意思？
+   0 UNSEND
+   1 OPEND
+   2 HEADERS_RECEIVED
+   3 LOADING
+   4 DONE
+
+5、在客户端AJAX中设置请求头和获取响应头信息使用哪两个方法？
+   xhr.setRequestHeader
+   xhr.getResponseHeader
+
+6、编写AJAX代码，获取服务器端的时间
+   var xhr=new XMLHttpRequest;
+   xhr.open('head/get','/temp.xml?_='+Math.random());
+   xhr.onreadystatechange=function(){
+      if(xhr.status!==200) return;
+      if(xhr.readyState===2){
+         var time=xhr.getResponseHeader('Date');
+         time = new Date(time);
+      }
+   }
+   xhr.send();
+
+
+
+
+
+
+
+

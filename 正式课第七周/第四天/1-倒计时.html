@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+距离放假还有：<span id="timeBox">00:00:00</span>
+
+<script>
+    var targetTime = new Date('2017/01/22 18:00:00'),
+            autoTimer = null,
+            timeBox = document.getElementById('timeBox');
+
+    function computed(time) {
+        var diffTime = targetTime - time;//->时间差:MS
+        if (diffTime <= 0) {
+            window.clearInterval(autoTimer);
+            timeBox.innerHTML = '00:00:00';
+            return;
+        }
+        //->计算具体的小时分钟秒
+        var hours = Math.floor(diffTime / (1000 * 60 * 60));
+        diffTime -= hours * 1000 * 60 * 60;
+        var minutes = Math.floor(diffTime / (1000 * 60));
+        diffTime -= minutes * 1000 * 60;
+        var seconds = Math.floor(diffTime / 1000);
+
+        //->不足10位数的前面补零
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        //->把需要展示的内容放在盒子中
+        timeBox.innerHTML = hours + ':' + minutes + ':' + seconds;
+    }
+
+    var serverTime = new Date();
+    var xhr = new XMLHttpRequest;
+    xhr.open('head', 'note.txt?_=' + Math.random());
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 2 && xhr.status === 200) {
+            serverTime = new Date(xhr.getResponseHeader('Date'));
+            computed(serverTime);
+
+            //->以后每隔一秒中,都重新计算倒计时
+            autoTimer = window.setInterval(function () {
+                serverTime = new Date(Number(serverTime.getTime()) + 1000);
+                computed(serverTime);
+            }, 1000);
+        }
+    };
+    xhr.send(null);
+
+
+    //->需要被PASS掉,这样做的话对服务器的压力需求太大了
+    //    autoTimer = window.setInterval(function () {
+    //        var xhr = new XMLHttpRequest;
+    //        xhr.open('head', 'note.txt?_=' + Math.random());
+    //        xhr.onreadystatechange = function () {
+    //            if (xhr.readyState === 2 && xhr.status === 200) {
+    //                var time = new Date(xhr.getResponseHeader('Date'));
+    //                computed(time);
+    //            }
+    //        };
+    //        xhr.send(null);
+    //    }, 1000);
+</script>
+</body>
+</html>

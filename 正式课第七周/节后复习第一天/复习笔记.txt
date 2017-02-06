@@ -1,0 +1,74 @@
+1、简述当用户在浏览器地址栏输入一个网址后，到看到网页中的内容，都经历了哪些事情？
+  ->客户端:通过域名到DNS(域名解析服务器)上找到对应服务器的外网IP地址(主机地址)
+  ->客户端:通过主机地址找到对应的服务器
+  ->客户端:通过端口号找到对应的服务
+  ->服务器:根据客户端请求资源文件的目录和名称以及传递过来的问号参数值，把相关的资源文件中的源代码找到[CODE]
+  ->服务器:把找到的CODE返回给客户端的浏览器
+  ->客户端:获取到这些CODE基于浏览器的渲染引擎进行渲染
+
+一个完整的URI=URL+URN
+  http://www.zhufengpeixun.cn:80/index.html?name=aa&age=8#video
+
+  端口号:0~65535
+  HTTP -> 80
+  HTTPS -> 443
+  FTP -> 21
+
+一个网站完全加载完成，客户端需要向服务器请求多次(至少一次)，每一次的请求详细信息可以在谷歌浏览器控制台的Networks中查看(HTTP报文:起始行、首部(头)、主体  HTTP事物:REQUEST+RESPONSE)
+
+2、
+什么是NODE?
+  ->一个工具包而不是新语言，我们一般在服务器上安装NODE，安装成功后，服务器上就提供了一个能用来渲染和解析JS的环境平台，而且这个平台是基于V8引擎渲染JS的
+  特点：
+   1)快
+   2)无阻塞的I/O操作（指的是对本地文件的增删改查）
+   3)单线程、基于事件驱动的异步操作
+
+NODE中的内置模块都有哪些，都是做什么用的？
+  ->HTTP
+    createServer/listen...
+
+  ->FS
+    readFileSync/writeFileSync
+
+  ->URL
+    parse([URI],TRUE/FALSE) TRUE:把问号传递进来的参数值以对象键值对的方式解析出来
+
+在NODE中定义了A模块，A中提供了sum方法，如果想让B模块调取sum，需要做哪些事情？
+  A.js
+    function sum(){
+       var total=null;
+       //arguments.__proto__=Array.prototype;
+       Array.prototype.forEach.call(arguments,function(item,index){
+          item=Number(item);
+          !isNaN(item)?total+=item:null;
+       });
+       return total;
+    }
+    module.exports={
+       sum:sum
+    };
+
+  B.js
+    var a=require('./A'); //->需要加./才能找自己定义的模块,否则找的是内置或者第三方安装的模块
+    var total=a.sum(1,2,3,4);
+    console.log(total);
+
+NODE是如何安装第三方模块的(比如安装LESS)？
+  https://www.npmjs.com/
+  npm install/uninstall less 安装到当前目录下
+  npm install/uninstall less -g 安装到全局下(可以在命令行中执行LESS命令了)
+
+
+3、在平时的项目中你做优化吗？都做哪些优化。
+  ->减少HTTP请求的次数和资源大小
+
+  ->注意代码的性能优化
+
+
+4、编写server模块，当客户端请求index.html的时候，把服务器上index.html文件中的代码返回
+
+
+5、什么是AJAX，主要是做什么的?
+  async javascript and xml  主要实现局部刷新
+

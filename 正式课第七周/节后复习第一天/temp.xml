@@ -1,0 +1,10 @@
+<root>
+    <student>
+        <name>李雅雅</name>
+        <age>28</age>
+    </student>
+    <student>
+        <name>曹盛平</name>
+        <age>82</age>
+    </student>
+</root>
